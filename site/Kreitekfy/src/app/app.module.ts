@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ScreenOneComponent } from './home/screen-one/screen-one.component';
 import { ScreenTwoComponent } from './home/screen-two/screen-two.component';
+import { SongComponent } from './entities/song/song.component';
+import { StyleComponent } from './entities/style/style.component';
+import { AlbumComponent } from './entities/album/album.component';
+import { ArtistComponent } from './entities/artist/artist.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { ScreenTwoComponent } from './home/screen-two/screen-two.component';
     HomeComponent,
     AboutUsComponent,
     ScreenOneComponent,
-    ScreenTwoComponent
+    ScreenTwoComponent,
+    SongComponent,
+    StyleComponent,
+    AlbumComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
