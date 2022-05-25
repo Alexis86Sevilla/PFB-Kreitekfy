@@ -44,11 +44,6 @@ public class SongServiceImpl implements SongService {
         this.persistence.deleteSong(songId);
     }
 
-    @Override
-    public List<SongDTO> getSongsByName(Long partialName) {
-        List<Song> songs = this.persistence.getSongsByName(partialName);
-        return mapper.toDto(songs);
-    }
 
     @Override
     public List<SongDTO> getSongsByStyle(Long styleId) {

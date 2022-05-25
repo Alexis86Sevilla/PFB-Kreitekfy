@@ -23,7 +23,6 @@ public interface SongPersistence {
 
     List<Song> getSongsByAlbum(Long albumId);
 
-    List<Song> getSongsByName(Long songId);
 
 
 

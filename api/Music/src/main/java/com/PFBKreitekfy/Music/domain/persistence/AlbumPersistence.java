@@ -1,10 +1,12 @@
 package com.PFBKreitekfy.Music.domain.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Album;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
 import java.util.Optional;
+
 
 public interface AlbumPersistence {
 
