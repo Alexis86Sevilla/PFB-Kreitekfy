@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../../album/model/album.model';
+import { AlbumService } from '../../album/service/album.service';
 import { Artist } from '../../artist/model/artist.model';
+import { ArtistService } from '../../artist/service/artist.service';
 import { Style } from '../../style/model/style.model';
+import { StyleService } from '../../style/service/style.service';
 import { Song } from '../model/song.model';
 import { SongService } from '../service/song.service';
 
@@ -17,6 +20,8 @@ export class SongFormComponent implements OnInit {
   songId?: number;
   song?: Song;
   styles: Style[] = [];
+  artists: Artist[] = [];
+  albums: Album[] = [];
   songForm?: FormGroup;
   selectedStyle?: Style;
   selectedArtist?: Artist;
@@ -25,6 +30,9 @@ export class SongFormComponent implements OnInit {
   constructor(
     private router: ActivatedRoute, 
     private songService: SongService, 
+    private styleService: StyleService, 
+    private artistService: ArtistService, 
+    private albumService: AlbumService,
     private fb: FormBuilder
     ) { }
 
@@ -33,6 +41,48 @@ export class SongFormComponent implements OnInit {
     this.buildForm();
     this.songId = +this.router.snapshot.paramMap.get("songId")!;
     this.getSongById(this.songId!);
+  }
+
+  public getAllStyles(event?: any): void {
+    let styleSearch: string | undefined;
+
+    if (event?.query) {
+      styleSearch = event.query;
+    }
+    this.styleService.getAllStyles(styleSearch).subscribe({
+      next: (stylesFiltered) => {
+        this.styles = stylesFiltered;
+      },
+      error: (err) => {this.handleError(err);}
+    });
+  }
+
+  public getAllArtists(event?: any): void {
+    let artistSearch: string | undefined;
+
+    if (event?.query) {
+      artistSearch = event.query;
+    }
+    this.artistService.getAllArtists(artistSearch).subscribe({
+      next: (artistsFiltered) => {
+        this.artists = artistsFiltered;
+      },
+      error: (err) => {this.handleError(err);}
+    });
+  }
+
+  public getAllAlbums(event?: any): void {
+    let albumSearch: string | undefined;
+
+    if (event?.query) {
+      albumSearch = event.query;
+    }
+    this.albumService.getAllAlbums(albumSearch).subscribe({
+      next: (albumsFiltered) => {
+        this.albums = albumsFiltered;
+      },
+      error: (err) => {this.handleError(err);}
+    });
   }
 
   public saveSong(): void {
@@ -107,26 +157,7 @@ export class SongFormComponent implements OnInit {
       error: (err) => {this.handleError(err);}
     })
   }
-
-  private createFromForm(): Song {
-    return {
-      ...this.song,
-      id: this.songForm?.get(['id'])!.value,
-      name: this.songForm?.get(['name'])!.value,
-      duration: this.songForm?.get(['duration'])!.value,
-      dateLaunch: this.songForm?.get(['dateLaunch'])!.value,
-      valoration: this.songForm?.get(['valoration'])!.value,
-      visualizations: this.songForm?.get(['visualizations'])!.value,
-      albumId: this.songForm?.get(['album'])!.value.id,
-      albumName: this.songForm?.get(['album'])!.value.name,
-      artistId: this.songForm?.get(['artist'])!.value.id,
-      artistName: this.songForm?.get(['artist'])!.value.name,
-      styleId: this.songForm?.get(['style'])!.value.id,
-      styleName: this.songForm?.get(['style'])!.value.name,
-      image: this.song!.image      
-    };
-  }
-
+   
   private getImageType(imageString: string): string{
     const imageStringParts: string[] = imageString.split(",");
     if (imageStringParts.length == 2) {
@@ -160,6 +191,39 @@ export class SongFormComponent implements OnInit {
       id: [{value: undefined, disabled: true}],
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     })
+  }
+
+  private updateForm(song: Song): void {
+    this.songForm?.patchValue({
+      id: song.id, 
+      name: song.name,
+      duration: song.duration,
+      dateLaunch: song.dateLaunch,
+      valoration: song.valoration,
+      visualizations: song.visualizations,
+      Album: new Album(song.albumId!, song.albumName!),
+      Artist: new Artist(song.artistId!, song.artistName!),
+      Style: new Style(song.styleId!, song.styleName!)
+    });
+  }
+
+  private createFromForm(): Song {
+    return {
+      ...this.song,
+      id: this.songForm?.get(['id'])!.value,
+      name: this.songForm?.get(['name'])!.value,
+      duration: this.songForm?.get(['duration'])!.value,
+      dateLaunch: this.songForm?.get(['dateLaunch'])!.value,
+      valoration: this.songForm?.get(['valoration'])!.value,
+      visualizations: this.songForm?.get(['visualizations'])!.value,
+      albumId: this.songForm?.get(['album'])!.value.id,
+      albumName: this.songForm?.get(['album'])!.value.name,
+      artistId: this.songForm?.get(['artist'])!.value.id,
+      artistName: this.songForm?.get(['artist'])!.value.name,
+      styleId: this.songForm?.get(['style'])!.value.id,
+      styleName: this.songForm?.get(['style'])!.value.name,
+      image: this.song!.image      
+    };
   }
 
   private handleError(error: any): void {
