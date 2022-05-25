@@ -1,7 +1,6 @@
 package com.PFBKreitekfy.Music.application.dto;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 
 public class StyleDTO implements Serializable {

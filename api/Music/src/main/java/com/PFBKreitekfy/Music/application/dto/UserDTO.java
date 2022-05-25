@@ -3,13 +3,15 @@ package com.PFBKreitekfy.Music.application.dto;
 
 import java.io.Serializable;
 
-public class ArtistDTO implements Serializable {
+public class UserDTO implements Serializable {
 
     private Long id;
 
     private String name;
 
-    public ArtistDTO() {
+    private Boolean isAdmin;
+
+    public UserDTO() {
     }
 
     public Long getId() {
@@ -26,5 +28,13 @@ public class ArtistDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }
