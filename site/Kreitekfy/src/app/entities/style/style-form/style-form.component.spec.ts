@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SongComponent } from './song.component';
+import { StyleFormComponent } from './style-form.component';
 
-describe('SongComponent', () => {
-  let component: SongComponent;
-  let fixture: ComponentFixture<SongComponent>;
+describe('StyleFormComponent', () => {
+  let component: StyleFormComponent;
+  let fixture: ComponentFixture<StyleFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SongComponent ]
+      declarations: [ StyleFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SongComponent);
+    fixture = TestBed.createComponent(StyleFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

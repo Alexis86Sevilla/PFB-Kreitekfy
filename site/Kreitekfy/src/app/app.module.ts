@@ -9,10 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ScreenOneComponent } from './home/screen-one/screen-one.component';
 import { ScreenTwoComponent } from './home/screen-two/screen-two.component';
-import { SongComponent } from './entities/song/song.component';
-import { StyleComponent } from './entities/style/style.component';
-import { AlbumComponent } from './entities/album/album.component';
-import { ArtistComponent } from './entities/artist/artist.component';
+import { ArtistFormComponent } from './entities/artist/artist-form/artist-form.component';
+import { ArtistListComponent } from './entities/artist/artist-list/artist-list.component';
+import { SongListComponent } from './entities/song/song-list/song-list.component';
+import { SongFormComponent } from './entities/song/song-form/song-form.component';
+import { StyleListComponent } from './entities/style/style-list/style-list.component';
+import { StyleFormComponent } from './entities/style/style-form/style-form.component';
+import { AlbumFormComponent } from './entities/album/album-form/album-form.component';
+import { AlbumListComponent } from './entities/album/album-list/album-list.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +27,14 @@ import { ArtistComponent } from './entities/artist/artist.component';
     AboutUsComponent,
     ScreenOneComponent,
     ScreenTwoComponent,
-    SongComponent,
-    StyleComponent,
-    AlbumComponent,
-    ArtistComponent
+    ArtistFormComponent,
+    ArtistListComponent,
+    SongListComponent,
+    SongFormComponent,
+    StyleListComponent,
+    StyleFormComponent,
+    AlbumFormComponent,
+    AlbumListComponent
   ],
   imports: [
     BrowserModule,
