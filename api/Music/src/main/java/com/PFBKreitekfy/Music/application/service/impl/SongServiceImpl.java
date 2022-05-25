@@ -3,10 +3,8 @@ package com.PFBKreitekfy.Music.application.service.impl;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.mapper.SongMapper;
 import com.PFBKreitekfy.Music.application.service.SongService;
-import com.PFBKreitekfy.Music.domain.entity.Album;
-import com.PFBKreitekfy.Music.domain.entity.Artist;
 import com.PFBKreitekfy.Music.domain.entity.Song;
-import com.PFBKreitekfy.Music.domain.persistance.SongPersistance;
+import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,11 +15,11 @@ import java.util.Optional;
 
 @Service
 public class SongServiceImpl implements SongService {
-    private final SongPersistance persistence;
+    private final SongPersistence persistence;
     private final SongMapper mapper;
 
     @Autowired
-    public SongServiceImpl(SongPersistance persistence, SongMapper mapper) {
+    public SongServiceImpl(SongPersistence persistence, SongMapper mapper) {
         this.persistence = persistence;
         this.mapper = mapper;
     }

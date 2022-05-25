@@ -4,7 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.mapper.AlbumMapper;
 import com.PFBKreitekfy.Music.application.service.AlbumService;
 import com.PFBKreitekfy.Music.domain.entity.Album;
-import com.PFBKreitekfy.Music.domain.persistance.AlbumPersistance;
+import com.PFBKreitekfy.Music.domain.persistence.AlbumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
-    private final AlbumPersistance persistence;
+    private final AlbumPersistence persistence;
     private final AlbumMapper mapper;
 
     @Autowired
-    public AlbumServiceImpl(AlbumPersistance persistence, AlbumMapper mapper) {
+    public AlbumServiceImpl(AlbumPersistence persistence, AlbumMapper mapper) {
         this.persistence = persistence;
         this.mapper = mapper;
     }

@@ -4,7 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import com.PFBKreitekfy.Music.application.mapper.StyleMapper;
 import com.PFBKreitekfy.Music.application.service.StyleService;
 import com.PFBKreitekfy.Music.domain.entity.Style;
-import com.PFBKreitekfy.Music.domain.persistance.StylePersistance;
+import com.PFBKreitekfy.Music.domain.persistence.StylePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +13,11 @@ import java.util.Optional;
 
 @Service
 public class StyleServiceImpl implements StyleService {
-    private final StylePersistance persistence;
+    private final StylePersistence persistence;
     private final StyleMapper mapper;
 
     @Autowired
-    public StyleServiceImpl(StylePersistance persistence, StyleMapper mapper) {
+    public StyleServiceImpl(StylePersistence persistence, StyleMapper mapper) {
         this.persistence = persistence;
         this.mapper = mapper;
     }
