@@ -14,4 +14,9 @@ export class UserService {
     let urlEndpoint: string = "http://localhost:8081/kreitekfy/users/";
     return this.http.post<User>(urlEndpoint, user);
   }
+
+  public getUserById(userId: number): Observable<User> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + userId;
+    return this.http.get<User>(urlEndpoint);
+  }
 }

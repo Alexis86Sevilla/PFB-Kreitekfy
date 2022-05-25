@@ -19,4 +19,38 @@ export class SongService {
     let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/";
     return this.http.patch<Song>(urlEndpoint, song);
   }
+
+  public deleteSong(songIdToDelete: number): Observable<any> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + songIdToDelete;
+    return this.http.delete<any>(urlEndpoint);
+  }
+
+  public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs?page=" + page + "&size=" + size + "&sort=" + sort;
+    if (filters) {
+      urlEndpoint = urlEndpoint + "&filter=" + filters;
+    }
+    return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getSongById(songId: number): Observable<Song> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + songId;
+    return this.http.get<Song>(urlEndpoint);
+  }
+
+  public getSongByStyle(styleId: number): Observable<Song> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + styleId;
+    return this.http.get<Song>(urlEndpoint);
+  }
+
+  public getSongByArtist(artistId: number): Observable<Song> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + artistId;
+    return this.http.get<Song>(urlEndpoint);
+  }
+
+  public getSongByAlbum(albumId: number): Observable<Song> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + albumId;
+    return this.http.get<Song>(urlEndpoint);
+  }
+  
 }
