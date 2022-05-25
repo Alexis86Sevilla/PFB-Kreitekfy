@@ -9,10 +9,14 @@ export class Song {
     dateLaunch: Date;
     valoration: number;
     visualizations: number;
-    album: Album;
-    artist: Artist;
-    style: Style;
+    albumId?: number;
+    albumName?: string;
+    artistId?: number;
+    artistName?: string;
+    styleId?: number;
+    styleName?: string;
     image?: string;
+
 
   constructor(
     id: number , 
@@ -21,9 +25,12 @@ export class Song {
     dateLaunch: Date, 
     valoration: number, 
     visualizations: number, 
-    album: Album, 
-    artist: Artist, 
-    style: Style, 
+    albumId?: number, 
+    albumName?: string, 
+    artistId?: number, 
+    artistName?: string, 
+    styleId?: number, 
+    styleName?: string, 
     image?: string
 ) {
     this.id = id
@@ -32,11 +39,15 @@ export class Song {
     this.dateLaunch = dateLaunch
     this.valoration = valoration
     this.visualizations = visualizations
-    this.album = album
-    this.artist = artist
-    this.style = style
+    this.albumId = albumId
+    this.albumName = albumName
+    this.artistId = artistId
+    this.artistName = artistName
+    this.styleId = styleId
+    this.styleName = styleName
     this.image = image
   }
+  
     
 
 }
