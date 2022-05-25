@@ -1,4 +1,4 @@
-package com.PFBKreitekfy.Music.domain.persistance;
+package com.PFBKreitekfy.Music.domain.persistence;
 
 
 import com.PFBKreitekfy.Music.domain.entity.Song;
@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-public interface SongPersistance {
+public interface SongPersistence {
 
     List<Song> getAllSongs();
 

@@ -1,4 +1,4 @@
-package com.PFBKreitekfy.Music.domain.persistance;
+package com.PFBKreitekfy.Music.domain.persistence;
 
 
 import com.PFBKreitekfy.Music.domain.entity.Style;
@@ -6,7 +6,7 @@ import com.PFBKreitekfy.Music.domain.entity.Style;
 import java.util.List;
 import java.util.Optional;
 
-public interface StylePersistance {
+public interface StylePersistence {
 
     List<Style> getAllStyles();
 

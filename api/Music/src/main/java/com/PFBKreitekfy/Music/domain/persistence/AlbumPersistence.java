@@ -1,4 +1,4 @@
-package com.PFBKreitekfy.Music.domain.persistance;
+package com.PFBKreitekfy.Music.domain.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Album;
 
@@ -6,7 +6,7 @@ import com.PFBKreitekfy.Music.domain.entity.Album;
 import java.util.List;
 import java.util.Optional;
 
-public interface AlbumPersistance {
+public interface AlbumPersistence {
 
     List<Album> getAllAlbums();
 

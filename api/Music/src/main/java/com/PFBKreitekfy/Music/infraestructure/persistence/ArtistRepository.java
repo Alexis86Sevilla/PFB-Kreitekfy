@@ -1,4 +1,4 @@
-package com.PFBKreitekfy.Music.infraestructure.persistance;
+package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
