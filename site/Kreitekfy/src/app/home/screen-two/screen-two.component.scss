@@ -1,0 +1,29 @@
+@import "variables";
+
+#sectionTwo {
+  background-color: $primaryColor;
+  padding-bottom: 5%;
+  border-top: 10px solid rgba(255, 255, 255, 0.098);
+  ;
+
+
+  #info {
+    margin: auto;
+    width: 50%;
+
+    padding: 3%;
+    background-color: rgba(255, 255, 255, 0.136);
+    text-align: center;
+    color: $fontColor;
+  }
+
+  #tv {
+    text-align: center;
+
+
+    img {
+      width: 50%;
+    }
+  }
+
+}
