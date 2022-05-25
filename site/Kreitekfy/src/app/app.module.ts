@@ -22,6 +22,7 @@ import { AlbumListComponent } from './entities/album/album-list/album-list.compo
 import { HelpComponent } from './help/help.component';
 import { TeamComponent } from './about-us/team/team.component';
 import { QuestionsComponent } from './help/questions/questions.component';
+import { UserListComponent } from './entities/user/user-list/user-list.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { QuestionsComponent } from './help/questions/questions.component';
     AlbumListComponent,
     HelpComponent,
     TeamComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
