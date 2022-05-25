@@ -1,14 +1,20 @@
 @import "variables";
 
-#sectionOne{
-    background-color: $primaryColor ;
-    color: $fontColor;
-    text-align: center;
-    
-    h3{
-        margin-top: 5%;
-    }
-   
+#sectionOne {
+  background-image: url(../../../assets/img/collageAlbums.jpg);
+  background-size: cover;
 
-    
+
+  padding-bottom: 5%;
+
+  #bloquePublicidad {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 8%;
+    padding: 3%;
+    background-color: rgba(255, 255, 255, 0.136);
+    text-align: center;
+    color: $fontColor;
+  }
+
 }
