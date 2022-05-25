@@ -1,0 +1,25 @@
+@import "variables";
+
+#preguntas {
+  text-align: center;
+  background-color: $primaryColor;
+  color: $fontColor;
+
+  button {
+    color: $fontColor;
+  }
+
+  #suscripcion {
+      margin-top: 3%;
+    .input-group {
+
+      margin: auto;
+      width: 50%;
+
+      .btn {
+        background-color: red;
+      }
+    }
+  }
+
+}

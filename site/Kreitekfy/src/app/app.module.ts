@@ -19,6 +19,10 @@ import { StyleListComponent } from './entities/style/style-list/style-list.compo
 import { StyleFormComponent } from './entities/style/style-form/style-form.component';
 import { AlbumFormComponent } from './entities/album/album-form/album-form.component';
 import { AlbumListComponent } from './entities/album/album-list/album-list.component';
+import { HelpComponent } from './help/help.component';
+import { TeamComponent } from './about-us/team/team.component';
+import { QuestionsComponent } from './help/questions/questions.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { AlbumListComponent } from './entities/album/album-list/album-list.compo
     StyleListComponent,
     StyleFormComponent,
     AlbumFormComponent,
-    AlbumListComponent
+    AlbumListComponent,
+    HelpComponent,
+    TeamComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,
