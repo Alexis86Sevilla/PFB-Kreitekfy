@@ -38,19 +38,19 @@ export class SongService {
     return this.http.get<Song>(urlEndpoint);
   }
 
-  public getSongByStyle(styleId: number): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + styleId;
-    return this.http.get<Song>(urlEndpoint);
+  public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getSongByArtist(artistId: number): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + artistId;
-    return this.http.get<Song>(urlEndpoint);
+  public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getSongByAlbum(albumId: number): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + albumId;
-    return this.http.get<Song>(urlEndpoint);
+  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    return this.http.get<Song[]>(urlEndpoint);
   }
   
 }
