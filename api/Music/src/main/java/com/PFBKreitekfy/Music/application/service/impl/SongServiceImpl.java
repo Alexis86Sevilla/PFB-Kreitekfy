@@ -6,8 +6,6 @@ import com.PFBKreitekfy.Music.application.service.SongService;
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,27 +45,27 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongDTO modifySong(Long songId) {
-        return null;
+    public List<SongDTO> getSongsByName(Long partialName) {
+        List<Song> songs = this.persistence.getSongsByName(partialName);
+        return mapper.toDto(songs);
     }
 
     @Override
-    public List<SongDTO> getSongByStyle(Long styleId) {
-        return null;
+    public List<SongDTO> getSongsByStyle(Long styleId) {
+        List<Song> songs = this.persistence.getSongsByStyle(styleId);
+        return this.mapper.toDto(songs);
     }
 
     @Override
-    public List<SongDTO> getSongByArtist(Long artistId) {
-        return null;
+    public List<SongDTO> getSongsByArtist(Long artistId) {
+        List<Song> songs = this.persistence.getSongsByArtist(artistId);
+        return this.mapper.toDto(songs);
     }
 
     @Override
-    public List<SongDTO> getSongByAlbum(Long albumId) {
-        return null;
+    public List<SongDTO> getSongsByAlbum(Long albumId) {
+        List<Song> songs = this.persistence.getSongsByAlbum(albumId);
+        return this.mapper.toDto(songs);
     }
 
-    @Override
-    public Page<SongDTO> findAll(Pageable pageable, String filter) {
-        return null;
-    }
 }

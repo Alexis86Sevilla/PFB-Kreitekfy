@@ -2,8 +2,7 @@ package com.PFBKreitekfy.Music.application.service;
 
 
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -17,13 +16,12 @@ public interface SongService {
 
     void deleteSong(Long songId);
 
-    SongDTO modifySong(Long songId);
+    List<SongDTO> getSongsByName(Long styleId);
 
-    List<SongDTO> getSongByStyle(Long styleId);
+    List<SongDTO> getSongsByStyle(Long styleId);
 
-    List<SongDTO> getSongByArtist(Long artistId);
+    List<SongDTO> getSongsByArtist(Long artistId);
 
-    List<SongDTO> getSongByAlbum(Long albumId);
+    List<SongDTO> getSongsByAlbum(Long albumId);
 
-    Page<SongDTO> findAll(Pageable pageable, String filter);
 }

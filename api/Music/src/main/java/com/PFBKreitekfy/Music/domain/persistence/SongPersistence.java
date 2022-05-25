@@ -17,15 +17,15 @@ public interface SongPersistence {
 
     void deleteSong(Long songId);
 
-    Song modifySong(Long songId);
+    List<Song> getSongsByStyle(Long styleId);
 
-    List<Song> getSongByStyle(Long styleId);
+    List<Song> getSongsByArtist(Long artistId);
 
-    List<Song> getSongByArtist(Long artistId);
+    List<Song> getSongsByAlbum(Long albumId);
 
-    List<Song> getSongByAlbum(Long albumId);
+    List<Song> getSongsByName(Long songId);
 
-    Page<Song> findAll(Pageable pageable, String filter);
+
 
 
 
