@@ -8,6 +8,8 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Entity
+@Table(name = "songs")
 public class Song {
 
     @Id
