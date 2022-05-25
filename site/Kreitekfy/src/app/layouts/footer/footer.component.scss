@@ -1,0 +1,11 @@
+@import "variables";
+
+footer {
+
+  background-color: $secondaryColor;
+  color: $fontColor;
+
+  #copyright {
+    background-color: $primaryColor;
+  }
+}

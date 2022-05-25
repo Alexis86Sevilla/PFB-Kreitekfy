@@ -1,20 +1,4 @@
 @import "variables";
 
-nav {
 
-    a {
-    color: white;
-    text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 50% 100%;
-    background-repeat: no-repeat;
-    background-size: 0% 2px;
-    transition: all 500ms;
-  }
 
-  a:hover,
-  a:focus {
-    color: $fontActive;
-    background-size: 90% 2px;
-  }
-}
