@@ -53,4 +53,24 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
   
+  public addValorationToOneSong() {
+
+  }
+
+  public addVisualizationToOneSong() {
+
+  }
+
+  public getSongsByValoration() {
+
+  }
+
+  public getSongsByVisualizations() {
+
+  }
+
+  public getSongsForYou() {
+    
+  }
+
 }

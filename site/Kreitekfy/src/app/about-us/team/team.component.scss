@@ -1,0 +1,17 @@
+@import "variables";
+
+
+.descripcion {
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.149);
+  width: 80%;
+  padding: 1%;
+
+  p {
+    margin: auto;
+    width: 80%;
+  }
+  img{
+    width: 200px;
+  }
+}

@@ -14,4 +14,13 @@ export class ArtistService {
     let urlEndpoint: string = "http://localhost:8081/kreitekfy/artists/";
     return this.http.post<Artist>(urlEndpoint, artist);
   }
+
+  public getAllArtists(partialName?: string): Observable<Artist[]> {
+    
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/artists/";
+    if (partialName) {
+      urlEndpoint = urlEndpoint + "?partialName=" + partialName;
+    } 
+    return this.http.get<Artist[]>(urlEndpoint);
+  }
 }

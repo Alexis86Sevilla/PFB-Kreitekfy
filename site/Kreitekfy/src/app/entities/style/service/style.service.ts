@@ -14,4 +14,13 @@ export class StyleService {
     let urlEndpoint: string = "http://localhost:8081/kreitekfy/styles/";
     return this.http.post<Style>(urlEndpoint, style);
   }
+
+  public getAllStyles(partialName?: string): Observable<Style[]> {
+    
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/styles/";
+    if (partialName) {
+      urlEndpoint = urlEndpoint + "?partialName=" + partialName;
+    } 
+    return this.http.get<Style[]>(urlEndpoint);
+  }
 }
