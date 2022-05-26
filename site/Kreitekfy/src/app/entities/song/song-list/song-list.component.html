@@ -1,4 +1,9 @@
+<div class="container-fluid">
+    <div class="row contenido">
+        <div class="col-md-12">
 <h1>Lista de canciones</h1>
+<button class="btn btn-primary" id="btnCreateNewSong" data-bs-toggle="modal"
+                data-bs-target="#askNameToSave">Crear nueva Canción</button>
 
 <table *ngIf="songs.length > 0">
     <thead>
@@ -18,10 +23,35 @@
                 <a [routerLink]="['/songs', song.id]">
                     <button id="btnNavToSongs">Detalle de canción</button>
                 </a>        
-                <button id="btnCreateNewSong">Crear nueva</button>        
                 <button id="btnEditSong">Editar</button>
                 <button id="btnDeleteSong">Eliminar</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Añadir nueva canción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+                <div class="modal-body mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Canción</label>
+                    <input type="song" class="form-control" id="inputSong">
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="insertSong();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>

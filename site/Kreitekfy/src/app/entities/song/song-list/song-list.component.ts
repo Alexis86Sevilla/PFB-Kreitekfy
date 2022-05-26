@@ -64,6 +64,16 @@ export class SongListComponent implements OnInit {
     }
   }
 
+  public insertSong(): void {
+    this.songService.insert(this.song!).subscribe({
+      next: (songInserted) => {
+        console.log("Añadida correctamente");
+        console.log(songInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
   private buildFilters():string | undefined {
     const filters: string[] = [];
 
