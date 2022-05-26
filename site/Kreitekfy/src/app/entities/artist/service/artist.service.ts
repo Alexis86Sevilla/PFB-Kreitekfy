@@ -8,19 +8,27 @@ import { Artist } from '../model/artist.model';
 })
 export class ArtistService {
 
+  //baseUri = "http://localhost:8081/kreitekfy/";
+  baseUri = "http://localhost:3003/";
+
   constructor(private http: HttpClient) { }
 
   public insert(artist: Artist): Observable<Artist> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/artists/";
+    let urlEndpoint: string = this.baseUri + "artists/";
     return this.http.post<Artist>(urlEndpoint, artist);
   }
 
   public getAllArtists(partialName?: string): Observable<Artist[]> {
     
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/artists/";
+    let urlEndpoint: string = this.baseUri + "artists/";
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
     return this.http.get<Artist[]>(urlEndpoint);
+  }
+
+  public deleteArtist(artistIdToDelete: number): Observable<any> {
+    let urlEndpoint: string = this.baseUri + "artists/" + artistIdToDelete;
+    return this.http.delete<any>(urlEndpoint);
   }
 }

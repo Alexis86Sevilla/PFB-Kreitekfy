@@ -8,19 +8,27 @@ import { Style } from '../model/style.model';
 })
 export class StyleService {
 
+   //baseUri = "http://localhost:8081/kreitekfy/";
+   baseUri = "http://localhost:3003/";
+
   constructor(private http: HttpClient) { }
 
   public insert(style: Style): Observable<Style> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/styles/";
+    let urlEndpoint: string = this.baseUri + "styles/";
     return this.http.post<Style>(urlEndpoint, style);
   }
 
   public getAllStyles(partialName?: string): Observable<Style[]> {
     
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/styles/";
+    let urlEndpoint: string = this.baseUri + "styles/";
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
     return this.http.get<Style[]>(urlEndpoint);
+  }
+
+  public deleteStyle(styleIdToDelete: number): Observable<any> {
+    let urlEndpoint: string = this.baseUri + "styles/" + styleIdToDelete;
+    return this.http.delete<any>(urlEndpoint);
   }
 }

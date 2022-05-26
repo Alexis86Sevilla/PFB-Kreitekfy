@@ -8,13 +8,28 @@
         <tr *ngFor="let artist of artists">
             <td>{{ artist.name }}</td>
             <td>
-                <a [routerLink]="['/artists', artist.id, 'songs']">
-                    <button id="btnNavToArtistSongs">Canciones</button>
-                </a>        
                 <button id="btnCreateNewArtist">Crear nuevo</button>        
-                <button id="btnEditArtist">Editar</button>
-                <button id="btnDeleteArtist">Eliminar</button>
+                <button id="btnDeleteArtist" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Desea eliminar el artísta seleccionado? Esta operación no puede deshacerse
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteArtist();">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
