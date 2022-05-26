@@ -28,11 +28,20 @@ export class SongService {
     return this.http.delete<any>(urlEndpoint);
   }
 
-  public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
+  public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
     let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
     }
+    return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getAllSongs(partialName?: string): Observable<Song[]> {
+    
+    let urlEndpoint: string = this.baseUri + "songs/";
+    if (partialName) {
+      urlEndpoint = urlEndpoint + "?partialName=" + partialName;
+    } 
     return this.http.get<Song[]>(urlEndpoint);
   }
 

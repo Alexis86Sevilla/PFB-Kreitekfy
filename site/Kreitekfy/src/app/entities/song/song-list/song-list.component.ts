@@ -25,28 +25,27 @@ export class SongListComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-
-
   songIdToDelete?: number;
 
   constructor(private route: ActivatedRoute,
     private songService: SongService) { }
 
   ngOnInit(): void {
+    this.getSongs();
   }
 
   public nextPage(): void {
     this.page = this.page +1;
-    this.getAllItems();
+    this.getSongsPaged();
   }
 
   public previusPage(): void{
     this.page = this.page -1;
-    this.getAllItems();
+    this.getSongsPaged();
   }
 
   public searchByFilters(): void {
-    this.getAllItems();
+    this.getSongsPaged();
   }
 
   public prepareSongToDelete(songId: number): void {
@@ -57,11 +56,18 @@ export class SongListComponent implements OnInit {
     if (this.songIdToDelete) {
       this.songService.deleteSong(this.songIdToDelete).subscribe({
         next: (data) => {
-          this.getAllItems();
+          this.getSongs();
         },
         error: (err) => {this.handleError(err)}
       })
     }
+  }
+
+  private getSongs(): void {
+    this.songService.getAllSongs().subscribe({
+      next: (songsRequest) => { this.songs = songsRequest; },
+      error: (err) => {this.handleError(err);}
+    })
   }
 
   public insertSong(): void {
@@ -104,11 +110,11 @@ export class SongListComponent implements OnInit {
 
   }
 
-  private getAllItems(): void {
+  private getSongsPaged(): void {
 
     const filters:string | undefined = this.buildFilters();
 
-    this.songService.getAllSongs(this.page, this.size, this.sort, filters).subscribe({
+    this.songService.getAllSongsPaged(this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => { 
         this.songs = data.content; 
         this.first = data.first;
