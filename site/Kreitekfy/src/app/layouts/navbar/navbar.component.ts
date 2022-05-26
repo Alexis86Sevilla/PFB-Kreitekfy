@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  isAdmin: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public toggleToAdmin():void{
+    this.isAdmin = true;
+  }
+
+  public toggleToUser():void{
+    this.isAdmin = false;
   }
 
 }

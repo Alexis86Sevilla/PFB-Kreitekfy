@@ -24,7 +24,8 @@ import { TeamComponent } from './about-us/team/team.component';
 import { QuestionsComponent } from './help/questions/questions.component';
 import { UserListComponent } from './entities/user/user-list/user-list.component';
 import { HttpRequestIntercept } from './config/interceptors/http-request-.interceptor';
-
+import { UserComponent } from './layouts/navbar/user/user.component';
+import { AdminComponent } from './layouts/navbar/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { HttpRequestIntercept } from './config/interceptors/http-request-.interc
     HelpComponent,
     TeamComponent,
     QuestionsComponent,
-    UserListComponent
+    UserListComponent,
+    UserComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,3 @@
-import { Album } from "../../album/model/album.model";
-import { Artist } from "../../artist/model/artist.model";
-import { Style } from "../../style/model/style.model";
-
 export class Song {
     id: number | undefined;
     name: string;
