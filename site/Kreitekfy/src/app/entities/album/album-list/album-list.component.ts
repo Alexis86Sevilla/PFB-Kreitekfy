@@ -9,11 +9,24 @@ import { AlbumService } from '../service/album.service';
 })
 export class AlbumListComponent implements OnInit {
   albums: Album[] = [];
+  
+  albumIdToDelete?: number;
 
   constructor(private albumService: AlbumService) { }
 
   ngOnInit(): void {
     this.getAlbums();
+  }
+
+  public deleteAlbum(): void {
+    if (this.albumIdToDelete) {
+      this.albumService.deleteAlbum(this.albumIdToDelete).subscribe({
+        next: (data) => {
+          this.getAlbums();
+        },
+        error: (err) => {this.handleError(err)}
+      })
+    }
   }
 
   private getAlbums(): void {

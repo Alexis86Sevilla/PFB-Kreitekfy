@@ -4,11 +4,34 @@
     width: 90px;
 }
 
+#botonera{
+    display: flex;
+    button{
+        background-color: red;
+    }
+}
+
 .modal{
+    .modal-content{
+        background-color: black;
+    }
+
     .modal-body, .modal-header, .modal-footer, #modal-buttons{
         background-color: $secondaryColor;
         color: $fontColor;
-        border: none;
+        border: 1px solid rgba(0, 0, 0, 0.318);
+    }
+
+    #modal-buttons{
+        button{
+            margin: 2%;
+            background-color: white;
+        }
+
+    }
+
+    #close{
+        background-color: red;
     }
 }
 
