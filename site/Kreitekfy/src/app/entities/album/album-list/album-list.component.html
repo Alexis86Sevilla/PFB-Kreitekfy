@@ -1,19 +1,27 @@
-<h1>Lista de albumes</h1>
+<div class="container-fluid">
+    <div class="row contenido">
+        <div class="col-md-12">
+            <h3>Lista de albumes</h3>
 
-<table *ngIf="albums.length > 0">
-    <thead>
-        <th>Nombre</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let album of albums">
-            <td>{{ album.name }}</td>
-            <td>
-                <a [routerLink]="['/albums', album.id, 'songs']">
-                    <button id="btnNavToAlbumSongs">Canciones</button>
-                </a>        
-                <button id="btnCreateNewAlbum">Crear nuevo</button>        
-                <button id="btnDeleteAlbum">Eliminar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            <table class="table table-light table-hover table-striped " *ngIf="albums.length > 0">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let album of albums">
+                        <td>{{ album.name }}</td>
+                        <td>
+                            <a [routerLink]="['/albums', album.id, 'songs']">
+                                <button class="btn btn-primary"  id="btnNavToAlbumSongs">Canciones</button>
+                            </a>
+                            <button class="btn btn-primary" id="btnCreateNewAlbum">Crear nuevo</button>
+                            <button class="btn btn-primary" id="btnDeleteAlbum">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
