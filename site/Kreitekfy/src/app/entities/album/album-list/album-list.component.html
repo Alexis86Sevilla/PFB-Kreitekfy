@@ -1,1 +1,20 @@
 <h1>Lista de albumes</h1>
+
+<table *ngIf="albums.length > 0">
+    <thead>
+        <th>Nombre</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let album of albums">
+            <td>{{ album.name }}</td>
+            <td>
+                <a [routerLink]="['/albums', album.id, 'songs']">
+                    <button id="btnNavToAlbumSongs">Canciones</button>
+                </a>        
+                <button id="btnCreateAlbum">Nueva</button>        
+                <button id="btnEditAlbum">Editar</button>
+                <button id="btnDeleteAlbum">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
