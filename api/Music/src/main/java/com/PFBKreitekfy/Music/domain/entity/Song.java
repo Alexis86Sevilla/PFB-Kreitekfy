@@ -31,14 +31,6 @@ public class Song {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+1")
     private Date dateLaunch;
 
-    @Column
-    @Positive
-    private Double valoration;
-
-    @Column
-    @Positive
-    private Long visualizations;
-
     @ManyToOne()
     @JoinColumn(name = "album_id", nullable = false)
     private Album album;
@@ -92,22 +84,6 @@ public class Song {
 
     public void setDateLaunch(Date dateLaunch) {
         this.dateLaunch = dateLaunch;
-    }
-
-    public Double getValoration() {
-        return valoration;
-    }
-
-    public void setValoration(Double valoration) {
-        this.valoration = valoration;
-    }
-
-    public Long getVisualizations() {
-        return visualizations;
-    }
-
-    public void setVisualizations(Long visualizations) {
-        this.visualizations = visualizations;
     }
 
     public Album getAlbum() {

@@ -3,6 +3,8 @@ package com.PFBKreitekfy.Music.infraestructure.rest;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +72,14 @@ public class SongRestController {
     ResponseEntity<?> deleteSongById(@PathVariable Long songId) {
         this.songService.deleteSong(songId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/songs", produces = "application/json")
+    public ResponseEntity<Page<SongDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+
+        Page<SongDTO> songs = this.songService.getSongsByCriteriaStringPaged(pageable, filter);
+        return new ResponseEntity<Page<SongDTO>>(songs, HttpStatus.OK);
     }
 
 }

@@ -1,9 +1,7 @@
 package com.PFBKreitekfy.Music.domain.entity;
 
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 @Entity
 @Table(name = "users")
@@ -22,7 +20,6 @@ public class User {
 
     public User() {
     }
-
     public Long getId() {
         return id;
     }
