@@ -14,4 +14,6 @@ public interface AlbumService {
     AlbumDTO saveAlbum(AlbumDTO album);
 
     void deleteAlbum(Long albumId);
+
+
 }

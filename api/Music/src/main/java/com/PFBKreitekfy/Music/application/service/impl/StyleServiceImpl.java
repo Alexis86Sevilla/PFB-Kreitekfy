@@ -41,6 +41,6 @@ public class StyleServiceImpl implements StyleService {
 
     @Override
     public void deleteStyle(Long styleId) {
-        this.persistence.getStyleById(styleId);
+        this.persistence.deleteStyle(styleId);
     }
 }

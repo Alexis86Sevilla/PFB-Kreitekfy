@@ -28,6 +28,12 @@ export class SongService {
     return this.http.delete<any>(urlEndpoint);
   }
 
+
+  public getSongById(songId: number): Observable<Song> {
+    let urlEndpoint: string = this.baseUri + "songs/" + songId;
+    return this.http.get<Song>(urlEndpoint);
+  }
+
   public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
     let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
@@ -42,26 +48,6 @@ export class SongService {
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongById(songId: number): Observable<Song> {
-    let urlEndpoint: string = this.baseUri + "songs/" + songId;
-    return this.http.get<Song>(urlEndpoint);
-  }
-
-  public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
   

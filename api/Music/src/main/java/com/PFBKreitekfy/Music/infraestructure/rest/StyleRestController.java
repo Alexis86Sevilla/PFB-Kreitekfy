@@ -1,9 +1,5 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
 import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import com.PFBKreitekfy.Music.application.service.StyleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +12,7 @@ import java.util.Optional;
 
 @RestController
 public class StyleRestController {
-<<<<<<< HEAD
 
-=======
->>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
     private final StyleService styleService;
 
     @Autowired
@@ -42,19 +35,19 @@ public class StyleRestController {
     @CrossOrigin
     @GetMapping(value = "/styles/{styleId}")
     ResponseEntity<StyleDTO> getStyleById(@PathVariable Long styleId) {
-<<<<<<< HEAD
         Optional<StyleDTO> style = this.styleService.getStyleById(styleId);
 
         if (style.isPresent()) {
             return new ResponseEntity<>(style.get(), HttpStatus.OK);
-=======
-        Optional<StyleDTO> styles = this.styleService.getStyleById(styleId);
-
-        if (styles.isPresent()) {
-            return new ResponseEntity<>(styles.get(), HttpStatus.OK);
->>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/styles/{styleId}")
+    ResponseEntity<?> deleteStyleById(@PathVariable Long styleId) {
+        this.styleService.deleteStyle(styleId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

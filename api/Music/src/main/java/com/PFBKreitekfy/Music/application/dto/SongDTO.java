@@ -16,10 +16,6 @@ public class SongDTO implements Serializable {
 
     private Date dateLaunch;
 
-    private Double valoration;
-
-    private Long visualizations;
-
     private Long albumId;
 
     private String albumName;
@@ -73,22 +69,6 @@ public class SongDTO implements Serializable {
 
     public void setDateLaunch(Date dateLaunch) {
         this.dateLaunch = dateLaunch;
-    }
-
-    public Double getValoration() {
-        return valoration;
-    }
-
-    public void setValoration(Double valoration) {
-        this.valoration = valoration;
-    }
-
-    public Long getVisualizations() {
-        return visualizations;
-    }
-
-    public void setVisualizations(Long visualizations) {
-        this.visualizations = visualizations;
     }
 
     public Long getAlbumId() {

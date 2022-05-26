@@ -42,4 +42,11 @@ public class AlbumRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/albums/{albumId}")
+    ResponseEntity<?> deleteAlbumById(@PathVariable Long albumId) {
+        this.albumService.deleteAlbum(albumId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
