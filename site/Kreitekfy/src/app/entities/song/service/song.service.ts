@@ -8,25 +8,28 @@ import { Song } from '../model/song.model';
 })
 export class SongService {
 
+  //baseUri = "http://localhost:8081/kreitekfy/";
+  baseUri = "http://localhost:3003/";
+
   constructor(private http: HttpClient) { }
 
   public insert(song: Song): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/";
+    let urlEndpoint: string = this.baseUri + "songs/";
     return this.http.post<Song>(urlEndpoint, song);
   }
 
   public update(song: Song): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/";
+    let urlEndpoint: string = this.baseUri + "songs/";
     return this.http.patch<Song>(urlEndpoint, song);
   }
 
   public deleteSong(songIdToDelete: number): Observable<any> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + songIdToDelete;
+    let urlEndpoint: string = this.baseUri + "songs/" + songIdToDelete;
     return this.http.delete<any>(urlEndpoint);
   }
 
   public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
     }
@@ -34,22 +37,22 @@ export class SongService {
   }
 
   public getSongById(songId: number): Observable<Song> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + songId;
+    let urlEndpoint: string = this.baseUri + "songs/" + songId;
     return this.http.get<Song>(urlEndpoint);
   }
 
   public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
   
