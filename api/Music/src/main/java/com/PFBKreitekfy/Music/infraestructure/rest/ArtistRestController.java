@@ -13,8 +13,11 @@ import java.util.Optional;
 
 @RestController
 public class ArtistRestController {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
     private final ArtistService artistService;
 
     @Autowired
@@ -22,7 +25,10 @@ public class ArtistRestController {
         this.artistService = artistService;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
     @CrossOrigin
     @PostMapping(value = "/artists", produces = "application/json", consumes = "application/json")
     ResponseEntity<ArtistDTO> insertArtist(@RequestBody ArtistDTO artistDTO) {
@@ -31,6 +37,7 @@ public class ArtistRestController {
     }
     @CrossOrigin
     @GetMapping(value = "/artists", produces = "application/json")
+<<<<<<< HEAD
     ResponseEntity<List<ArtistDTO>> getAllArtists() {
         List<ArtistDTO> artists = this.artistService.getAllArtists();
         return new ResponseEntity<>(artists, HttpStatus.OK);
@@ -39,6 +46,16 @@ public class ArtistRestController {
     @GetMapping(value = "/artists/{artistId}")
     ResponseEntity<ArtistDTO> getArtistById(@PathVariable Long artistId) {
         Optional<ArtistDTO> artist = this.artistService.getArtistById(artistId);
+=======
+    ResponseEntity<List<ArtistDTO>> getAllIArtists() {
+        List<ArtistDTO> artist = this.artistService.getAllArtists();
+        return new ResponseEntity<>(artist, HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping(value = "/artists/{artistId}")
+    ResponseEntity<ArtistDTO> getArtistById(@PathVariable Long albumId) {
+        Optional<ArtistDTO> artist = this.artistService.getArtistById(albumId);
+>>>>>>> 3ae876b7bc60de8299ef360e51609fccc5391e30
 
         if (artist.isPresent()) {
             return new ResponseEntity<>(artist.get(), HttpStatus.OK);

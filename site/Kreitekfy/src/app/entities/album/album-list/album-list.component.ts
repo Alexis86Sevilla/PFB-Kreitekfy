@@ -9,6 +9,7 @@ import { AlbumService } from '../service/album.service';
 })
 export class AlbumListComponent implements OnInit {
   albums: Album[] = [];
+  album?: Album;
   
   albumIdToDelete?: number;
 
@@ -16,6 +17,10 @@ export class AlbumListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlbums();
+  }
+
+  public prepareAlbumToDelete(albumId: number): void {
+    this.albumIdToDelete = albumId;
   }
 
   public deleteAlbum(): void {
@@ -27,6 +32,16 @@ export class AlbumListComponent implements OnInit {
         error: (err) => {this.handleError(err)}
       })
     }
+  }
+
+  public insertAlbum(): void {
+    this.albumService.insert(this.album!).subscribe({
+      next: (albumInserted) => {
+        console.log("Añadido correctamente");
+        console.log(albumInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
   }
 
   private getAlbums(): void {
