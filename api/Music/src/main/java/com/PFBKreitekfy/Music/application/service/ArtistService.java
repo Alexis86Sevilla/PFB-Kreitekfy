@@ -12,4 +12,6 @@ public interface ArtistService {
     Optional<ArtistDTO> getArtistById(Long artistId);
 
     ArtistDTO saveArtist(ArtistDTO artist);
+
+    void deleteArtist(Long artistId);
 }

@@ -38,4 +38,9 @@ public class ArtistServiceImpl implements ArtistService {
         Artist artistSaved = this.persistence.saveArtist(this.mapper.toEntity(artistDTO));
         return this.mapper.toDto(artistSaved);
     }
+
+    @Override
+    public void deleteArtist(Long artistId) {
+        this.persistence.deleteArtist(artistId);
+    }
 }

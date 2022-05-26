@@ -1,6 +1,5 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
-import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import com.PFBKreitekfy.Music.application.service.StyleService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
         User userSaved = this.persistence.saveUser(this.mapper.toEntity(userDTO));
         return this.mapper.toDto(userSaved);
     }
+
+    @Override
+    public void deleteUser(Long userId) {
+        this.persistence.deleteUser(userId);
+    }
 }

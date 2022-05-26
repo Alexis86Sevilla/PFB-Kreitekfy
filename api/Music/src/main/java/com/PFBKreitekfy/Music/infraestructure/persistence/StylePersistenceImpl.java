@@ -32,4 +32,9 @@ public class StylePersistenceImpl implements StylePersistence {
     public Style saveStyle(Style style) {
         return this.styleRepository.save(style);
     }
+
+    @Override
+    public void deleteStyle(Long styleId) {
+        this.styleRepository.deleteById(styleId);
+    }
 }

@@ -13,4 +13,7 @@ public interface AlbumPersistence {
     Optional<Album> getAlbumById(Long albumId);
 
     Album saveAlbum(Album album);
+
+
+    void deleteAlbum(Long albumId);
 }

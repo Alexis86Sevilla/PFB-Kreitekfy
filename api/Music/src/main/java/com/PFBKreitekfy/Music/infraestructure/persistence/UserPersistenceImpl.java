@@ -32,4 +32,9 @@ public class UserPersistenceImpl implements UserPersistence {
     public User saveUser(User user) {
         return this.userRepository.save(user);
     }
+
+    @Override
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
+    }
 }
