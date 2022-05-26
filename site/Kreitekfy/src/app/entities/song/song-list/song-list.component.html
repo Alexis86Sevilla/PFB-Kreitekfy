@@ -18,18 +18,6 @@
     </thead>
     <tbody>
         <tr *ngFor="let song of songs">
-<<<<<<< HEAD
-            
-            <td>{{ song.name }}</td>
-            <td>{{ song.duration }}</td>
-            <td>{{ song.dateLaunch }}</td>
-            <td>{{ song.valoration }}</td>
-            <td>{{ song.visualizations }}</td>
-            <td>{{ song.albumName }}</td>
-            <td>{{ song.artistName }}</td>
-            <td>{{ song.styleName }}</td>
-            <td>
-=======
             <td class="align-middle">{{ song.name }}</td>
             <td class="align-middle">{{ song.duration }}</td>
             <td class="align-middle">{{ song.dateLaunch }}</td>
@@ -39,7 +27,6 @@
             <td class="align-middle">{{ song.artistName }}</td>
             <td class="align-middle">{{ song.styleName }}</td>
             <td class="align-middle">
->>>>>>> 64f5fc9a5f13708f6c6117b48b2c5209c01e7ce4
                 <a [routerLink]="['/songs', song.id]">
                     <button id="btnNavToSongs">Detalle de canción</button>
                 </a>        
