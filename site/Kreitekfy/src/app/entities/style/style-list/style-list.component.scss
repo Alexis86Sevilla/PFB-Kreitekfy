@@ -6,8 +6,8 @@
   text-align: center;
   min-height: 500px;
 
-  h3{
-      margin-top: 2%;
+  h3 {
+    margin-top: 2%;
   }
 
   table {
@@ -26,4 +26,23 @@
     border: none;
     margin: 1%;
   }
+
+
+}
+
+.modal {
+  .modal-content {
+    background-color: $primaryColor;
+  }
+
+  .modal-body,
+  .modal-header,
+  .modal-footer,
+  #modal-buttons {
+    background-color: $secondaryColor;
+    color: $fontColor;
+    border: 1px solid rgba(0, 0, 0, 0.318);
+  }
+
+
 }
