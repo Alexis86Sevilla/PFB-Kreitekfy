@@ -9,11 +9,33 @@ import { ArtistService } from '../service/artist.service';
 })
 export class ArtistListComponent implements OnInit {
   artists: Artist[] = [];
+  artistIdToDelete?: number;
 
   constructor(private artistService: ArtistService) { }
 
   ngOnInit(): void {
     this.getArtists();
+  }
+
+  public deleteArtist(): void {
+    if (this.artistIdToDelete) {
+      this.artistService.deleteArtist(this.artistIdToDelete).subscribe({
+        next: (data) => {
+          this.getArtists();
+        },
+        error: (err) => {this.handleError(err)}
+      })
+    }
+  }
+
+  public insertArtist(artistToSave: Artist): void {
+    this.artistService.insert(artistToSave).subscribe({
+      next: (artistInserted) => {
+        console.log("Añadido correctamente");
+        console.log(artistInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
   }
 
   private getArtists(): void {

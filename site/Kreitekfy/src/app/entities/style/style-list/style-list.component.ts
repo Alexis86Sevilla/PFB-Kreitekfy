@@ -9,11 +9,33 @@ import { StyleService } from '../service/style.service';
 })
 export class StyleListComponent implements OnInit {
   styles: Style[] = [];
+  styleIdToDelete?: number;
 
   constructor(private styleService: StyleService) { }
 
   ngOnInit(): void {
     this.getStyles();
+  }
+
+  public deleteStyle(): void {
+    if (this.styleIdToDelete) {
+      this.styleService.deleteStyle(this.styleIdToDelete).subscribe({
+        next: (data) => {
+          this.getStyles();
+        },
+        error: (err) => {this.handleError(err)}
+      })
+    }
+  }
+
+  public insertStyles(styleToSave: Style): void {
+    this.styleService.insert(styleToSave).subscribe({
+      next: (styleInserted) => {
+        console.log("Añadido correctamente");
+        console.log(styleInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
   }
 
   private getStyles(): void {
