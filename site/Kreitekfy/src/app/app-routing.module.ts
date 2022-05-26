@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'artists/:artistId', component: ArtistFormComponent},
   {path: 'artists/:artistId/songs', component: ArtistFormComponent},
   {path: 'artists/:artistId/songs/:songId', component: ArtistFormComponent},
-  {path: 'album', component: AlbumListComponent},
+  {path: 'albums', component: AlbumListComponent},
   {path: 'albums/:albumId', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs/:songId', component: AlbumFormComponent},
