@@ -28,16 +28,7 @@ export class SongService {
     return this.http.delete<any>(urlEndpoint);
   }
 
-<<<<<<< HEAD
   public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-=======
-  public getSongById(songId: number): Observable<Song> {
-    let urlEndpoint: string = this.baseUri + "songs/" + songId;
-    return this.http.get<Song>(urlEndpoint);
-  }
-
-  public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
->>>>>>> 79d16949a34f0077b03539c031bbacd101305e27
     let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
@@ -45,7 +36,6 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
 
-<<<<<<< HEAD
   public getAllSongs(partialName?: string): Observable<Song[]> {
     
     let urlEndpoint: string = this.baseUri + "songs/";
@@ -75,8 +65,6 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
   
-=======
->>>>>>> 79d16949a34f0077b03539c031bbacd101305e27
   public addValorationToOneSong() {
 
   }
