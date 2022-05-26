@@ -2,6 +2,7 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de estilos</h3>
+      <button class="btn btn-primary" id="btnCreateNewStyle" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo Estilo</button>
 
       <table class="table table-light table-hover table-striped " *ngIf="styles.length > 0">
         <thead>
@@ -12,16 +13,13 @@
           <tr *ngFor="let style of styles">
             <td>{{ style.name }}</td>
             <td>
-              <button class="btn btn-primary" id="btnCreateNewStyle" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo</button>
               <button class="btn btn-primary" id="btnDeleteStyle" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareStyleToDelete(style.id!);">Eliminar</button>
             </td>
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
-
 </div>
 
 <!-- Modal -->
@@ -53,11 +51,10 @@
       </div>
       <form>
           <div class="modal-body mb-3">
-              <label for="exampleInputEmail1" class="form-label">Estilo</label>
+              <label for="inputStyle" class="form-label">Estilo</label>
               <input type="style" class="form-control" id="inputStyle">
           </div>
-      </form>
-      
+      </form>      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="insertStyle();">Guardar</button>
