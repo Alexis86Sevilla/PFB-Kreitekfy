@@ -11,8 +11,10 @@
                     <a [routerLink]="['']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}"
                         class="nav-link">Inicio</a>
                 </li>
-                <app-user *ngIf="!isAdmin"></app-user>
-                <app-admin *ngIf="isAdmin"></app-admin>
+            </ul>
+            <app-user *ngIf="!isAdmin"></app-user>
+            <app-admin *ngIf="isAdmin"></app-admin>
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['nosotros']" [routerLinkActive]="'active'"
                         [routerLinkActiveOptions]="{exact:true}">Nosotros</a>
