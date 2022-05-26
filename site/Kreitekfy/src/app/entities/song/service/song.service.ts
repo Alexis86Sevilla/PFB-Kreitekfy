@@ -28,16 +28,13 @@ export class SongService {
     return this.http.delete<any>(urlEndpoint);
   }
 
-<<<<<<< HEAD
-  public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-=======
+
   public getSongById(songId: number): Observable<Song> {
     let urlEndpoint: string = this.baseUri + "songs/" + songId;
     return this.http.get<Song>(urlEndpoint);
   }
 
-  public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
->>>>>>> 79d16949a34f0077b03539c031bbacd101305e27
+  public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
     let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
@@ -45,7 +42,6 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
 
-<<<<<<< HEAD
   public getAllSongs(partialName?: string): Observable<Song[]> {
     
     let urlEndpoint: string = this.baseUri + "songs/";
@@ -54,29 +50,7 @@ export class SongService {
     } 
     return this.http.get<Song[]>(urlEndpoint);
   }
-
-  public getSongById(songId: number): Observable<Song> {
-    let urlEndpoint: string = this.baseUri + "songs/" + songId;
-    return this.http.get<Song>(urlEndpoint);
-  }
-
-  public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
   
-=======
->>>>>>> 79d16949a34f0077b03539c031bbacd101305e27
   public addValorationToOneSong() {
 
   }
