@@ -2,7 +2,10 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de estilos</h3>
-      <button class="btn btn-primary" id="btnCreateNewStyle" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo Estilo</button>
+      <button class="btn btn-primary" id="btnCreateNewStyle" data-bs-toggle="modal" 
+      data-bs-target="#askNameToSave" >
+      Crear nuevo Estilo
+      </button>
 
       <table class="table table-light table-hover table-striped " *ngIf="styles.length > 0">
         <thead>
@@ -13,7 +16,10 @@
           <tr *ngFor="let style of styles">
             <td>{{ style.name }}</td>
             <td>
-              <button class="btn btn-primary" id="btnDeleteStyle" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareStyleToDelete(style.id!);">Eliminar</button>
+              <button class="btn btn-primary" id="btnDeleteStyle" data-bs-toggle="modal" 
+              data-bs-target="#askConfirmationDelete" (click)="prepareStyleToDelete(style.id!);">
+              Eliminar
+              </button>
             </td>
           </tr>
         </tbody>
@@ -40,6 +46,7 @@
       </div>
     </div>
   </div>
+</div>
 
 <!-- Modal -->
 <div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
@@ -62,3 +69,4 @@
     </div>
   </div>
 </div>
+
