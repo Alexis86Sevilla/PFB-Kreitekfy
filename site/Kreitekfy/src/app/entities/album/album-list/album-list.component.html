@@ -8,7 +8,7 @@
         <tr *ngFor="let album of albums">
             <td>{{ album.name }}</td>
             <td>
-                <button id="btnCreateNewAlbum">Crear nuevo</button>    
+                <button id="btnCreateNewAlbum" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo</button>
                 <button id="btnDeleteAlbum" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareAlbumToDelete(album.id!);">Eliminar</button>
             </td>
         </tr>
@@ -16,7 +16,7 @@
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete" aria-hidden="true">
+<div class="modal delete" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -29,6 +29,29 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteAlbum();">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo album</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+            <div class="modal-body mb-3">
+                <label for="exampleInputEmail1" class="form-label">Álbum</label>
+                <input type="album" class="form-control" id="inputAlbum">
+            </div>
+        </form>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="insertAlbum();">Guardar</button>
         </div>
       </div>
     </div>

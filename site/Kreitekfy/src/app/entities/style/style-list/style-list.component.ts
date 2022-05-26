@@ -9,6 +9,7 @@ import { StyleService } from '../service/style.service';
 })
 export class StyleListComponent implements OnInit {
   styles: Style[] = [];
+  style?: Style;
   styleIdToDelete?: number;
 
   constructor(private styleService: StyleService) { }
@@ -32,8 +33,8 @@ export class StyleListComponent implements OnInit {
     }
   }
 
-  public insertStyles(styleToSave: Style): void {
-    this.styleService.insert(styleToSave).subscribe({
+  public insertStyle(): void {
+    this.styleService.insert(this.style!).subscribe({
       next: (styleInserted) => {
         console.log("Añadido correctamente");
         console.log(styleInserted);

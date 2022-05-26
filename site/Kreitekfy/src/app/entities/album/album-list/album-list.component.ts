@@ -9,6 +9,7 @@ import { AlbumService } from '../service/album.service';
 })
 export class AlbumListComponent implements OnInit {
   albums: Album[] = [];
+  album?: Album;
   
   albumIdToDelete?: number;
 
@@ -21,7 +22,7 @@ export class AlbumListComponent implements OnInit {
   public prepareAlbumToDelete(albumId: number): void {
     this.albumIdToDelete = albumId;
   }
-  
+
   public deleteAlbum(): void {
     if (this.albumIdToDelete) {
       this.albumService.deleteAlbum(this.albumIdToDelete).subscribe({
@@ -33,8 +34,8 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
-  public insertAlbum(albumToSave: Album): void {
-    this.albumService.insert(albumToSave).subscribe({
+  public insertAlbum(): void {
+    this.albumService.insert(this.album!).subscribe({
       next: (albumInserted) => {
         console.log("Añadido correctamente");
         console.log(albumInserted);

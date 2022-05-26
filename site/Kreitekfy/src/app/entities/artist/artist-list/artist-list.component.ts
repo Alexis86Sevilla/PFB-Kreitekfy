@@ -9,6 +9,7 @@ import { ArtistService } from '../service/artist.service';
 })
 export class ArtistListComponent implements OnInit {
   artists: Artist[] = [];
+  artist?: Artist;
   artistIdToDelete?: number;
 
   constructor(private artistService: ArtistService) { }
@@ -32,8 +33,8 @@ export class ArtistListComponent implements OnInit {
     }
   }
 
-  public insertArtist(artistToSave: Artist): void {
-    this.artistService.insert(artistToSave).subscribe({
+  public insertArtist(): void {
+    this.artistService.insert(this.artist!).subscribe({
       next: (artistInserted) => {
         console.log("Añadido correctamente");
         console.log(artistInserted);
