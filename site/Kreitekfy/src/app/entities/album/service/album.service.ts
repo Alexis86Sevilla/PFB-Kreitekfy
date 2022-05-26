@@ -23,4 +23,9 @@ export class AlbumService {
     } 
     return this.http.get<Album[]>(urlEndpoint);
   }
+
+  public deleteAlbum(albumIdToDelete: number): Observable<any> {
+    let urlEndpoint: string = "http://localhost:8081/kreitekfy/albums/" + albumIdToDelete;
+    return this.http.delete<any>(urlEndpoint);
+  }
 }
