@@ -27,7 +27,7 @@ public class AlbumRestController {
     }
     @CrossOrigin
     @GetMapping(value = "/albums", produces = "application/json")
-    ResponseEntity<List<AlbumDTO>> getAllIAlbums() {
+    ResponseEntity<List<AlbumDTO>> getAllAlbums() {
         List<AlbumDTO> albums = this.albumService.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }

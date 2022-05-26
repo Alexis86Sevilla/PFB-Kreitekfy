@@ -13,4 +13,6 @@ public interface ArtistPersistence {
     Optional<Artist> getArtistById(Long artistId);
 
     Artist saveArtist(Artist artist);
+
+    void deleteArtist(Long artistId);
 }

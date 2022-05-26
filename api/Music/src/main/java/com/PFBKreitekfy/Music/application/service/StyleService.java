@@ -13,4 +13,6 @@ public interface StyleService {
     Optional<StyleDTO> getStyleById(Long styleId);
 
     StyleDTO saveStyle(StyleDTO style);
+
+    void deleteStyle(Long styleId);
 }

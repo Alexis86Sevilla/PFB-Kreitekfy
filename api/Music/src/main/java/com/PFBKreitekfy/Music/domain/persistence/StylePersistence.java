@@ -13,4 +13,6 @@ public interface StylePersistence {
     Optional<Style> getStyleById(Long styleId);
 
     Style saveStyle(Style style);
+
+    void deleteStyle(Long styleId);
 }

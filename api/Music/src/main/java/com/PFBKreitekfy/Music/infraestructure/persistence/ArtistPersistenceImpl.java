@@ -32,4 +32,9 @@ public class ArtistPersistenceImpl implements ArtistPersistence {
     public Artist saveArtist(Artist artist) {
         return this.artistRepository.save(artist);
     }
+
+    @Override
+    public void deleteArtist(Long artistId) {
+        this.artistRepository.deleteById(artistId);
+    }
 }

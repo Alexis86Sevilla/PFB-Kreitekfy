@@ -13,4 +13,6 @@ public interface UserService {
     Optional<UserDTO> getUserById(Long userId);
 
     UserDTO saveUser(UserDTO user);
+
+    void deleteUser(Long userId);
 }

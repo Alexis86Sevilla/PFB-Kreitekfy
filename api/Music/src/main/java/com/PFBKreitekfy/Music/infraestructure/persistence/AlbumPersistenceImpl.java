@@ -32,4 +32,10 @@ public class AlbumPersistenceImpl implements AlbumPersistence {
     public Album saveAlbum(Album album) {
         return this.albumRepository.save(album);
     }
+
+    @Override
+    public void deleteAlbum(Long albumId) {
+        this.albumRepository.deleteById(albumId);
+
+    }
 }

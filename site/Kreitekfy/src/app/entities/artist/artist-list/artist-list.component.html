@@ -2,6 +2,7 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de artistas</h3>
+      <button class="btn btn-primary" id="btnCreateNewArtist" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo Artista</button>
 
       <table class="table table-light table-hover table-striped " *ngIf="artists.length > 0">
         <thead>
@@ -12,17 +13,11 @@
           <tr *ngFor="let artist of artists">
             <td>{{ artist.name }}</td>
             <td>
-                <button class="btn btn-primary" id="btnCreateNewArtist" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo</button>
                 <button class="btn btn-primary" id="btnDeleteArtist" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
             </td>
           </tr>
         </tbody>
       </table>
-
-    </div>
-  </div>
-
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"

@@ -38,4 +38,9 @@ public class AlbumServiceImpl implements AlbumService {
         Album albumSaved = this.persistence.saveAlbum(this.mapper.toEntity(albumDTO));
         return this.mapper.toDto(albumSaved);
     }
+
+    @Override
+    public void deleteAlbum(Long albumId) {
+        this.persistence.deleteAlbum(albumId);
+    }
 }
