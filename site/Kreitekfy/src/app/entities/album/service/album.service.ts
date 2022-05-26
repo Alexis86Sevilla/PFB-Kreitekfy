@@ -8,8 +8,8 @@ import { Album } from '../model/album.model';
 })
 export class AlbumService {
 
-  baseUri = "http://localhost:8081/kreitekfy/";
-  //baseUri = "http://localhost:3003/";
+  //baseUri = "http://localhost:8081/kreitekfy/";
+  baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
