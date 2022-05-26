@@ -26,6 +26,7 @@ import { UserListComponent } from './entities/user/user-list/user-list.component
 import { HttpRequestIntercept } from './config/interceptors/http-request-.interceptor';
 import { UserComponent } from './layouts/navbar/user/user.component';
 import { AdminComponent } from './layouts/navbar/admin/admin.component';
+import { SongUserComponent } from './entities/song-user/song-user.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AdminComponent } from './layouts/navbar/admin/admin.component';
     QuestionsComponent,
     UserListComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    SongUserComponent
   ],
   imports: [
     BrowserModule,

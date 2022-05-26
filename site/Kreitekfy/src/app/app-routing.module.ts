@@ -5,6 +5,7 @@ import { AlbumFormComponent } from './entities/album/album-form/album-form.compo
 import { AlbumListComponent } from './entities/album/album-list/album-list.component';
 import { ArtistFormComponent } from './entities/artist/artist-form/artist-form.component';
 import { ArtistListComponent } from './entities/artist/artist-list/artist-list.component';
+import { SongUserComponent } from './entities/song-user/song-user.component';
 import { SongFormComponent } from './entities/song/song-form/song-form.component';
 import { SongListComponent } from './entities/song/song-list/song-list.component';
 import { StyleFormComponent } from './entities/style/style-form/style-form.component';
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent}, 
   {path: 'songs', component: SongListComponent}, 
   {path: 'songs/:songId', component: SongFormComponent},
+  {path: 'songsUser', component: SongUserComponent},
+  {path: 'songsUser/:songId', component: SongUserComponent},
   {path: 'styles', component: StyleListComponent}, 
   {path: 'styles/:styleId', component: StyleFormComponent},
   {path: 'styles/:styleId/songs', component: StyleFormComponent},
