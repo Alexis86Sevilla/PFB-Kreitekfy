@@ -1,1 +1,20 @@
 <h1>Lista de artístas</h1>
+
+<table *ngIf="artists.length > 0">
+    <thead>
+        <th>Nombre</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let artist of artists">
+            <td>{{ artist.name }}</td>
+            <td>
+                <a [routerLink]="['/artists', artist.id, 'songs']">
+                    <button id="btnNavToArtistSongs">Canciones</button>
+                </a>        
+                <button id="btnCreateNewArtist">Crear nuevo</button>        
+                <button id="btnEditArtist">Editar</button>
+                <button id="btnDeleteArtist">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

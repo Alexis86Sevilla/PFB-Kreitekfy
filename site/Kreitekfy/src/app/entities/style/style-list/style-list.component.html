@@ -1,1 +1,20 @@
 <h1>Lista de estilos</h1>
+
+<table *ngIf="styles.length > 0">
+    <thead>
+        <th>Nombre</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let style of styles">
+            <td>{{ style.name }}</td>
+            <td>
+                <a [routerLink]="['/styles', style.id, 'songs']">
+                    <button id="btnNavToStyleSongs">Canciones</button>
+                </a>        
+                <button id="btnCreateNewStyle">Crear nuev</button>        
+                <button id="btnEditStyle">Editar</button>
+                <button id="btnDeleteStyle">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
