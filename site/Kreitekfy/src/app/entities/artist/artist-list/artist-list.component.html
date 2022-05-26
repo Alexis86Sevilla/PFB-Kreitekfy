@@ -8,9 +8,6 @@
         <tr *ngFor="let artist of artists">
             <td>{{ artist.name }}</td>
             <td>
-                <a [routerLink]="['/artists', artist.id, 'songs']">
-                    <button id="btnNavToArtistSongs">Canciones</button>
-                </a>        
                 <button id="btnCreateNewArtist">Crear nuevo</button>        
                 <button id="btnDeleteArtist">Eliminar</button>
             </td>

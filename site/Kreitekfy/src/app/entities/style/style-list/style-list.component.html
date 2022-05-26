@@ -8,11 +8,7 @@
         <tr *ngFor="let style of styles">
             <td>{{ style.name }}</td>
             <td>
-                <a [routerLink]="['/styles', style.id, 'songs']">
-                    <button id="btnNavToStyleSongs">Canciones</button>
-                </a>        
                 <button id="btnCreateNewStyle">Crear nueva</button>        
-                <button id="btnEditStyle">Editar</button>
                 <button id="btnDeleteStyle">Eliminar</button>
             </td>
         </tr>
