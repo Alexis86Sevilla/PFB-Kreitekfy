@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,9 +42,34 @@ public class SongRestController {
 
     @CrossOrigin
     @GetMapping(value = "/songs/{songId}", produces = "application/json")
-    ResponseEntity<Optional<SongDTO>> getSongById(@PathVariable Long songId) {
-        Optional<SongDTO> songs = this.songService.getSongById(songId);
-        return new ResponseEntity<>(songs, HttpStatus.OK);
+    ResponseEntity<SongDTO> getSongById(@PathVariable Long songId) {
+        Optional<SongDTO> song = this.songService.getSongById(songId);
+        if (song.isPresent()) {
+            return new ResponseEntity<>(song.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @CrossOrigin
+    @PatchMapping(value = "/songs", produces = "application/json", consumes = "application/json")
+    ResponseEntity<SongDTO> updateItem(@RequestBody SongDTO songDTO) {
+        SongDTO songUpdated = this.songService.saveSong(songDTO);
+        return new ResponseEntity<>(songUpdated, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/songs", produces = "application/json", consumes = "application/json")
+    ResponseEntity<SongDTO> insertSong(@RequestBody SongDTO songDTO) {
+        SongDTO songSaved = this.songService.saveSong(songDTO);
+        return new ResponseEntity<>(songSaved, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @DeleteMapping(value = "/songs/{songId}")
+    ResponseEntity<?> deleteSongById(@PathVariable Long songId) {
+        this.songService.deleteSong(songId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

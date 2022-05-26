@@ -34,8 +34,8 @@ public class StyleServiceImpl implements StyleService {
     }
 
     @Override
-    public StyleDTO saveStyle(StyleDTO style) {
-        Style styleSaved = this.persistence.saveStyle(this.mapper.toEntity(style));
+    public StyleDTO saveStyle(StyleDTO styleDTO) {
+        Style styleSaved = this.persistence.saveStyle(this.mapper.toEntity(styleDTO));
         return this.mapper.toDto(styleSaved);
     }
 }

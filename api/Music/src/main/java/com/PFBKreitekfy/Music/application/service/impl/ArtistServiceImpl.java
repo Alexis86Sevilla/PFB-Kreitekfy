@@ -34,8 +34,8 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistDTO saveArtist(ArtistDTO artist) {
-        Artist artistSaved = this.persistence.saveArtist(this.mapper.toEntity(artist));
+    public ArtistDTO saveArtist(ArtistDTO artistDTO) {
+        Artist artistSaved = this.persistence.saveArtist(this.mapper.toEntity(artistDTO));
         return this.mapper.toDto(artistSaved);
     }
 }

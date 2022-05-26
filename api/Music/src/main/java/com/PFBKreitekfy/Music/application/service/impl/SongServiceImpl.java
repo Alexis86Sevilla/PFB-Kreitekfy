@@ -34,8 +34,8 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongDTO saveSong(SongDTO song) {
-        Song songSaved = this.persistence.saveSong(this.mapper.toEntity(song));
+    public SongDTO saveSong(SongDTO songDTO) {
+        Song songSaved = this.persistence.saveSong(this.mapper.toEntity(songDTO));
         return this.mapper.toDto(songSaved);
     }
 

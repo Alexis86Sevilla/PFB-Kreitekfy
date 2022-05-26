@@ -1,7 +1,6 @@
 package com.PFBKreitekfy.Music.application.mapper;
 
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
-import com.PFBKreitekfy.Music.domain.entity.Artist;
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
