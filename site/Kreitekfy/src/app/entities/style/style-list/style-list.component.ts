@@ -17,6 +17,10 @@ export class StyleListComponent implements OnInit {
     this.getStyles();
   }
 
+  public prepareStyleToDelete(styleId: number): void {
+    this.styleIdToDelete = styleId;
+  }
+
   public deleteStyle(): void {
     if (this.styleIdToDelete) {
       this.styleService.deleteStyle(this.styleIdToDelete).subscribe({

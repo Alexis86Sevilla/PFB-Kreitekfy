@@ -18,6 +18,10 @@ export class AlbumListComponent implements OnInit {
     this.getAlbums();
   }
 
+  public prepareAlbumToDelete(albumId: number): void {
+    this.albumIdToDelete = albumId;
+  }
+  
   public deleteAlbum(): void {
     if (this.albumIdToDelete) {
       this.albumService.deleteAlbum(this.albumIdToDelete).subscribe({

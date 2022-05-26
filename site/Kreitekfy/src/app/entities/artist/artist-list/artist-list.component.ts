@@ -17,6 +17,10 @@ export class ArtistListComponent implements OnInit {
     this.getArtists();
   }
 
+  public prepareArtistToDelete(artistId: number): void {
+    this.artistIdToDelete = artistId;
+  }
+
   public deleteArtist(): void {
     if (this.artistIdToDelete) {
       this.artistService.deleteArtist(this.artistIdToDelete).subscribe({
