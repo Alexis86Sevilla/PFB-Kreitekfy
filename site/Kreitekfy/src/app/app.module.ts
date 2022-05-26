@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { HelpComponent } from './help/help.component';
 import { TeamComponent } from './about-us/team/team.component';
 import { QuestionsComponent } from './help/questions/questions.component';
 import { UserListComponent } from './entities/user/user-list/user-list.component';
+import { HttpRequestIntercept } from './config/interceptors/http-request-.interceptor';
 
 
 @NgModule({
@@ -53,7 +54,13 @@ import { UserListComponent } from './entities/user/user-list/user-list.component
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestIntercept,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
