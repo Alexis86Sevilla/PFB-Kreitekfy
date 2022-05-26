@@ -29,6 +29,16 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
+  public insertAlbum(albumToSave: Album): void {
+    this.albumService.insert(albumToSave).subscribe({
+      next: (albumInserted) => {
+        console.log("Añadido correctamente");
+        console.log(albumInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
   private getAlbums(): void {
     this.albumService.getAllAlbums().subscribe({
       next: (albumsRequest) => { this.albums = albumsRequest; },
