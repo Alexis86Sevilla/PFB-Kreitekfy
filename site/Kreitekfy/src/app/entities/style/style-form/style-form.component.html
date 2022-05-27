@@ -1,22 +1,33 @@
-<h1>Ficha de estilo</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 my-auto">
+            <h2>Ficha de estilo</h2>
 
-<h1>{{styleId }}</h1>
+            <div id="formulario">
+                <form *ngIf="style" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
 
-<form *ngIf="style" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="number">Id</label>
+                        <input type="number" [(ngModel)]="style.id" name="id" class="form-control" id="id"
+                            #name="ngModel" disabled>
+                    </div>
 
-    <div class="form-group">
-        <label for="number">Id</label>
-        <input type="number" [(ngModel)]="style.id" name="id" class="form-control" id="id" #name="ngModel">
+                    <div class="form-group">
+                        <label class="form-label" class="form-label" for="name">Nombre</label>
+                        <input type="text" [(ngModel)]="style.name" name="name" class="form-control" id="name"
+                            #name="ngModel">
+                    </div>
+
+                    <div class="buttonsForm">
+                        <button class="btn btn-primary"  (click)="saveStyle()">Guardar</button>
+                        <button class="btn btn-primary"  [routerLink]="['/styles']">Volver</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
     </div>
-
-    <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" [(ngModel)]="style.name" name="name" class="form-control" id="name" #name="ngModel">
-    </div>
-
-    <div class="buttonsForm">
-        <button (click)="saveStyle()">Guardar</button>
-        <button [routerLink]="['/styles']">Volver</button>
-    </div>
-
-</form>
+</div>
