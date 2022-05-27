@@ -3,6 +3,8 @@ package com.PFBKreitekfy.Music.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,6 +19,11 @@ public class User {
 
     @Column(nullable = false)
     private Boolean isAdmin;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private Set<Rating> ratings;
+
+
 
     public User() {
     }
@@ -42,5 +49,13 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
