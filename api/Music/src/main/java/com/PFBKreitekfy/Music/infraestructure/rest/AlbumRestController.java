@@ -22,8 +22,8 @@ public class AlbumRestController {
     @CrossOrigin
     @PostMapping(value = "/albums", produces = "application/json", consumes = "application/json")
     ResponseEntity<AlbumDTO> insertAlbum(@RequestBody AlbumDTO albumDTO) {
-        AlbumDTO albumSaved = this.albumService.saveAlbum(albumDTO);
-        return new ResponseEntity<>(albumSaved, HttpStatus.CREATED);
+        albumDTO = this.albumService.saveAlbum(albumDTO);
+        return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
     @CrossOrigin
     @GetMapping(value = "/albums", produces = "application/json")
