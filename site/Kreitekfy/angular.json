@@ -39,7 +39,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./src/assets"
+                "./src/assets",
+                "./src/assets/partials"
               ]
             }
           },
