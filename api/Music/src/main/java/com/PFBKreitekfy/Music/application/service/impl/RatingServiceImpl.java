@@ -3,6 +3,8 @@ package com.PFBKreitekfy.Music.application.service.impl;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.mapper.RatingMapper;
 import com.PFBKreitekfy.Music.application.service.RatingService;
+import com.PFBKreitekfy.Music.domain.entity.Artist;
+import com.PFBKreitekfy.Music.domain.entity.Rating;
 import com.PFBKreitekfy.Music.domain.persistence.RatingPersistence;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,8 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public RatingDTO saveRating(RatingDTO ratingDTO) {
-        return null;
+        Rating ratingSaved = this.persistence.saveRating(this.mapper.toEntity(ratingDTO));
+        return this.mapper.toDto(ratingSaved);
     }
 
     @Override
