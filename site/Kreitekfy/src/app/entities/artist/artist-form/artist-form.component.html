@@ -1,21 +1,39 @@
-<h1>Ficha de artista</h1>
-<h1>{{artistId }}</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 my-auto">
+            <h2>Ficha de artista</h2>
+            <hr class="barra">
+            <div id="formulario">
+                <form *ngIf="artist" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
 
-<form *ngIf="artist" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
+                    <div class="form-group">
+                        <label class="form-label" for="number">Id</label>
+                        <input type="number" [(ngModel)]="artist.id" name="id" class="form-control" id="id"
+                            #name="ngModel">
+                    </div>
 
-    <div class="form-group">
-        <label for="number">Id</label>
-        <input type="number" [(ngModel)]="artist.id" name="id" class="form-control" id="id" #name="ngModel">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nombre</label>
+                        <input type="text" [(ngModel)]="artist.name" name="name" class="form-control" id="name"
+                            #nombre="ngModel" minlength="3" required>
+                    </div>
+                    <div *ngIf="(nombre.dirty && nombre.errors)">
+                        <small class=" form-text text-danger" *ngIf="nombre.errors['required']">
+                            Este campo es requerido
+                        </small>
+                        <small class="form-text text-danger" *ngIf="nombre.errors['minlength']">
+                            Este campo debe tener una longitud mínima de 3 caracteres
+                        </small>
+                    </div>
+
+                    <div class="buttonsForm">
+                        <button class="btn btn-primary" (click)="saveArtist()">Guardar</button>
+                        <button class="btn btn-primary" [disabled]="artistForm.invalid" [routerLink]="['/artists']">Volver</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
     </div>
-
-    <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" [(ngModel)]="artist.name" name="name" class="form-control" id="name" #name="ngModel">
-    </div>
-
-    <div class="buttonsForm">
-        <button (click)="saveArtist()">Guardar</button>
-        <button [routerLink]="['/artists']">Volver</button>
-    </div>
-
-</form>
+</div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +28,9 @@ import { HttpRequestIntercept } from './config/interceptors/http-request-.interc
 import { UserComponent } from './layouts/navbar/user/user.component';
 import { AdminComponent } from './layouts/navbar/admin/admin.component';
 import { SongUserComponent } from './entities/song-user/song-user.component';
+
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +62,9 @@ import { SongUserComponent } from './entities/song-user/song-user.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    AutoCompleteModule
   ],
   providers: [
     {

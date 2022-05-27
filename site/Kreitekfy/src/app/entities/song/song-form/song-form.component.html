@@ -5,17 +5,69 @@
 <form *ngIf="song" #songForm="ngForm" name="songForm" role="form" novalidate autocomplete="off">
 
     <div class="form-group">
-        <label for="number">Id</label>
-        <input type="number" [(ngModel)]="song.id" name="id" class="form-control" id="id" #name="ngModel">
+        <label for="id">Id</label>
+        <input disabled type="number" [(ngModel)]="song.id" name="id" class="form-control" id="id" #id="ngModel">
     </div>
 
     <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name" #name="ngModel">
+        <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name" #name="ngModel" required minlength="3" maxlength="100">
+    </div>
+
+    <div *ngIf="(name.dirty && name.errors)">
+        <small class="form-tex text-danger"
+        *ngIf="name.errors['required']">
+            Este campo es requerido
+        </small>
+        <small class="form-tex text-danger"
+        *ngIf="name.errors['minlength']">
+            Este campo tiene que tener una longitud mínima de 3 caracteres
+        </small>
+    </div>
+    
+    <!-- Imagen -->
+    <div class="form-group">
+        <label for="image">Imagen</label>
+        <input type="file" class="form-control" id="image" (change)="includeImageInSong($event);">
+        <img *ngIf="song.image" [src]="'data:image/jpeg;base64,' + song.image">
+    </div>
+    
+    <div class="form-group">
+        <label for="duration">Duración de la canción</label>
+        <input type="text" [(ngModel)]="song.duration" name="duration" class="form-control" id="duration" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="dateLaunch">Fecha de lanzamiento</label>
+        <input type="date" [(ngModel)]="song.dateLaunch" name="dateLaunch" class="form-control" id="dateLaunch" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="albumId">Disco</label>
+        <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums" 
+        (completeMethod)="getAllAlbums($event)" field="name" 
+        (onSelect)="albumSelected();" (onClear)="albumUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
+    </div>
+
+    <div class="form-group">
+        <label for="styleId">Estilo</label>
+        <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles" 
+        (completeMethod)="getAllStyles($event)" field="name" 
+        (onSelect)="styleSelected();" (onClear)="styleUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
+    </div>
+    
+     <div class="form-group">
+        <label for="artistId">Cantante</label>
+        <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists" 
+        (completeMethod)="getAllArtists($event)" field="name" 
+        (onSelect)="artistSelected();" (onClear)="artistUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
     </div>
 
     <div class="buttonsForm">
-        <button (click)="saveSong()">Guardar</button>
+        <button (click)="saveSong()" [disabled]="songForm.invalid">Guardar</button>
         <button [routerLink]="['/songs']">Volver</button>
     </div>
 

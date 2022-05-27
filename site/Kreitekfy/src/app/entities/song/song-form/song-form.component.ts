@@ -92,8 +92,13 @@ export class SongFormComponent implements OnInit {
   }
 
   public saveSong(): void {
-    const songToSave: Song = this.createFromForm();
-    this.insertSong(songToSave);
+    if (this.mode === "NEW") {
+      this.insertSong();
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateSong();
+    }
   }
 
   public styleSelected(): void {
@@ -126,11 +131,21 @@ export class SongFormComponent implements OnInit {
     this.song!.albumName = undefined;
   }
 
-  private insertSong(songToSave: Song): void {
-    this.songService.insert(songToSave).subscribe({
+  private insertSong(): void {
+    this.songService.insert(this.song!).subscribe({
       next: (songInserted) => {
         console.log("Insertado correctamente");
         console.log(songInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+  
+  private updateSong(): void {
+    this.songService.update(this.song!).subscribe({
+      next: (songUpdated) => {
+        console.log("Modificado correctamente");
+        console.log(songUpdated);
       },
       error: (err) => {this.handleError(err);}
     })
@@ -159,6 +174,10 @@ export class SongFormComponent implements OnInit {
     this.songService.getSongById(songId).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
+        this.updateForm(songRequest);
+        this.selectedAlbum = new Album(songRequest.albumId!, songRequest.albumName!, songRequest.albumDescription!);
+        this.selectedArtist = new Artist(songRequest.artistId!, songRequest.artistName!);
+        this.selectedStyle = new Style(songRequest.styleId!, songRequest.styleName!);
       },
       error: (err) => {this.handleError(err);}
     })

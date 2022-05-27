@@ -1,0 +1,55 @@
+@import "variables";
+
+.row {
+  background-color: $primaryColor;
+  color: $fontColor;
+  min-height: 500px;
+
+  h2 {
+    margin-top: 2%;
+    text-align: center;
+  }
+
+  .barra {
+    margin: auto;
+    margin-bottom: 2%;
+    width: 50%;
+
+  }
+
+  #formulario {
+    color: $fontColor;
+    background-color: $secondaryColor;
+    width: 40%;
+    padding: 1%;
+    margin: auto;
+    margin-bottom: 2%;
+    border-radius: 2%;
+
+    .form-group {
+      margin-top: 2%;
+
+    }
+
+    .buttonsForm {
+      text-align: center;
+
+      button {
+        background-color: red;
+        border: none;
+        margin: 5%;
+      }
+    }
+
+    .ng-valid[required],
+    .ng-valid.required {
+      border-left: 5px solid green;
+    }
+
+    .ng-invalid:not(form) {
+      border-left: 5px solid red;
+    }
+  }
+
+
+}
