@@ -2,7 +2,8 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de artistas</h3>
-      <button class="btn btn-primary" id="btnCreateNewArtist" data-bs-toggle="modal" data-bs-target="#askNameToSave" >Crear nuevo Artista</button>
+      <button class="btn btn-primary" id="btnCreateNewArtist" data-bs-toggle="modal"
+        data-bs-target="#askNameToSave">Crear nuevo Artista</button>
 
       <table class="table table-light table-hover table-striped " *ngIf="artists.length > 0">
         <thead>
@@ -13,52 +14,54 @@
           <tr *ngFor="let artist of artists">
             <td class="align-middle">{{ artist.name }}</td>
             <td class="align-middle">
-                <button class="btn btn-primary" id="btnDeleteArtist" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
+              <button class="btn btn-primary" id="btnDeleteArtist" data-bs-toggle="modal"
+                data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
             </td>
           </tr>
         </tbody>
       </table>
 
-<!-- Modal -->
-<div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Desea eliminar el artísta seleccionado? Esta operación no puede deshacerse
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-          (click)="deleteArtist();">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>  
-
-<!-- Modal -->
-<div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo artista</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form>
-          <div class="modal-body mb-3">
-              <label for="exampleInputEmail1" class="form-label">Artista</label>
-              <input type="artist" class="form-control" id="inputArtist">
+      <!-- Modal -->
+      <div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ¿Desea eliminar el artísta seleccionado? Esta operación no puede deshacerse
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                (click)="deleteArtist();">Eliminar</button>
+            </div>
           </div>
-      </form>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="insertArtist();">Guardar</button>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- Modal -->
+      <div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo artista</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form>
+              <div class="modal-body mb-3">
+                <label for="exampleInputEmail1" class="form-label">Artista</label>
+                <input type="artist" class="form-control" id="inputArtist">
+              </div>
+            </form>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                (click)="insertArtist();">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
