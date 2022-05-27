@@ -8,8 +8,8 @@ import { Artist } from '../model/artist.model';
 })
 export class ArtistService {
 
-  //baseUri = "http://localhost:8081/kreitekfy/";
-  baseUri = "http://localhost:3003/";
+  baseUri = "http://localhost:8081/kreitekfy/";
+  //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +30,10 @@ export class ArtistService {
   public deleteArtist(artistIdToDelete: number): Observable<any> {
     let urlEndpoint: string = this.baseUri + "artists/" + artistIdToDelete;
     return this.http.delete<any>(urlEndpoint);
+  }
+
+  public getArtistById(artistId: number): Observable<Artist> {
+    let urlEndpoint: string = this.baseUri + "artists/" + artistId;
+    return this.http.get<Artist>(urlEndpoint);
   }
 }

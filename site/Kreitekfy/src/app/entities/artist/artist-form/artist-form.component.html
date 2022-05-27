@@ -1,2 +1,21 @@
-<h1>Ficha de artísta</h1>
+<h1>Ficha de artista</h1>
+<h1>{{artistId }}</h1>
 
+<form *ngIf="artist" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
+
+    <div class="form-group">
+        <label for="number">Id</label>
+        <input type="number" [(ngModel)]="artist.id" name="id" class="form-control" id="id" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" [(ngModel)]="artist.name" name="name" class="form-control" id="name" #name="ngModel">
+    </div>
+
+    <div class="buttonsForm">
+        <button (click)="saveArtist()">Guardar</button>
+        <button [routerLink]="['/artists']">Volver</button>
+    </div>
+
+</form>
