@@ -17,6 +17,7 @@ import { SongService } from '../service/song.service';
 })
 export class SongFormComponent implements OnInit {
 
+  mode: "NEW" | "UPDATE" = "NEW";
   songId?: number;
   song?: Song;
   styles: Style[] = [];
@@ -37,10 +38,15 @@ export class SongFormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
-    this.buildForm();
-    this.songId = +this.router.snapshot.paramMap.get("songId")!;
-    this.getSongById(this.songId!);
+    const entryParam: string = this.router.snapshot.paramMap.get("songId") ?? "new";
+    if (entryParam != "new") {
+      this.songId = +this.router.snapshot.paramMap.get("songId")!;
+      this.mode = "UPDATE";
+      this.getSongById(this.songId!);
+    } else {
+      this.mode = "NEW";
+      this.initializeSong();
+    }
   }
 
   public getAllStyles(event?: any): void {
@@ -201,7 +207,7 @@ export class SongFormComponent implements OnInit {
       dateLaunch: song.dateLaunch,
       valoration: song.valoration,
       visualizations: song.visualizations,
-      Album: new Album(song.albumId!, song.albumName!),
+      Album: new Album(song.albumId!, song.albumName!, song.albumDescription!),
       Artist: new Artist(song.artistId!, song.artistName!),
       Style: new Style(song.styleId!, song.styleName!)
     });
@@ -218,12 +224,17 @@ export class SongFormComponent implements OnInit {
       visualizations: this.songForm?.get(['visualizations'])!.value,
       albumId: this.songForm?.get(['album'])!.value.id,
       albumName: this.songForm?.get(['album'])!.value.name,
+      albumDescription: this.songForm?.get(['album'])!.value.description,
       artistId: this.songForm?.get(['artist'])!.value.id,
       artistName: this.songForm?.get(['artist'])!.value.name,
       styleId: this.songForm?.get(['style'])!.value.id,
       styleName: this.songForm?.get(['style'])!.value.name,
       image: this.song!.image      
     };
+  }
+
+  private initializeSong(): void {
+    this.song = new Song(undefined, "", 0, new Date, 0, 0);
   }
 
   private handleError(error: any): void {

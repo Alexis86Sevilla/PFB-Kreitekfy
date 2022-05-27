@@ -1,1 +1,22 @@
 <h1>Ficha de canción</h1>
+
+<h1>{{songId }}</h1>
+
+<form *ngIf="song" #songForm="ngForm" name="songForm" role="form" novalidate autocomplete="off">
+
+    <div class="form-group">
+        <label for="number">Id</label>
+        <input type="number" [(ngModel)]="song.id" name="id" class="form-control" id="id" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name" #name="ngModel">
+    </div>
+
+    <div class="buttonsForm">
+        <button (click)="saveSong()">Guardar</button>
+        <button [routerLink]="['/songs']">Volver</button>
+    </div>
+
+</form>
