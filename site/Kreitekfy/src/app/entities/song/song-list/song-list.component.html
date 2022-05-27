@@ -28,8 +28,8 @@
                             <button class="btn btn-primary" id="btnDeleteSong" data-bs-toggle="modal"
                                 data-bs-target="#askConfirmationDelete"
                                 (click)="prepareSongToDelete(song.id!);">Eliminar</button>
-                                <button class="btn btn-primary" id="btnDeleteSong"
-                                [routerLink]="['/songs',song.id]">Editar</button>
+                                <button class="btn btn-primary" [routerLink]="['/songs',song.id]">
+                                    Editar</button>
                         </td>
                     </tr>
                 </tbody>

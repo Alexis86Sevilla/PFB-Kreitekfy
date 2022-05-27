@@ -174,6 +174,10 @@ export class SongFormComponent implements OnInit {
     this.songService.getSongById(songId).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
+        this.updateForm(songRequest);
+        this.selectedAlbum = new Album(songRequest.albumId!, songRequest.albumName!, songRequest.albumDescription!);
+        this.selectedArtist = new Artist(songRequest.artistId!, songRequest.artistName!);
+        this.selectedStyle = new Style(songRequest.styleId!, songRequest.styleName!);
       },
       error: (err) => {this.handleError(err);}
     })
