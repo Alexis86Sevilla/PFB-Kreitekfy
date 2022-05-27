@@ -31,4 +31,10 @@ export class AlbumService {
     let urlEndpoint: string = this.baseUri + "albums/" + albumIdToDelete;
     return this.http.delete<any>(urlEndpoint);
   }
+
+  public getAlbumById(albumId: number): Observable<Album> {
+    let urlEndpoint: string = this.baseUri + "albums/" + albumId;
+    return this.http.get<Album>(urlEndpoint);
+  }
+
 }

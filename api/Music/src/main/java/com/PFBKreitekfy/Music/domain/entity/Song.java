@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "songs")
@@ -43,6 +44,11 @@ public class Song {
     @JoinColumn(name = "style_id", nullable = false)
     private Style style;
 
+    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
+    private Set<Rating> ratings;
+
+    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
+    private Set<Views> views;
     public Song() {
     }
 
@@ -108,5 +114,13 @@ public class Song {
 
     public void setStyle(Style style) {
         this.style = style;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

@@ -19,6 +19,8 @@ export class AlbumListComponent implements OnInit {
     this.getAlbums();
   }
 
+ 
+
   public prepareAlbumToDelete(albumId: number): void {
     this.albumIdToDelete = albumId;
   }
@@ -34,15 +36,7 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
-  public insertAlbum(): void {
-    this.albumService.insert(this.album!).subscribe({
-      next: (albumInserted) => {
-        console.log("Añadido correctamente");
-        console.log(albumInserted);
-      },
-      error: (err) => {this.handleError(err);}
-    })
-  }
+  
 
   private getAlbums(): void {
     this.albumService.getAllAlbums().subscribe({

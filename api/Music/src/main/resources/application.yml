@@ -3,7 +3,7 @@ main:
   allow-circular-references: true
 
 server:
-  port: 8081
+  port: 8080
   servlet:
     context-path: /kreitekfy
 
@@ -22,3 +22,4 @@ spring:
     console:
       enabled: true
       path: /console
+
