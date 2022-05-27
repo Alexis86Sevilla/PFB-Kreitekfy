@@ -2,8 +2,7 @@
     <div class="row contenido">
         <div class="col-md-12">
             <h3>Lista de Albumes</h3>
-            <button class="btn btn-primary" id="btnCreateNewAlbum" data-bs-toggle="modal"
-                data-bs-target="#askNameToSave">Crear nuevo Álbum</button>
+            <button class="btn btn-primary" [routerLink]="['/albums','new']">Crear nuevo Álbum</button>
             <table class="table table-light table-hover table-striped " *ngIf="albums.length > 0">
                 <thead>
                     <th>Nombre</th>
@@ -16,6 +15,8 @@
                             <button class="btn btn-primary" id="btnDeleteAlbum" data-bs-toggle="modal"
                                 data-bs-target="#askConfirmationDelete"
                                 (click)="prepareAlbumToDelete(album.id!);">Eliminar</button>
+                                <button class="btn btn-primary" id="btnDeleteAlbum"
+                                [routerLink]="['/albums',album.id]">Editar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -59,7 +60,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                            (click)="insertAlbum();">Guardar</button>
+                                >Guardar</button>
                         </div>
                     </div>
                 </div>
