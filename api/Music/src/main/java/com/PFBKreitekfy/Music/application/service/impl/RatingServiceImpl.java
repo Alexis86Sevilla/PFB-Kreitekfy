@@ -6,6 +6,7 @@ import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.domain.entity.Artist;
 import com.PFBKreitekfy.Music.domain.entity.Rating;
 import com.PFBKreitekfy.Music.domain.persistence.RatingPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class RatingServiceImpl implements RatingService {
     private final RatingPersistence persistence;
     private final RatingMapper mapper;
 
+    @Autowired
     public RatingServiceImpl(RatingPersistence persistence, RatingMapper mapper) {
         this.persistence = persistence;
         this.mapper = mapper;
