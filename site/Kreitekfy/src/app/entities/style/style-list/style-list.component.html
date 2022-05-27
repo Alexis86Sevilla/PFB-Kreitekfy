@@ -14,8 +14,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let style of styles">
-            <td>{{ style.name }}</td>
-            <td>
+            <td class="align-middle">{{ style.name }}</td>
+            <td class="align-middle">
               <button class="btn btn-primary" id="btnDeleteStyle" data-bs-toggle="modal" 
               data-bs-target="#askConfirmationDelete" (click)="prepareStyleToDelete(style.id!);">
               Eliminar

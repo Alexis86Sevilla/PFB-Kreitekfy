@@ -11,8 +11,8 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let album of albums">
-                        <td>{{ album.name }}</td>
-                        <td>
+                        <td class="align-middle">{{ album.name }}</td>
+                        <td class="align-middle">
                             <button class="btn btn-primary" id="btnDeleteAlbum" data-bs-toggle="modal"
                                 data-bs-target="#askConfirmationDelete"
                                 (click)="prepareAlbumToDelete(album.id!);">Eliminar</button>

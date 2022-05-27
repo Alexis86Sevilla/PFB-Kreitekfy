@@ -11,8 +11,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let artist of artists">
-            <td>{{ artist.name }}</td>
-            <td>
+            <td class="align-middle">{{ artist.name }}</td>
+            <td class="align-middle">
                 <button class="btn btn-primary" id="btnDeleteArtist" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
             </td>
           </tr>
