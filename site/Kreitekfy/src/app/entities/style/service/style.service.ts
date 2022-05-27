@@ -31,4 +31,9 @@ export class StyleService {
     let urlEndpoint: string = this.baseUri + "styles/" + styleIdToDelete;
     return this.http.delete<any>(urlEndpoint);
   }
+
+  public getStyleById(styleId: number): Observable<Style> {
+    let urlEndpoint: string = this.baseUri + "styles/" + styleId;
+    return this.http.get<Style>(urlEndpoint);
+  }
 }
