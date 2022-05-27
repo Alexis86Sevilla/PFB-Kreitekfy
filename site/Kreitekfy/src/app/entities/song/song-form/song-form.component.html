@@ -56,7 +56,7 @@
     </div>
 
     <div class="buttonsForm">
-        <button (click)="saveSong()">Guardar</button>
+        <button (click)="saveSong()" [disabled]="songForm.invalid">Guardar</button>
         <button [routerLink]="['/songs']">Volver</button>
     </div>
 
