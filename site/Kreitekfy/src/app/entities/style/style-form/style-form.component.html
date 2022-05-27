@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12 my-auto">
             <h2>Ficha de estilo</h2>
-
+            <hr class="barra">
             <div id="formulario">
-                <form *ngIf="style" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
+                <form *ngIf="style" #styleForm="ngForm" name="styleForm" role="form" novalidate autocomplete="off">
 
                     <div class="form-group">
                         <label class="form-label" for="number">Id</label>
@@ -15,12 +15,21 @@
                     <div class="form-group">
                         <label class="form-label" class="form-label" for="name">Nombre</label>
                         <input type="text" [(ngModel)]="style.name" name="name" class="form-control" id="name"
-                            #name="ngModel">
+                            #nombre="ngModel" minlength="3" required>
+                    </div>
+                    <div *ngIf="(nombre.dirty && nombre.errors)">
+                        <small class=" form-text text-danger" *ngIf="nombre.errors['required']">
+                            Este campo es requerido
+                        </small>
+                        <small class="form-text text-danger" *ngIf="nombre.errors['minlength']">
+                            Este campo debe tener una longitud mínima de 3 caracteres
+                        </small>
                     </div>
 
                     <div class="buttonsForm">
-                        <button class="btn btn-primary"  (click)="saveStyle()">Guardar</button>
-                        <button class="btn btn-primary"  [routerLink]="['/styles']">Volver</button>
+                        <button class="btn btn-primary" [disabled]="styleForm.invalid"
+                            (click)="saveStyle()">Guardar</button>
+                        <button class="btn btn-primary" [routerLink]="['/styles']">Volver</button>
                     </div>
 
                 </form>

@@ -2,20 +2,30 @@
     <div class="row">
         <div class="col-md-12 my-auto">
             <h2>Ficha de album</h2>
-
+            <hr class="barra">
             <div id="formulario">
                 <form *ngIf="album" #albumForm="ngForm" name="albumForm" role="form" novalidate autocomplete="off">
 
                     <div class="form-group">
                         <label class="form-label" for="number">Id</label>
                         <input type="number" [(ngModel)]="album.id" name="id" class="form-control" id="id"
-                            #name="ngModel">
+                            #name="ngModel" disabled>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="name">Nombre</label>
                         <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name"
-                            #name="ngModel">
+                            #nombre="ngModel" minlength="3" required>
+                    </div>
+                    <div *ngIf="(nombre.dirty && nombre.errors)">
+                        <small class=" form-text text-danger"
+                        *ngIf="nombre.errors['required']">
+                        Este campo es requerido
+                        </small>
+                        <small class="form-text text-danger"
+                        *ngIf="nombre.errors['minlength']">
+                        Este campo debe tener una longitud mínima de 3 caracteres
+                        </small>
                     </div>
 
                     <div class="form-group">
@@ -25,7 +35,7 @@
                     </div>
 
                     <div class="buttonsForm">
-                        <button class="btn btn-primary" (click)="saveAlbum()">Guardar</button>
+                        <button class="btn btn-primary" (click)="saveAlbum()" [disabled]="albumForm.invalid">Guardar</button>
                         <button class="btn btn-primary" [routerLink]="['/albums']">Volver</button>
                     </div>
 
