@@ -14,6 +14,47 @@
         <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name" #name="ngModel">
     </div>
 
+    <!-- Imagen -->
+    <div class="form-group">
+        <label for="image">Imagen</label>
+        <input type="file" class="form-control" id="image" (change)="includeImageInSong($event);">
+        <img *ngIf="song.image" [src]="'data:image/jpeg;base64,' + song.image">
+    </div>
+    
+    <div class="form-group">
+        <label for="duration">Duración de la canción</label>
+        <input type="text" [(ngModel)]="song.duration" name="duration" class="form-control" id="duration" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="dateLaunch">Fecha de lanzamiento</label>
+        <input type="date" [(ngModel)]="song.dateLaunch" name="dateLaunch" class="form-control" id="dateLaunch" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="albumId">Disco</label>
+        <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums" 
+        (completeMethod)="getAllAlbums($event)" field="name" 
+        (onSelect)="albumSelected();" (onClear)="albumUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
+    </div>
+
+    <div class="form-group">
+        <label for="styleId">Estilo</label>
+        <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles" 
+        (completeMethod)="getAllStyles($event)" field="name" 
+        (onSelect)="styleSelected();" (onClear)="styleUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
+    </div>
+    
+     <div class="form-group">
+        <label for="artistId">Cantante</label>
+        <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists" 
+        (completeMethod)="getAllArtists($event)" field="name" 
+        (onSelect)="artistSelected();" (onClear)="artistUnselected();"
+        [required]="true" [forceSelection]="true"></p-autoComplete>
+    </div>
+
     <div class="buttonsForm">
         <button (click)="saveSong()">Guardar</button>
         <button [routerLink]="['/songs']">Volver</button>
