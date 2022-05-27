@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Style } from '../model/style.model';
+import { StyleService } from '../service/style.service';
 
 @Component({
   selector: 'app-style-form',
@@ -7,9 +10,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StyleFormComponent implements OnInit {
 
-  constructor() { }
+  styleId?: number;
+  
+  mode: "NEW" | "UPDATE" = "NEW";
+
+  style?: Style;
+
+  constructor(private route: ActivatedRoute, private styleService: StyleService) { }
 
   ngOnInit(): void {
+    const entryParam: string = this.route.snapshot.paramMap.get("styleId") ?? "new"
+    if (entryParam !== "new") {
+      this.styleId = +this.route.snapshot.paramMap.get("styleId")!;
+      this.mode = "UPDATE"
+      this.getStyle(this.styleId);
+    } else {
+      this.mode = "NEW"
+      this.initializeStyle();
+    }
+  }
+
+  public saveStyle():void{
+    this.insertStyle();
+  }
+
+  public insertStyle(): void {
+    this.styleService.insert(this.style!).subscribe({
+      next: (styleInserted) => {
+        console.log("Añadido correctamente");
+        console.log(styleInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
+  private getStyle(styleId:number){
+    this.styleService.getStyleById(this.styleId!).subscribe({
+      next: (artistRequest) => {this.style = artistRequest},
+      error: (err) => {this.handleError(err)}
+    })
+  }
+
+  private initializeStyle(): void{
+    this.style = new Style(undefined, "");
+  }
+
+  private handleError(error: any): void {
+    console.log(error);
   }
 
 }

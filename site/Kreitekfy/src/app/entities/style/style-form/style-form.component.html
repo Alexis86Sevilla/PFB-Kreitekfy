@@ -1,2 +1,22 @@
 <h1>Ficha de estilo</h1>
 
+<h1>{{styleId }}</h1>
+
+<form *ngIf="style" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
+
+    <div class="form-group">
+        <label for="number">Id</label>
+        <input type="number" [(ngModel)]="style.id" name="id" class="form-control" id="id" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" [(ngModel)]="style.name" name="name" class="form-control" id="name" #name="ngModel">
+    </div>
+
+    <div class="buttonsForm">
+        <button (click)="saveStyle()">Guardar</button>
+        <button [routerLink]="['/styles']">Volver</button>
+    </div>
+
+</form>

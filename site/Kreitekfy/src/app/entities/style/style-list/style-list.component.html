@@ -2,8 +2,7 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de estilos</h3>
-      <button class="btn btn-primary" id="btnCreateNewStyle" data-bs-toggle="modal" 
-      data-bs-target="#askNameToSave" >
+      <button class="btn btn-primary" id="btnCreateNewStyle" [routerLink]="['/styles', 'new']" >
       Crear nuevo Estilo
       </button>
 
@@ -20,6 +19,7 @@
               data-bs-target="#askConfirmationDelete" (click)="prepareStyleToDelete(style.id!);">
               Eliminar
               </button>
+              <button class="btn btn-primary" [routerLink]="['/styles', style.id]">Editar</button>
             </td>
           </tr>
         </tbody>
@@ -43,28 +43,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteStyle();">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal save" id="askNameToSave" tabindex="-1" aria-labelledby="askNameToSave" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Añadir nuevo estilo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form>
-          <div class="modal-body mb-3">
-              <label for="inputStyle" class="form-label">Estilo</label>
-              <input type="style" class="form-control" id="inputStyle">
-          </div>
-      </form>      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="insertStyle();">Guardar</button>
       </div>
     </div>
   </div>

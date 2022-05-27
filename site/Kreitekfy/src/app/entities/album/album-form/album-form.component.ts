@@ -51,7 +51,7 @@ export class AlbumFormComponent implements OnInit {
   }
 
   private initializeAlbum(): void{
-    this.album = new Album(undefined, "");
+    this.album = new Album(undefined, "", "");
   }
 
   private handleError(error: any): void {

@@ -13,6 +13,11 @@
         <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name" #name="ngModel">
     </div>
 
+    <div class="form-group">
+        <label for="name">Descripción</label>
+        <input type="text" [(ngModel)]="album.description" name="description" class="form-control" id="description" #name="ngModel">
+    </div>
+
     <div class="buttonsForm">
         <button (click)="saveAlbum()">Guardar</button>
         <button [routerLink]="['/albums']">Volver</button>

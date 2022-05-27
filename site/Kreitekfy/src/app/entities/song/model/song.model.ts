@@ -7,6 +7,7 @@ export class Song {
     visualizations: number;
     albumId?: number;
     albumName?: string;
+    albumDescription?: string;
     artistId?: number;
     artistName?: string;
     styleId?: number;
@@ -15,7 +16,7 @@ export class Song {
 
 
   constructor(
-    id: number , 
+    id: number | undefined, 
     name: string, 
     duration: number, 
     dateLaunch: Date, 
@@ -25,6 +26,7 @@ export class Song {
     albumName?: string, 
     artistId?: number, 
     artistName?: string, 
+    albumDescription?: string,
     styleId?: number, 
     styleName?: string, 
     image?: string
@@ -37,6 +39,7 @@ export class Song {
     this.visualizations = visualizations
     this.albumId = albumId
     this.albumName = albumName
+    this.albumDescription = albumDescription
     this.artistId = artistId
     this.artistName = artistName
     this.styleId = styleId

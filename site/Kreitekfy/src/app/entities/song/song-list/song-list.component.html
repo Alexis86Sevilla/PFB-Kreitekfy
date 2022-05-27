@@ -2,8 +2,7 @@
     <div class="row contenido">
         <div class="col-md-12">
 <h1>Lista de canciones</h1>
-<button class="btn btn-primary" id="btnCreateNewSong" data-bs-toggle="modal"
-                data-bs-target="#askNameToSave">Crear nueva Canción</button>
+<button class="btn btn-primary" [routerLink]="['/songs','new']">Crear nueva Canción</button>
 
 <table *ngIf="songs.length > 0">
     <thead>
