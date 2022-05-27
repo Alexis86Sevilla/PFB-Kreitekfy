@@ -11,7 +11,10 @@ import { catchError, retry } from 'rxjs/operators';
 
 export class HttpRequestIntercept implements HttpInterceptor {
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(
+        req: HttpRequest<any>, 
+        next: HttpHandler
+        ): Observable<HttpEvent<any>> {
         const retryNumber: number = 3;
 
         return next.handle(req)

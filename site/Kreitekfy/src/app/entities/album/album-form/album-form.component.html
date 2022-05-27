@@ -1,2 +1,21 @@
 <h1>Ficha de album</h1>
+<h1>{{albumId }}</h1>
 
+<form *ngIf="album" #albumForm="ngForm" name="albumForm" role="form" novalidate autocomplete="off">
+
+    <div class="form-group">
+        <label for="number">Id</label>
+        <input type="number" [(ngModel)]="album.id" name="id" class="form-control" id="id" #name="ngModel">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name" #name="ngModel">
+    </div>
+
+    <div class="buttonsForm">
+        <button (click)="saveAlbum()">Guardar</button>
+        <button [routerLink]="['/albums']">Volver</button>
+    </div>
+
+</form>
