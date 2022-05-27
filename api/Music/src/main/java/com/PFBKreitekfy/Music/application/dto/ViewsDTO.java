@@ -1,10 +1,16 @@
 package com.PFBKreitekfy.Music.application.dto;
 
-public class ViewsDTO {
+import java.io.Serializable;
+
+public class ViewsDTO implements Serializable {
+
     private Long id;
+
     private Long quantity;
-    private Long song_id;
-    private Long user_id;
+
+    private Long userId;
+
+    private Long songId;
 
     public ViewsDTO() {
     }
@@ -25,19 +31,19 @@ public class ViewsDTO {
         this.quantity = quantity;
     }
 
-    public Long getSong_id() {
-        return song_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setSong_id(Long song_id) {
-        this.song_id = song_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getSongId() {
+        return songId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setSongId(Long songId) {
+        this.songId = songId;
     }
 }

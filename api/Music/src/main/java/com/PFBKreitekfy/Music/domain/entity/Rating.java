@@ -23,25 +23,8 @@ public class Rating {
     @JoinColumn(name = "song_id")
     private Song song;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
     public Rating() {
     }
-
 
     public Long getId() {
         return id;
@@ -59,7 +42,19 @@ public class Rating {
         this.quantity = quantity;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
+    public Song getSong() {
+        return song;
+    }
 
+    public void setSong(Song song) {
+        this.song = song;
+    }
 }

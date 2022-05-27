@@ -7,9 +7,6 @@ import javax.validation.constraints.Positive;
 @Table(name = "views")
 public class Views {
 
-    public Views() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "viewsSequence")
     private Long id;
@@ -19,12 +16,15 @@ public class Views {
     private Long quantity;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "song_id")
+    @JoinColumn(name = "song_id", nullable = false)
     private Song song;
+
+    public Views() {
+    }
 
     public Long getId() {
         return id;
@@ -40,5 +40,21 @@ public class Views {
 
     public void setQuantity(Long quantity) {
         this.quantity = quantity;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
     }
 }

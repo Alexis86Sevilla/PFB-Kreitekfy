@@ -6,6 +6,7 @@ import com.PFBKreitekfy.Music.application.service.ViewsService;
 import com.PFBKreitekfy.Music.domain.entity.User;
 import com.PFBKreitekfy.Music.domain.entity.Views;
 import com.PFBKreitekfy.Music.domain.persistence.ViewsPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +19,12 @@ public class ViewsServiceImpl implements ViewsService {
 
     private final ViewsMapper mapper;
 
+    @Autowired
     public ViewsServiceImpl(ViewsPersistence persistence, ViewsMapper mapper) {
         this.persistence = persistence;
         this.mapper = mapper;
     }
+
 
     @Override
     public List<ViewsDTO> getAllViews() {

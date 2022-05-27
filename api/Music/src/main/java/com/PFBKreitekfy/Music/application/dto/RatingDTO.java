@@ -1,11 +1,16 @@
 package com.PFBKreitekfy.Music.application.dto;
 
-public class RatingDTO {
-    private Long id;
-    private Long quantity;
-    private Long user_id;
-    private Long song_id;
+import java.io.Serializable;
 
+public class RatingDTO implements Serializable {
+
+    private Long id;
+
+    private Long quantity;
+
+    private Long userId;
+
+    private Long songId;
 
     public RatingDTO() {
     }
@@ -26,19 +31,19 @@ public class RatingDTO {
         this.quantity = quantity;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getSong_id() {
-        return song_id;
+    public Long getSongId() {
+        return songId;
     }
 
-    public void setSong_id(Long song_id) {
-        this.song_id = song_id;
+    public void setSongId(Long songId) {
+        this.songId = songId;
     }
 }
