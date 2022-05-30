@@ -61,7 +61,7 @@ export class StyleListComponent extends Pagination implements OnInit  {
   }
 
   public nextPage():void{
-    this.page += 1;
+    this.page +=  1
     this.getStyles();
   }
 

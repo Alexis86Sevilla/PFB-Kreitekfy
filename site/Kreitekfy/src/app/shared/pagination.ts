@@ -1,5 +1,4 @@
 export class Pagination {
-    
     page: number = 0;
     size: number = 5;
     sort: string = "name,asc";
@@ -7,5 +6,4 @@ export class Pagination {
     last: boolean = false;
     totalPages: number = 0;
     totalElements: number = 0;
-
 }

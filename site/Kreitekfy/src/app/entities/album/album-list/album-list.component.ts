@@ -39,8 +39,8 @@ export class AlbumListComponent extends Pagination implements OnInit {
       })
     }
   }
-  
-  private getAlbums(): void { 
+
+  private getAlbums(): void {
     this.albumService.getAllAlbums(this.page, this.size, this.sort).subscribe({
       next: (data: any) => {
         this.albums = data.content;
@@ -48,17 +48,17 @@ export class AlbumListComponent extends Pagination implements OnInit {
         this.last = data.last;
         this.totalPages = data.totalPages;
         this.totalElements = data.totalElements;
-       },
+      },
       error: (err) => { this.handleError(err); }
     })
   }
 
-  public nextPage():void{
+  public nextPage(): void {
     this.page += 1;
     this.getAlbums();
   }
 
-  public previousPage():void{
+  public previousPage(): void {
     this.page -= 1;
     this.getAlbums();
   }
