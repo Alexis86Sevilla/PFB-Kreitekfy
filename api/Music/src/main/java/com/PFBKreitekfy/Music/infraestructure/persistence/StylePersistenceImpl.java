@@ -2,7 +2,12 @@ package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Style;
 import com.PFBKreitekfy.Music.domain.persistence.StylePersistence;
+import com.PFBKreitekfy.Music.infraestructure.specs.ArtistSpecification;
+import com.PFBKreitekfy.Music.infraestructure.specs.StyleSpecification;
+import com.PFBKreitekfy.Music.infraestructure.specs.shared.SearchCriteriaHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,5 +41,11 @@ public class StylePersistenceImpl implements StylePersistence {
     @Override
     public void deleteStyle(Long styleId) {
         this.styleRepository.deleteById(styleId);
+    }
+
+    @Override
+    public Page<Style> findAll(Pageable pageable, String filter) {
+        StyleSpecification specification = new StyleSpecification(SearchCriteriaHelper.fromFilterString(filter));
+        return this.styleRepository.findAll(specification, pageable);
     }
 }

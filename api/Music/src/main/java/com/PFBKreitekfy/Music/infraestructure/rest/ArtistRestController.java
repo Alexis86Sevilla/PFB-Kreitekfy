@@ -1,9 +1,12 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
 
+import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.ArtistDTO;
 import com.PFBKreitekfy.Music.application.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +32,12 @@ public class ArtistRestController {
         ArtistDTO artistSaved = this.artistService.saveArtist(artistDTO);
         return new ResponseEntity<>(artistSaved, HttpStatus.CREATED);
     }
-    @CrossOrigin
+    /*@CrossOrigin
     @GetMapping(value = "/artists", produces = "application/json")
     ResponseEntity<List<ArtistDTO>> getAllArtists() {
         List<ArtistDTO> artists = this.artistService.getAllArtists();
         return new ResponseEntity<>(artists, HttpStatus.OK);
-    }
+    }*/
     @CrossOrigin
     @GetMapping(value = "/artists/{artistId}")
     ResponseEntity<ArtistDTO> getArtistById(@PathVariable Long artistId) {
@@ -60,4 +63,14 @@ public class ArtistRestController {
         ArtistDTO artistUpdated = this.artistService.saveArtist(artistDTO);
         return new ResponseEntity<>(artistUpdated, HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/artists", produces = "application/json")
+    public ResponseEntity<Page<ArtistDTO>> getArtistsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+
+        Page<ArtistDTO> artists = this.artistService.getArtistsByCriteriaStringPaged(pageable, filter);
+        return new ResponseEntity<Page<ArtistDTO>>(artists, HttpStatus.OK);
+    }
+
+
 }

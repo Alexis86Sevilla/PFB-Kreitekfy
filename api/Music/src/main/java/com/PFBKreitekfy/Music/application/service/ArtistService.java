@@ -1,6 +1,9 @@
 package com.PFBKreitekfy.Music.application.service;
 
+import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.ArtistDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 
 import java.util.List;
@@ -14,4 +17,6 @@ public interface ArtistService {
     ArtistDTO saveArtist(ArtistDTO artist);
 
     void deleteArtist(Long artistId);
+
+    Page<ArtistDTO> getArtistsByCriteriaStringPaged(Pageable pageable, String filter);
 }

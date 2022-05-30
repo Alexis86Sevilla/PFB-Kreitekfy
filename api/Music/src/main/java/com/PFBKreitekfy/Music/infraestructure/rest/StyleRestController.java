@@ -1,8 +1,11 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
+import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import com.PFBKreitekfy.Music.application.service.StyleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +29,12 @@ public class StyleRestController {
         StyleDTO styleSaved = this.styleService.saveStyle(styleDTO);
         return new ResponseEntity<>(styleSaved, HttpStatus.CREATED);
     }
-    @CrossOrigin
+    /*@CrossOrigin
     @GetMapping(value = "/styles", produces = "application/json")
     ResponseEntity<List<StyleDTO>> getAllStyles() {
         List<StyleDTO> styles = this.styleService.getAllStyles();
         return new ResponseEntity<>(styles, HttpStatus.OK);
-    }
+    }*/
     @CrossOrigin
     @GetMapping(value = "/styles/{styleId}")
     ResponseEntity<StyleDTO> getStyleById(@PathVariable Long styleId) {
@@ -57,4 +60,13 @@ public class StyleRestController {
         StyleDTO styleUpdated = this.styleService.saveStyle(styleDTO);
         return new ResponseEntity<>(styleUpdated, HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/styles", produces = "application/json")
+    public ResponseEntity<Page<StyleDTO>> getStylesByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+
+        Page<StyleDTO> styles = this.styleService.getStylesByCriteriaStringPaged(pageable, filter);
+        return new ResponseEntity<Page<StyleDTO>>(styles, HttpStatus.OK);
+    }
+
 }
