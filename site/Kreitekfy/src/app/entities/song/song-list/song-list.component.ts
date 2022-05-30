@@ -260,7 +260,10 @@ export class SongListComponent implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort).subscribe({
+    this.styleId = +this.router.snapshot.paramMap.get("styleId")!;
+
+
+    this.songService.getSongsByStyle(this.styleId!, this.page, this.size, this.sort).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -276,7 +279,9 @@ export class SongListComponent implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort).subscribe({
+    this.artistId = +this.router.snapshot.paramMap.get("artistId")!;
+
+    this.songService.getSongsByArtist(this.artistId!, this.page, this.size, this.sort).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -292,7 +297,7 @@ export class SongListComponent implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.songService.getSongById(this.song?.id!).subscribe({
+    this.songService.getSongById(this.songId!).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
         this.selectedSong = new Song(songRequest.id!, songRequest.name!, songRequest.duration!, 

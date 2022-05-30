@@ -37,7 +37,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   
-
+  
   private getAlbums(): void {
     this.albumService.getAllAlbums().subscribe({
       next: (albumsRequest) => { this.albums = albumsRequest; },

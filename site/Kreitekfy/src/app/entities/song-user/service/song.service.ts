@@ -26,4 +26,24 @@ export class SongService {
     let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
+
+  public addValorationToOneSong() {
+
+  }
+
+  public addVisualizationToOneSong() {
+
+  }
+
+  public getSongsByValoration() {
+
+  }
+
+  public getSongsByVisualizations() {
+
+  }
+
+  public getSongsForYou() {
+
+  }
 }
