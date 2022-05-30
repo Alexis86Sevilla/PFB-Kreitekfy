@@ -24,7 +24,7 @@ export class StyleService {
   }
 
   public getStyles(page: number, size: number, sort: string): Observable<Style[]> {
-    let urlEndPoint: string = this.baseUri + "styles?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.baseUri + "styles_filter?page=" + page + "&size=" + size + "&sort=" + sort;
 
     return this.http.get<Style[]>(urlEndPoint);
   }

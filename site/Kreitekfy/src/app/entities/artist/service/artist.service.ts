@@ -24,7 +24,7 @@ export class ArtistService {
   }
 
   public getAllArtists(page: number, size: number, sort: string): Observable<Artist[]> {
-    let urlEndPoint: string = this.baseUri + "artists?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.baseUri + "artists_filter?page=" + page + "&size=" + size + "&sort=" + sort;
 
     return this.http.get<Artist[]>(urlEndPoint);
   }
