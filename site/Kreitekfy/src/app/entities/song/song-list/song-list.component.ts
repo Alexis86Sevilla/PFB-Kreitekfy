@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Pagination } from 'src/app/shared/pagination';
 import { Album } from '../../album/model/album.model';
 import { AlbumService } from '../../album/service/album.service';
 import { Artist } from '../../artist/model/artist.model';
@@ -14,7 +15,7 @@ import { SongService } from '../service/song.service';
   templateUrl: './song-list.component.html',
   styleUrls: ['./song-list.component.scss']
 })
-export class SongListComponent implements OnInit {
+export class SongListComponent extends Pagination implements OnInit {
 
   styleId?: number;
   artistId?: number;
@@ -30,14 +31,7 @@ export class SongListComponent implements OnInit {
   selectedAlbum?: Album; 
   selectedSong?: Song;
   
-  page: number = 0;
-  size: number = 25;
-  sort: string = "name,asc";
-
-  first: boolean = false;
-  last: boolean = false;
-  totalPages: number = 0;
-  totalElements: number = 0;
+  
 
   songIdToDelete?: number;
 
@@ -45,7 +39,9 @@ export class SongListComponent implements OnInit {
     private songService: SongService, 
     private styleService: StyleService, 
     private artistService: ArtistService, 
-    private albumService: AlbumService) { }
+    private albumService: AlbumService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.getAllSongs();
