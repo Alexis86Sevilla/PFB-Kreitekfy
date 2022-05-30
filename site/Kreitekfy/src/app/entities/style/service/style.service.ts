@@ -23,6 +23,13 @@ export class StyleService {
     return this.http.patch<Style>(urlEndpoint, style);
   }
 
+  public getStyles(page: number, size: number, sort: string): Observable<Style[]> {
+    let urlEndPoint: string = this.baseUri + "styles?page=" + page + "&size=" + size + "&sort=" + sort;
+
+    return this.http.get<Style[]>(urlEndPoint);
+  }
+
+
   public getAllStyles(partialName?: string): Observable<Style[]> {
     
     let urlEndpoint: string = this.baseUri + "styles/";

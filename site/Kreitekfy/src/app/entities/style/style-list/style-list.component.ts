@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pagination } from 'src/app/shared/pagination';
 import { Style } from '../model/style.model';
 import { StyleService } from '../service/style.service';
 
@@ -7,12 +8,15 @@ import { StyleService } from '../service/style.service';
   templateUrl: './style-list.component.html',
   styleUrls: ['./style-list.component.scss']
 })
-export class StyleListComponent implements OnInit {
+export class StyleListComponent extends Pagination implements OnInit  {
   styles: Style[] = [];
   style?: Style;
   styleIdToDelete?: number;
 
-  constructor(private styleService: StyleService) { }
+
+  constructor(private styleService: StyleService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.getStyles();
@@ -44,10 +48,26 @@ export class StyleListComponent implements OnInit {
   }
 
   private getStyles(): void {
-    this.styleService.getAllStyles().subscribe({
-      next: (data: any) => { this.styles = data.content; },
+    this.styleService.getStyles(this.page, this.size, this.sort).subscribe({
+      next: (data: any) => {
+        this.styles = data.content;
+        this.first = data.first;
+        this.last = data.last;
+        this.totalPages = data.totalPages;
+        this.totalElements = data.totalElements;
+       },
       error: (err) => { this.handleError(err); }
     })
+  }
+
+  public nextPage():void{
+    this.page += 1;
+    this.getStyles();
+  }
+
+  public previousPage():void{
+    this.page -= 1;
+    this.getStyles();
   }
 
   private handleError(error: any): void {
