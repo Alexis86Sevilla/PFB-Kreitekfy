@@ -50,4 +50,11 @@ public class StyleRestController {
         this.styleService.deleteStyle(styleId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PatchMapping(value = "/styles", produces = "application/json", consumes = "application/json")
+    ResponseEntity<StyleDTO> updateStyle(@RequestBody StyleDTO styleDTO) {
+        StyleDTO styleUpdated = this.styleService.saveStyle(styleDTO);
+        return new ResponseEntity<>(styleUpdated, HttpStatus.OK);
+    }
 }

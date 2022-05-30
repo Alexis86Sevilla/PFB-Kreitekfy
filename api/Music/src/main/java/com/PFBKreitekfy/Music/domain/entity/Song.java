@@ -49,9 +49,10 @@ public class Song {
 
     @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
     private Set<Views> views;
+
+
     public Song() {
     }
-
     public long getId() {
         return id;
     }
@@ -122,5 +123,13 @@ public class Song {
 
     public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public Set<Views> getViews() {
+        return views;
+    }
+
+    public void setViews(Set<Views> views) {
+        this.views = views;
     }
 }

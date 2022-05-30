@@ -51,4 +51,10 @@ public class UserRestController {
         this.userService.deleteUser(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @CrossOrigin
+    @PatchMapping(value = "/users", produces = "application/json", consumes = "application/json")
+    ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+        UserDTO userUpdated = this.userService.saveUser(userDTO);
+        return new ResponseEntity<>(userUpdated, HttpStatus.OK);
+    }
 }

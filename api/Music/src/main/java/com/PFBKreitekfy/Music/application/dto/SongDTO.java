@@ -28,6 +28,14 @@ public class SongDTO implements Serializable {
 
     private String styleName;
 
+    private Long ratingId;
+
+    private Long ratingQuantity;
+
+    private Long viewsId;
+
+    private Long viewsQuantity;
+
     public SongDTO() {
     }
 
@@ -117,5 +125,37 @@ public class SongDTO implements Serializable {
 
     public void setStyleName(String styleName) {
         this.styleName = styleName;
+    }
+
+    public Long getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(Long ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public Long getRatingQuantity() {
+        return ratingQuantity;
+    }
+
+    public void setRatingQuantity(Long ratingQuantity) {
+        this.ratingQuantity = ratingQuantity;
+    }
+
+    public Long getViewsId() {
+        return viewsId;
+    }
+
+    public void setViewsId(Long viewsId) {
+        this.viewsId = viewsId;
+    }
+
+    public Long getViewsQuantity() {
+        return viewsQuantity;
+    }
+
+    public void setViewsQuantity(Long viewsQuantity) {
+        this.viewsQuantity = viewsQuantity;
     }
 }

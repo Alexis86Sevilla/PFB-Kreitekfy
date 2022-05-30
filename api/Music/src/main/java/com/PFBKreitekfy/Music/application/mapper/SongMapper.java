@@ -5,7 +5,7 @@ import com.PFBKreitekfy.Music.domain.entity.Song;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {AlbumMapper.class, ArtistMapper.class, StyleMapper.class})
+@Mapper(componentModel = "spring", uses = {AlbumMapper.class, ArtistMapper.class, StyleMapper.class, RatingMapper.class, ViewsMapper.class})
 public interface SongMapper extends EntityMapper<SongDTO, Song> {
 
     @Override
@@ -24,5 +24,6 @@ public interface SongMapper extends EntityMapper<SongDTO, Song> {
 
     @Mapping(source = "style.id", target = "styleId")
     @Mapping(source = "style.name", target = "styleName")
+
     SongDTO toDto(Song entity);
 }

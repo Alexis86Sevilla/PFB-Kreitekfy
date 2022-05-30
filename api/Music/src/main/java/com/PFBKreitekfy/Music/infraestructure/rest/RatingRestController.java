@@ -45,4 +45,11 @@ public class RatingRestController {
         this.ratingService.deleteRate(ratingId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PatchMapping(value = "/ratings", produces = "application/json", consumes = "application/json")
+    ResponseEntity<RatingDTO> updateRating(@RequestBody RatingDTO ratingDTO) {
+        RatingDTO ratingUpdated = this.ratingService.saveRate(ratingDTO);
+        return new ResponseEntity<>(ratingUpdated, HttpStatus.OK);
+    }
 }

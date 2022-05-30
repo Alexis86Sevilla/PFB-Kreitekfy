@@ -50,4 +50,11 @@ public class AlbumRestController {
         this.albumService.deleteAlbum(albumId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PatchMapping(value = "/albums", produces = "application/json", consumes = "application/json")
+    ResponseEntity<AlbumDTO> updateAlbum(@RequestBody AlbumDTO albumDTO) {
+        AlbumDTO albumUpdated = this.albumService.saveAlbum(albumDTO);
+        return new ResponseEntity<>(albumUpdated, HttpStatus.OK);
+    }
 }

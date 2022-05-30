@@ -53,4 +53,11 @@ public class ArtistRestController {
         this.artistService.deleteArtist(artistId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PatchMapping(value = "/artists", produces = "application/json", consumes = "application/json")
+    ResponseEntity<ArtistDTO> updateArtist(@RequestBody ArtistDTO artistDTO) {
+        ArtistDTO artistUpdated = this.artistService.saveArtist(artistDTO);
+        return new ResponseEntity<>(artistUpdated, HttpStatus.OK);
+    }
 }

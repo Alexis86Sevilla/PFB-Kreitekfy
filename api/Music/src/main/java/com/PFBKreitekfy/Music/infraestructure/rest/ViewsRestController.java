@@ -45,4 +45,11 @@ public class ViewsRestController {
         this.viewsService.deleteViews(viewId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PatchMapping(value = "/views", produces = "application/json", consumes = "application/json")
+    ResponseEntity<ViewsDTO> updateView(@RequestBody ViewsDTO viewDTO) {
+        ViewsDTO viewUpdated = this.viewsService.saveViews(viewDTO);
+        return new ResponseEntity<>(viewUpdated, HttpStatus.OK);
+    }
 }
