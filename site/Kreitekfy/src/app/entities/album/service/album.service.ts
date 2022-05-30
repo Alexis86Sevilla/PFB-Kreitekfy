@@ -24,7 +24,7 @@ export class AlbumService {
   }
 
   public getAllAlbums(page: number, size: number, sort: string): Observable<Album[]> {
-    let urlEndPoint: string = this.baseUri + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.baseUri + "albums?page=" + page + "&size=" + size + "&sort=" + sort;
 
     return this.http.get<Album[]>(urlEndPoint);
   }

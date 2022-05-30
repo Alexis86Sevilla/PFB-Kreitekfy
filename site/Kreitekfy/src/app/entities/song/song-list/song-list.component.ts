@@ -216,7 +216,7 @@ export class SongListComponent implements OnInit {
     if (event?.query) {
       artistSearch = event.query;
     }
-    this.artistService.getAllArtists(artistSearch).subscribe({
+    this.artistService.getAllArtistsFilter(artistSearch).subscribe({
       next: (artistsFiltered) => {
         this.artists = artistsFiltered;
       },
