@@ -29,14 +29,14 @@ export class AlbumService {
     return this.http.get<Album[]>(urlEndPoint);
   }
 
-  /*public getAllAlbums(partialName?: string): Observable<Album[]> {
+  public getAllAlbumsFilter(partialName?: string): Observable<Album[]> {
     
     let urlEndpoint: string = this.baseUri + "albums/";
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
     return this.http.get<Album[]>(urlEndpoint);
-  }*/
+  }
 
   public deleteAlbum(albumIdToDelete: number): Observable<any> {
     let urlEndpoint: string = this.baseUri + "albums/" + albumIdToDelete;
