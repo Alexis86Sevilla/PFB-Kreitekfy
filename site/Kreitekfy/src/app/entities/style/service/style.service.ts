@@ -8,8 +8,8 @@ import { Style } from '../model/style.model';
 })
 export class StyleService {
 
-   baseUri = "http://localhost:8081/kreitekfy/";
-  // baseUri = "http://localhost:3003/";
+   baseUri = "http://localhost:8080/kreitekfy/";
+   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,13 @@ export class StyleService {
     let urlEndpoint: string = this.baseUri + "styles/";
     return this.http.patch<Style>(urlEndpoint, style);
   }
+
+  public getStyles(page: number, size: number, sort: string): Observable<Style[]> {
+    let urlEndPoint: string = this.baseUri + "styles?page=" + page + "&size=" + size + "&sort=" + sort;
+
+    return this.http.get<Style[]>(urlEndPoint);
+  }
+
 
   public getAllStyles(partialName?: string): Observable<Style[]> {
     

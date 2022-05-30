@@ -53,7 +53,7 @@ export class ArtistFormComponent implements OnInit {
   public updateArtist(): void {
     this.artistService.update(this.artist!).subscribe({
       next: (artistUpdated) => {
-        console.log("Añadido correctamente");
+        console.log("Modificado correctamente");
         console.log(artistUpdated);
       },
       error: (err) => {this.handleError(err);}

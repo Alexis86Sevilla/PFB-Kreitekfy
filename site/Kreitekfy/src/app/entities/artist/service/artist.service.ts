@@ -8,7 +8,7 @@ import { Artist } from '../model/artist.model';
 })
 export class ArtistService {
 
-  baseUri = "http://localhost:8081/kreitekfy/";
+  baseUri = "http://localhost:8080/kreitekfy/";
   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
@@ -23,7 +23,14 @@ export class ArtistService {
     return this.http.patch<Artist>(urlEndpoint, artist);
   }
 
-  public getAllArtists(partialName?: string): Observable<Artist[]> {
+  public getAllArtists(page: number, size: number, sort: string): Observable<Artist[]> {
+    let urlEndPoint: string = this.baseUri + "artists?page=" + page + "&size=" + size + "&sort=" + sort;
+
+    return this.http.get<Artist[]>(urlEndPoint);
+  }
+
+
+  public getAllArtistsFilter(partialName?: string): Observable<Artist[]> {
     
     let urlEndpoint: string = this.baseUri + "artists/";
     if (partialName) {

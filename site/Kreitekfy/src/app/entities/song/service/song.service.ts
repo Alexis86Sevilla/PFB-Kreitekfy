@@ -8,7 +8,7 @@ import { Song } from '../model/song.model';
 })
 export class SongService {
 
-  baseUri = "http://localhost:8081/kreitekfy/";
+  baseUri = "http://localhost:8080/kreitekfy/";
   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
@@ -44,7 +44,7 @@ export class SongService {
 
   public getAllSongsFilter(partialName?: string): Observable<Song[]> {
     
-    let urlEndpoint: string = this.baseUri + "songs/";
+    let urlEndpoint: string = this.baseUri + "songs_filter/";
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
@@ -52,38 +52,20 @@ export class SongService {
   }
 
   public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs_style/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs_artist/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs_album/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
   
-  public addValorationToOneSong() {
-
-  }
-
-  public addVisualizationToOneSong() {
-
-  }
-
-  public getSongsByValoration() {
-
-  }
-
-  public getSongsByVisualizations() {
-
-  }
-
-  public getSongsForYou() {
-
-  }
+  
 
 }
