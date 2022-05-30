@@ -30,6 +30,10 @@ import { AdminComponent } from './layouts/navbar/admin/admin.component';
 import { SongUserComponent } from './entities/song-user/song-user.component';
 
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import { NewsComponent } from './entities/song-user/news/news.component';
+import { TopSongsComponent } from './entities/song-user/top-songs/top-songs.component';
+import { MostRatedComponent } from './entities/song-user/most-rated/most-rated.component';
+import { ForYouComponent } from './entities/song-user/for-you/for-you.component';
 
 
 @NgModule({
@@ -55,7 +59,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     UserListComponent,
     UserComponent,
     AdminComponent,
-    SongUserComponent
+    SongUserComponent,
+    NewsComponent,
+    TopSongsComponent,
+    MostRatedComponent,
+    ForYouComponent
   ],
   imports: [
     BrowserModule,
