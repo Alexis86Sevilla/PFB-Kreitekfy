@@ -29,12 +29,12 @@ public class AlbumRestController {
         albumDTO = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
-    /*@CrossOrigin
-    @GetMapping(value = "/albums-old", produces = "application/json")
+    @CrossOrigin
+    @GetMapping(value = "/albums", produces = "application/json")
     ResponseEntity<List<AlbumDTO>> getAllAlbums() {
         List<AlbumDTO> albums = this.albumService.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
-    }*/
+    }
     @CrossOrigin
     @GetMapping(value = "/albums/{albumId}")
     ResponseEntity<AlbumDTO> getItemById(@PathVariable Long albumId) {
@@ -62,7 +62,7 @@ public class AlbumRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/albums", produces = "application/json")
+    @GetMapping(value = "/albums_filter", produces = "application/json")
     public ResponseEntity<Page<AlbumDTO>> getAlbumsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
         Page<AlbumDTO> albums = this.albumService.getAlbumsByCriteriaStringPaged(pageable, filter);
         return new ResponseEntity<Page<AlbumDTO>>(albums, HttpStatus.OK);

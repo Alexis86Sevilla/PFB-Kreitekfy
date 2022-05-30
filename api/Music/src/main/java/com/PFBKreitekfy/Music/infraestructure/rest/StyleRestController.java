@@ -29,12 +29,12 @@ public class StyleRestController {
         StyleDTO styleSaved = this.styleService.saveStyle(styleDTO);
         return new ResponseEntity<>(styleSaved, HttpStatus.CREATED);
     }
-    /*@CrossOrigin
+    @CrossOrigin
     @GetMapping(value = "/styles", produces = "application/json")
     ResponseEntity<List<StyleDTO>> getAllStyles() {
         List<StyleDTO> styles = this.styleService.getAllStyles();
         return new ResponseEntity<>(styles, HttpStatus.OK);
-    }*/
+    }
     @CrossOrigin
     @GetMapping(value = "/styles/{styleId}")
     ResponseEntity<StyleDTO> getStyleById(@PathVariable Long styleId) {
@@ -62,7 +62,7 @@ public class StyleRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/styles", produces = "application/json")
+    @GetMapping(value = "/styles_filter", produces = "application/json")
     public ResponseEntity<Page<StyleDTO>> getStylesByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
 
         Page<StyleDTO> styles = this.styleService.getStylesByCriteriaStringPaged(pageable, filter);
