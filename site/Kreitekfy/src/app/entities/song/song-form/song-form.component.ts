@@ -83,7 +83,7 @@ export class SongFormComponent implements OnInit {
     if (event?.query) {
       albumSearch = event.query;
     }
-    this.albumService.getAllAlbums(albumSearch).subscribe({
+    this.albumService.getAllAlbumsFilter(albumSearch).subscribe({
       next: (albumsFiltered) => {
         this.albums = albumsFiltered;
       },
