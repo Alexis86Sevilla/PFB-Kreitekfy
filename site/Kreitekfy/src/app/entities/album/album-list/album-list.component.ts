@@ -13,7 +13,7 @@ export class AlbumListComponent implements OnInit {
   album?: Album;
 
   page: number = 0;
-  size: number = 10;
+  size: number = 5;
   sort: string = "name,asc";
   first: boolean = false;
   last: boolean = false;
@@ -44,17 +44,16 @@ export class AlbumListComponent implements OnInit {
       })
     }
   }
-
-  
   
   private getAlbums(): void {
     this.albumService.getAllAlbums(this.page, this.size, this.sort).subscribe({
-      next: (albumsRequest: any) => {
-        this.albums = albumsRequest.content;
-        this.first = albumsRequest.first;
-        this.last = albumsRequest.last;
-        this.totalPages = albumsRequest.totalPages;
-        this.totalElements = albumsRequest.totalElements;
+      next: (data: any) => {
+        this.albums = data.content;
+        this.first = data.first;
+        this.last = data.last;
+        this.totalPages = data.totalPages;
+        this.totalElements = data.totalElements;
+        console.log(this.first)
 
       },
       error: (err) => { this.handleError(err); }
@@ -63,12 +62,12 @@ export class AlbumListComponent implements OnInit {
 
   public nextPage():void{
     this.page += 1;
-    this.getAlbums;
+    this.getAlbums();
   }
 
   public previousPage():void{
     this.page -= 1;
-    this.getAlbums;
+    this.getAlbums();
   }
 
   private handleError(error: any): void {
