@@ -28,7 +28,7 @@ export class StyleListComponent implements OnInit {
         next: (data) => {
           this.getStyles();
         },
-        error: (err) => {this.handleError(err)}
+        error: (err) => { this.handleError(err) }
       })
     }
   }
@@ -39,14 +39,14 @@ export class StyleListComponent implements OnInit {
         console.log("Añadido correctamente");
         console.log(styleInserted);
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(err); }
     })
   }
 
   private getStyles(): void {
     this.styleService.getAllStyles().subscribe({
-      next: (stylesRequest) => { this.styles = stylesRequest; },
-      error: (err) => {this.handleError(err);}
+      next: (data: any) => { this.styles = data.content; },
+      error: (err) => { this.handleError(err); }
     })
   }
 

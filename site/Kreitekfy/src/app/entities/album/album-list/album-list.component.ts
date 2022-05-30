@@ -46,6 +46,9 @@ export class AlbumListComponent implements OnInit {
   }
   
   private getAlbums(): void {
+
+
+    
     this.albumService.getAllAlbums(this.page, this.size, this.sort).subscribe({
       next: (data: any) => {
         this.albums = data.content;

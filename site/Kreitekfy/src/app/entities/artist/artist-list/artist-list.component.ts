@@ -43,9 +43,19 @@ export class ArtistListComponent implements OnInit {
     })
   }
 
+  public updateArtist(): void {
+    this.artistService.insert(this.artist!).subscribe({
+      next: (artistInserted) => {
+        console.log("Modificado correctamente");
+        console.log(artistInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
   private getArtists(): void {
     this.artistService.getAllArtists().subscribe({
-      next: (artistsRequest) => { this.artists = artistsRequest; },
+      next: (data: any) => { this.artists = data.content; },
       error: (err) => {this.handleError(err);}
     })
   }
