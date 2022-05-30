@@ -52,7 +52,7 @@ export class SongService {
   }
 
   public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs_style/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs_album/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
 

@@ -50,7 +50,7 @@ export class SongListComponent implements OnInit {
   ngOnInit(): void {
     this.getAllSongs();
     this.songId = +this.router.snapshot.paramMap.get("songId")!;
-    this.song = new Song(this.songId, "", 0, new Date, 0, 0)  
+    this.song = new Song(undefined, "", 0, new Date, 0, 0)  
   }
 
   public nextPage(): void {
@@ -293,11 +293,11 @@ export class SongListComponent implements OnInit {
     })
   }
 
-  public getSongbyId(): void {
+  public getSongbyId(songId: number): void {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.songService.getSongById(this.songId!).subscribe({
+    this.songService.getSongById(songId!).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
         this.selectedSong = new Song(songRequest.id!, songRequest.name!, songRequest.duration!, 

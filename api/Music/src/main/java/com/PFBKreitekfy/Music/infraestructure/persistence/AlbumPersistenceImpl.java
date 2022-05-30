@@ -49,4 +49,9 @@ public class AlbumPersistenceImpl implements AlbumPersistence {
         AlbumSpecification specification = new AlbumSpecification(SearchCriteriaHelper.fromFilterString(filters));
         return this.albumRepository.findAll(specification, pageable);
     }
+
+    @Override
+    public List<Album> getAlbumsByName(String partialName) {
+        return this.albumRepository.findByNameContainsIgnoreCase(partialName);
+    }
 }

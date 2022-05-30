@@ -52,4 +52,10 @@ public class AlbumServiceImpl implements AlbumService {
         Page<Album> albumPage = this.persistence.findAll(pageable, filter);
         return albumPage.map(mapper::toDto);
     }
+
+    @Override
+    public List<AlbumDTO> getAllAlbumsByName(String partialName) {
+        List<Album> categories = this.persistence.getAlbumsByName(partialName);
+        return mapper.toDto(categories);
+    }
 }

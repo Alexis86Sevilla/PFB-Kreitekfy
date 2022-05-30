@@ -33,7 +33,7 @@
                 (completeMethod)="getAllSongsFilter($event)" field="name" 
                 (onSelect)="songSelected();" (onClear)="songUnselected();"
                 [required]="true" [forceSelection]="true"></p-autoComplete>
-                <button class="btn btn-primary" (click)="getSongbyId()">Buscar</button>
+                <button class="btn btn-primary" (click)="getSongbyId(songId!)">Buscar</button>
             </div>
             
             <table class="table table-light table-hover table-striped " *ngIf="songs.length > 0">
