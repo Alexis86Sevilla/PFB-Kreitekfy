@@ -11,7 +11,7 @@ import { StyleService } from '../service/style.service';
 export class StyleFormComponent implements OnInit {
 
   styleId?: number;
-  
+
   mode: "NEW" | "UPDATE" = "NEW";
 
   style?: Style;
@@ -30,8 +30,14 @@ export class StyleFormComponent implements OnInit {
     }
   }
 
-  public saveStyle():void{
-    this.insertStyle();
+  public saveStyle(): void {
+    if (this.mode === "NEW") {
+      this.insertStyle();
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateStyle();
+    }
   }
 
   public insertStyle(): void {
@@ -40,18 +46,28 @@ export class StyleFormComponent implements OnInit {
         console.log("Añadido correctamente");
         console.log(styleInserted);
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(err); }
     })
   }
 
-  private getStyle(styleId:number){
+  public updateStyle(): void {
+    this.styleService.update(this.style!).subscribe({
+      next: (styleUpdated) => {
+        console.log("Añadido correctamente");
+        console.log(styleUpdated);
+      },
+      error: (err) => { this.handleError(err); }
+    })
+  }
+
+  private getStyle(styleId: number) {
     this.styleService.getStyleById(this.styleId!).subscribe({
-      next: (artistRequest) => {this.style = artistRequest},
-      error: (err) => {this.handleError(err)}
+      next: (artistRequest) => { this.style = artistRequest },
+      error: (err) => { this.handleError(err) }
     })
   }
 
-  private initializeStyle(): void{
+  private initializeStyle(): void {
     this.style = new Style(undefined, "");
   }
 

@@ -9,13 +9,18 @@ import { Style } from '../model/style.model';
 export class StyleService {
 
    baseUri = "http://localhost:8081/kreitekfy/";
-   //baseUri = "http://localhost:3003/";
+  // baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
   public insert(style: Style): Observable<Style> {
     let urlEndpoint: string = this.baseUri + "styles/";
     return this.http.post<Style>(urlEndpoint, style);
+  }
+
+  public update(style: Style): Observable<Style> {
+    let urlEndpoint: string = this.baseUri + "styles/";
+    return this.http.patch<Style>(urlEndpoint, style);
   }
 
   public getAllStyles(partialName?: string): Observable<Style[]> {
