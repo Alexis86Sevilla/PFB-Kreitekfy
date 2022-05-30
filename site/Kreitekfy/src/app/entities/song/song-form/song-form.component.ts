@@ -28,6 +28,8 @@ export class SongFormComponent implements OnInit {
   selectedArtist?: Artist;
   selectedAlbum?: Album;
 
+  todayDate = '2022-12-12';
+
   constructor(
     private router: ActivatedRoute, 
     private songService: SongService, 
