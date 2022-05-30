@@ -18,6 +18,11 @@ export class StyleService {
     return this.http.post<Style>(urlEndpoint, style);
   }
 
+  public update(style: Style): Observable<Style> {
+    let urlEndpoint: string = this.baseUri + "styles/";
+    return this.http.patch<Style>(urlEndpoint, style);
+  }
+
   public getAllStyles(partialName?: string): Observable<Style[]> {
     
     let urlEndpoint: string = this.baseUri + "styles/";

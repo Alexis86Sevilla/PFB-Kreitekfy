@@ -29,8 +29,14 @@ export class AlbumFormComponent implements OnInit {
     }
   }
 
-  public saveAlbum():void{
-    this.insertAlbum();
+  public saveAlbum(): void {
+    if (this.mode === "NEW") {
+      this.insertAlbum();
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateAlbum();
+    }
   }
 
   public insertAlbum(): void {
@@ -38,6 +44,16 @@ export class AlbumFormComponent implements OnInit {
       next: (albumInserted) => {
         console.log("Añadido correctamente");
         console.log(albumInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
+  public updateAlbum():void{
+    this.albumService.update(this.album!).subscribe({
+      next: (albumUpdated) => {
+        console.log("Actualizado correctamente");
+        console.log(albumUpdated);
       },
       error: (err) => {this.handleError(err);}
     })

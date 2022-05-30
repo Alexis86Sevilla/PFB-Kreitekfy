@@ -18,6 +18,11 @@ export class ArtistService {
     return this.http.post<Artist>(urlEndpoint, artist);
   }
 
+  public update(artist: Artist): Observable<Artist> {
+    let urlEndpoint: string = this.baseUri + "artists/";
+    return this.http.patch<Artist>(urlEndpoint, artist);
+  }
+
   public getAllArtists(partialName?: string): Observable<Artist[]> {
     
     let urlEndpoint: string = this.baseUri + "artists/";
