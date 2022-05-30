@@ -35,7 +35,7 @@ export class SongService {
   }
 
   public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndpoint: string = this.baseUri + "songs_filter?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
     }

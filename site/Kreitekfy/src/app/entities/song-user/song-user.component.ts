@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pagination } from 'src/app/shared/pagination';
 import { Song } from '../song/model/song.model';
 import { SongService } from './service/song.service';
 
@@ -7,7 +8,7 @@ import { SongService } from './service/song.service';
   templateUrl: './song-user.component.html',
   styleUrls: ['./song-user.component.scss']
 })
-export class SongUserComponent implements OnInit {
+export class SongUserComponent extends Pagination implements OnInit {
 
   songs: Song[] = [];
   song?: Song;  
@@ -15,16 +16,10 @@ export class SongUserComponent implements OnInit {
   artistId?: number;
   albumId?:number;
 
-  page: number = 0;
-  size: number = 25;
-  sort: string = "name,asc";
-
-  first: boolean = false;
-  last: boolean = false;
-  totalPages: number = 0;
-  totalElements: number = 0;
-
-  constructor(private songService: SongService) { }
+ 
+  constructor(private songService: SongService) {
+    super();
+  }
 
   ngOnInit(): void {
   }
