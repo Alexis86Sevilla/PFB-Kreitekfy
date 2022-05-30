@@ -1,8 +1,11 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
 import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
+import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +29,12 @@ public class AlbumRestController {
         albumDTO = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
-    @CrossOrigin
-    @GetMapping(value = "/albums", produces = "application/json")
+    /*@CrossOrigin
+    @GetMapping(value = "/albums-old", produces = "application/json")
     ResponseEntity<List<AlbumDTO>> getAllAlbums() {
         List<AlbumDTO> albums = this.albumService.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
-    }
+    }*/
     @CrossOrigin
     @GetMapping(value = "/albums/{albumId}")
     ResponseEntity<AlbumDTO> getItemById(@PathVariable Long albumId) {
@@ -56,5 +59,12 @@ public class AlbumRestController {
     ResponseEntity<AlbumDTO> updateAlbum(@RequestBody AlbumDTO albumDTO) {
         AlbumDTO albumUpdated = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumUpdated, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/albums", produces = "application/json")
+    public ResponseEntity<Page<AlbumDTO>> getAlbumsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+        Page<AlbumDTO> albums = this.albumService.getAlbumsByCriteriaStringPaged(pageable, filter);
+        return new ResponseEntity<Page<AlbumDTO>>(albums, HttpStatus.OK);
     }
 }

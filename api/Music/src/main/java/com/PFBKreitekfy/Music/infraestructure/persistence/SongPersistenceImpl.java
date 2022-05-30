@@ -2,7 +2,7 @@ package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
-import com.PFBKreitekfy.Music.infraestructure.specs.ItemSpecification;
+import com.PFBKreitekfy.Music.infraestructure.specs.SongSpecification;
 import com.PFBKreitekfy.Music.infraestructure.specs.shared.SearchCriteriaHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -59,7 +59,7 @@ public class SongPersistenceImpl implements SongPersistence {
 
     @Override
     public Page<Song> findAll(Pageable pageable, String filters) {
-        ItemSpecification specification = new ItemSpecification(SearchCriteriaHelper.fromFilterString(filters));
+        SongSpecification specification = new SongSpecification(SearchCriteriaHelper.fromFilterString(filters));
         return this.songRepository.findAll(specification, pageable);
     }
 

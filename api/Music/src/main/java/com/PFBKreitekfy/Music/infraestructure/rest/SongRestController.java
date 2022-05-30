@@ -82,4 +82,11 @@ public class SongRestController {
         return new ResponseEntity<Page<SongDTO>>(songs, HttpStatus.OK);
     }
 
+    /*@CrossOrigin
+    @GetMapping(value = "/songs", produces = "application/json")
+    ResponseEntity<List<SongDTO>> getAllSongs() {
+        List<SongDTO> songs = this.songService.getAllSongs();
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }*/
+
 }

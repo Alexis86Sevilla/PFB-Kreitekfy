@@ -3,9 +3,12 @@ package com.PFBKreitekfy.Music.application.service.impl;
 import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import com.PFBKreitekfy.Music.application.mapper.StyleMapper;
 import com.PFBKreitekfy.Music.application.service.StyleService;
+import com.PFBKreitekfy.Music.domain.entity.Album;
 import com.PFBKreitekfy.Music.domain.entity.Style;
 import com.PFBKreitekfy.Music.domain.persistence.StylePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +45,11 @@ public class StyleServiceImpl implements StyleService {
     @Override
     public void deleteStyle(Long styleId) {
         this.persistence.deleteStyle(styleId);
+    }
+
+    @Override
+    public Page<StyleDTO> getStylesByCriteriaStringPaged(Pageable pageable, String filter) {
+        Page<Style> stylePage = this.persistence.findAll(pageable, filter);
+        return stylePage.map(mapper::toDto);
     }
 }

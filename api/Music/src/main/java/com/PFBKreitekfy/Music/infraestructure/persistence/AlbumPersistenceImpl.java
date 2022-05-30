@@ -2,7 +2,12 @@ package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Album;
 import com.PFBKreitekfy.Music.domain.persistence.AlbumPersistence;
+import com.PFBKreitekfy.Music.infraestructure.specs.AlbumSpecification;
+import com.PFBKreitekfy.Music.infraestructure.specs.SongSpecification;
+import com.PFBKreitekfy.Music.infraestructure.specs.shared.SearchCriteriaHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,5 +42,11 @@ public class AlbumPersistenceImpl implements AlbumPersistence {
     public void deleteAlbum(Long albumId) {
         this.albumRepository.deleteById(albumId);
 
+    }
+
+    @Override
+    public Page<Album> findAll(Pageable pageable, String filters) {
+        AlbumSpecification specification = new AlbumSpecification(SearchCriteriaHelper.fromFilterString(filters));
+        return this.albumRepository.findAll(specification, pageable);
     }
 }
