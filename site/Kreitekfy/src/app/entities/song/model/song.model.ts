@@ -1,6 +1,6 @@
 export class Song {
     id: number | undefined;
-    name: string;
+    name: string | undefined;
     duration: number;
     dateLaunch: Date;
     valoration: number;
@@ -47,6 +47,6 @@ export class Song {
     this.image = image
   }
   
-    
+   
 
 }

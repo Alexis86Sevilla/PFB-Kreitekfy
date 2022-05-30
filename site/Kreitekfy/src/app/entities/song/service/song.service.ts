@@ -8,8 +8,8 @@ import { Song } from '../model/song.model';
 })
 export class SongService {
 
-  //baseUri = "http://localhost:8081/kreitekfy/";
-  baseUri = "http://localhost:3003/";
+  baseUri = "http://localhost:8081/kreitekfy/";
+  //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +34,7 @@ export class SongService {
     return this.http.get<Song>(urlEndpoint);
   }
 
-  public getAllSongsPaged(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
+  public getAllSongs(page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
     let urlEndpoint: string = this.baseUri + "songs?page=" + page + "&size=" + size + "&sort=" + sort;
     if (filters) {
       urlEndpoint = urlEndpoint + "&filter=" + filters;
@@ -42,12 +42,27 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getAllSongs(partialName?: string): Observable<Song[]> {
+  public getAllSongsFilter(partialName?: string): Observable<Song[]> {
     
     let urlEndpoint: string = this.baseUri + "songs/";
     if (partialName) {
       urlEndpoint = urlEndpoint + "?partialName=" + partialName;
     } 
+    return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
+    return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
+    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
     return this.http.get<Song[]>(urlEndpoint);
   }
   

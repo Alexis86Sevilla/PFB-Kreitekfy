@@ -3,6 +3,39 @@
         <div class="col-md-12">
             <h3>Lista de canciones</h3>
             <button class="btn btn-primary" [routerLink]="['/songs','new']">Crear nueva Canción</button>
+            <div class="form-group">
+                <label for="albumId">Buscar por Álbum</label>
+                <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums" 
+                (completeMethod)="getAllAlbums($event)" field="name" 
+                (onSelect)="albumSelected();" (onClear)="albumUnselected();"
+                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <button class="btn btn-primary" (click)="getSongsByAlbum()">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label for="artistId">Buscar por Artista</label>
+                <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists" 
+                (completeMethod)="getAllArtists($event)" field="name" 
+                (onSelect)="artistSelected();" (onClear)="artistUnselected();"
+                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <button class="btn btn-primary" (click)="getSongsByArtist()">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label for="styleId">Buscar por Estilo</label>
+                <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles" 
+                (completeMethod)="getAllStyles($event)" field="name" 
+                (onSelect)="styleSelected();" (onClear)="styleUnselected();"
+                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <button class="btn btn-primary" (click)="getSongsByStyle()">Buscar</button>
+            </div>
+            <div class="form-group">
+                <label for="songId">Buscar por Canción</label>
+                <p-autoComplete [(ngModel)]="selectedSong" name="selectedSong" [suggestions]="songs" 
+                (completeMethod)="getAllSongsFilter($event)" field="name" 
+                (onSelect)="songSelected();" (onClear)="songUnselected();"
+                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <button class="btn btn-primary" (click)="getSongbyId()">Buscar</button>
+            </div>
+            
             <table class="table table-light table-hover table-striped " *ngIf="songs.length > 0">
                 <thead>
                     <th>Nombre</th>
@@ -34,6 +67,12 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="botoneraPaginacion">
+                <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previusPage()">Anterior</button>
+                <span>Página {{(page+1)}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
+                <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"

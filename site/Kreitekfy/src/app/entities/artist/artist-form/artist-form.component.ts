@@ -30,8 +30,14 @@ export class ArtistFormComponent implements OnInit {
     }
   }
 
-  public saveArtist():void{
-    this.insertArtist();
+  public saveArtist(): void {
+    if (this.mode === "NEW") {
+      this.insertArtist();
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateArtist();
+    }
   }
 
   public insertArtist(): void {
@@ -39,6 +45,16 @@ export class ArtistFormComponent implements OnInit {
       next: (artistInserted) => {
         console.log("Añadido correctamente");
         console.log(artistInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
+  public updateArtist(): void {
+    this.artistService.update(this.artist!).subscribe({
+      next: (artistUpdated) => {
+        console.log("Añadido correctamente");
+        console.log(artistUpdated);
       },
       error: (err) => {this.handleError(err);}
     })
