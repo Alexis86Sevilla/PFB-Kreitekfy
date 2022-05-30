@@ -51,7 +51,7 @@
                     <tr *ngFor="let song of songs">
                         <td class="align-middle">{{ song.name }}</td>
                         <td class="align-middle">{{ song.duration }}</td>
-                        <td class="align-middle">{{ song.dateLaunch }}</td>
+                        <td class="align-middle">{{ song.dateLaunch | date: 'dd/MM/yyyy' }}</td>
                         <td class="align-middle">{{ song.valoration }}</td>
                         <td class="align-middle">{{ song.visualizations }}</td>
                         <td class="align-middle">{{ song.albumName }}</td>
