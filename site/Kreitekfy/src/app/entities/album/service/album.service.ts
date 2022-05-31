@@ -8,7 +8,7 @@ import { Album } from '../model/album.model';
 })
 export class AlbumService {
 
-  baseUri = "http://localhost:8080/kreitekfy/";
+  baseUri = "http://localhost:8081/kreitekfy/";
   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class AlbumService {
   }
 
   public getAllAlbums(page: number, size: number, sort: string): Observable<Album[]> {
-    let urlEndPoint: string = this.baseUri + "albums?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.baseUri + "albums_filter?page=" + page + "&size=" + size + "&sort=" + sort;
 
     return this.http.get<Album[]>(urlEndPoint);
   }

@@ -20,4 +20,6 @@ public interface AlbumPersistence {
     void deleteAlbum(Long albumId);
 
     Page<Album> findAll(Pageable pageable, String filter);
+
+    List<Album> getAlbumsByName(String partialName);
 }

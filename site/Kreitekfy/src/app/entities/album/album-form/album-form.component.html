@@ -17,6 +17,7 @@
                         <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name"
                             #nombre="ngModel" minlength="3" required>
                     </div>
+                    
                     <div *ngIf="(nombre.dirty && nombre.errors)">
                         <small class=" form-text text-danger"
                         *ngIf="nombre.errors['required']">

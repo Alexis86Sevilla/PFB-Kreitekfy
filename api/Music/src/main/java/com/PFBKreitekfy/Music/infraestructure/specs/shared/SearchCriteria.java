@@ -7,6 +7,11 @@ public class SearchCriteria {
 
     public SearchCriteria() {
     }
+    public SearchCriteria(String key, Object value, SearchOperation operation) {
+        this.key = key;
+        this.value = value;
+        this.operation = operation;
+    }
 
     public String getKey() {
         return key;

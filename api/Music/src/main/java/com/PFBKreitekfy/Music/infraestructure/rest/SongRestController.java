@@ -23,21 +23,21 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_album/{albumId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/albums/{albumId}/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getAllSongsByAlbum(@PathVariable Long albumId) {
         List<SongDTO> songs = this.songService.getSongsByAlbum(albumId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_artist/{artistId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/artists/{artistId}/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getAllSongsByArtist(@PathVariable Long artistId) {
         List<SongDTO> songs = this.songService.getSongsByArtist(artistId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_style/{styleId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/styles/{styleId}/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getAllSongsByStyles(@PathVariable Long styleId) {
         List<SongDTO> songs = this.songService.getSongsByStyle(styleId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
@@ -76,7 +76,7 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_filter", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/songs", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<SongDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
 
         Page<SongDTO> songs = this.songService.getSongsByCriteriaStringPaged(pageable, filter);
@@ -84,7 +84,7 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/songs_filter", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getAllSongs() {
         List<SongDTO> songs = this.songService.getAllSongs();
         return new ResponseEntity<>(songs, HttpStatus.OK);

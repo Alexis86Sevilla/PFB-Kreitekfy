@@ -8,7 +8,7 @@ import { Artist } from '../model/artist.model';
 })
 export class ArtistService {
 
-  baseUri = "http://localhost:8080/kreitekfy/";
+  baseUri = "http://localhost:8081/kreitekfy/";
   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class ArtistService {
   }
 
   public getAllArtists(page: number, size: number, sort: string): Observable<Artist[]> {
-    let urlEndPoint: string = this.baseUri + "artists?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.baseUri + "artists_filter?page=" + page + "&size=" + size + "&sort=" + sort;
 
     return this.http.get<Artist[]>(urlEndPoint);
   }

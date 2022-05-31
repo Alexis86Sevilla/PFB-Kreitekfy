@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Pagination } from 'src/app/shared/pagination';
 import { Album } from '../../album/model/album.model';
 import { AlbumService } from '../../album/service/album.service';
 import { Artist } from '../../artist/model/artist.model';
@@ -14,12 +15,13 @@ import { SongService } from '../service/song.service';
   templateUrl: './song-list.component.html',
   styleUrls: ['./song-list.component.scss']
 })
-export class SongListComponent implements OnInit {
+export class SongListComponent extends Pagination implements OnInit {
 
   styleId?: number;
   artistId?: number;
   albumId?:number;
   songId?: number;
+  title: string= "";
   songs: Song[] = [];
   styles: Style[] = [];
   artists: Artist[] = [];
@@ -30,14 +32,7 @@ export class SongListComponent implements OnInit {
   selectedAlbum?: Album; 
   selectedSong?: Song;
   
-  page: number = 0;
-  size: number = 25;
-  sort: string = "name,asc";
-
-  first: boolean = false;
-  last: boolean = false;
-  totalPages: number = 0;
-  totalElements: number = 0;
+  
 
   songIdToDelete?: number;
 
@@ -45,12 +40,25 @@ export class SongListComponent implements OnInit {
     private songService: SongService, 
     private styleService: StyleService, 
     private artistService: ArtistService, 
-    private albumService: AlbumService) { }
+    private albumService: AlbumService) {
+    super();
+  }
 
   ngOnInit(): void {
+    if (this.router.snapshot.paramMap.get("styleId")) {
+      this.styleId = +this.router.snapshot.paramMap.get("styleId")!;
+      this.title = "Canciones del estilo " + this.styleId;
+    } if (this.router.snapshot.paramMap.get("artistId")) {
+      this.artistId = +this.router.snapshot.paramMap.get("artistId")!;
+      this.title = "Canciones del artista " + this.artistId;
+    }if (this.router.snapshot.paramMap.get("albumId")) {
+      this.albumId = +this.router.snapshot.paramMap.get("albumId")!;
+      this.title = "Canciones del estilo " + this.albumId;
+    }else {
+      this.title = "Lista de canciones";
+    }
+    this.initializeSong();
     this.getAllSongs();
-    this.songId = +this.router.snapshot.paramMap.get("songId")!;
-    this.song = new Song(this.songId, "", 0, new Date, 0, 0)  
   }
 
   public nextPage(): void {
@@ -238,13 +246,12 @@ export class SongListComponent implements OnInit {
     });
   }
 
+  /*
   public getSongsByAlbum(): void {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.albumId = +this.router.snapshot.paramMap.get("albumId")!;
-
-    this.songService.getSongsByAlbum(this.albumId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByAlbum(this.song?.albumId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -260,10 +267,7 @@ export class SongListComponent implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.styleId = +this.router.snapshot.paramMap.get("styleId")!;
-
-
-    this.songService.getSongsByStyle(this.styleId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -279,9 +283,7 @@ export class SongListComponent implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.artistId = +this.router.snapshot.paramMap.get("artistId")!;
-
-    this.songService.getSongsByArtist(this.artistId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -291,13 +293,11 @@ export class SongListComponent implements OnInit {
       },
       error: (err) => { this.handleError(err); }
     })
-  }
+  }*/
 
-  public getSongbyId(): void {
+  public getSongbyId(songId: number): void {
 
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongById(this.songId!).subscribe({
+    this.songService.getSongById(songId).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
         this.selectedSong = new Song(songRequest.id!, songRequest.name!, songRequest.duration!, 
@@ -308,6 +308,10 @@ export class SongListComponent implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
+  }
+
+  private initializeSong(): void {
+    this.song = new Song(undefined, "", 0, new Date, 0, 0)  
   }
 
   private handleError(error: any): void {

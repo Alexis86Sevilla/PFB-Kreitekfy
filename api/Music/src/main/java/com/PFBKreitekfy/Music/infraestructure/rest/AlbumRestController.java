@@ -29,12 +29,14 @@ public class AlbumRestController {
         albumDTO = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
+
     @CrossOrigin
     @GetMapping(value = "/albums", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<AlbumDTO>> getAllAlbums() {
         List<AlbumDTO> albums = this.albumService.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }
+
     @CrossOrigin
     @GetMapping(value = "/albums/{albumId}")
     ResponseEntity<AlbumDTO> getItemById(@PathVariable Long albumId) {
