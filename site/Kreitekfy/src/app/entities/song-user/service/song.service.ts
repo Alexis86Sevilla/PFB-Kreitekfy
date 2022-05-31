@@ -9,7 +9,7 @@ import { Views } from '../../views/model/views.model';
 @Injectable({
   providedIn: 'root'
 })
-export class SongService {
+export class SongUserService {
   baseUri = "http://localhost:8081/kreitekfy/";
  // baseUri = "http://localhost:3003/";
 

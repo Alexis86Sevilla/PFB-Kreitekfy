@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Rating } from '../../ratings/model/rating.model';
 import { Song } from '../../song/model/song.model';
 import { Style } from '../../style/model/style.model';
-import { SongService } from '../service/song.service';
+import { SongUserService } from '../service/song.service';
 
 @Component({
   selector: 'app-most-rated',
@@ -15,10 +15,9 @@ export class MostRatedComponent implements OnInit {
   style?: Style;
   selectedStyle?: Style;
   styleId?: number;
-  rating?: Rating;
 
 
-  constructor(private songUserService: SongService) { }
+  constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
     this.getSongsByValoration();
@@ -65,13 +64,5 @@ export class MostRatedComponent implements OnInit {
     console.log(error);
   }
 
-  public updateRating(): void {
-    this.songUserService.updateRating(this.rating!).subscribe({
-      next: (ratingUpdated) => {
-        console.log("Actualizado correctamente");
-        console.log(ratingUpdated);
-      },
-      error: (err) => {this.handleError(err);}
-    })
-  }
+  
 }

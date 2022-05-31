@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pagination } from 'src/app/shared/pagination';
 import { Song } from '../../song/model/song.model';
 import { Style } from '../../style/model/style.model';
-import { SongService } from '../service/song.service';
+import { SongUserService } from '../service/song.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class NewsComponent extends Pagination implements OnInit {
   selectedStyle?: Style;
   styleId?: number;
 
-  constructor(private songUserService: SongService) {
+  constructor(private songUserService: SongUserService) {
     super();
   }
 
