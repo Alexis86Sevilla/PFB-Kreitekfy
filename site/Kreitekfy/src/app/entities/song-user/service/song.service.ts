@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Rating } from '../../ratings/model/rating.model';
 import { Song } from '../../song/model/song.model';
 import { Style } from '../../style/model/style.model';
 import { Views } from '../../views/model/views.model';
@@ -14,8 +15,9 @@ export class SongService {
 
   constructor(private http: HttpClient) { }
 
-  public addValorationToOneSong() {
-
+  public updateRating(rating: Rating): Observable<Rating> {
+    let urlEndpoint: string = this.baseUri + "rating/";
+    return this.http.patch<Views>(urlEndpoint, rating);
   }
 
 
