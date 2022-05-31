@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
+import {ButtonModule} from 'primeng/button';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -76,7 +77,8 @@ import { SongDetailComponent } from './entities/song-user/song-detail/song-detai
     BrowserAnimationsModule,
     FormsModule,
     AutoCompleteModule,
-    ToastModule
+    ToastModule,
+    ButtonModule
   ],
   providers: [
     {
