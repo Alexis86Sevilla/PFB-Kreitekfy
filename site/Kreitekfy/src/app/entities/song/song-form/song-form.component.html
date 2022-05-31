@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label for="image">Imagen</label>
                         <input type="file" class="form-control" id="image" (change)="includeImageInSong($event);">
-                        <img *ngIf="song.image" [src]="'data:image/jpeg;base64,' + song.image">
+                        <div class="img-container"><img *ngIf="song.image" [src]="'data:image/jpeg;base64,' + song.image"></div>
                     </div>
 
                     <div class="form-group">
