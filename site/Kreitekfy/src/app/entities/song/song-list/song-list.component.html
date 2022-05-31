@@ -5,28 +5,22 @@
             <button class="btn btn-primary" [routerLink]="['/songs','new']">Crear nueva Canción</button>
             <h4>Buscar:</h4>
             <div class="form-group">
-                <label for="albumId">Buscar por Álbum</label>
+                <label for="albumId">Álbum</label>
                 <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
                     (completeMethod)="getAllAlbums($event)" field="name" (onSelect)="albumSelected();"
                     (onClear)="albumUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
-                <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
-            </div>
-            <div class="form-group">
-                <label for="artistId">Buscar por Artista</label>
+                
+                <label for="artistId">Artista</label>
                 <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists"
                     (completeMethod)="getAllArtists($event)" field="name" (onSelect)="artistSelected();"
                     (onClear)="artistUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
-                <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
-            </div>
-            <div class="form-group">
-                <label for="styleId">Buscar por Estilo</label>
+                
+                <label for="styleId">Estilo</label>
                 <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
                     (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
                     (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
-                <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
-            </div>
-            <div class="form-group">
-                <label for="songId">Buscar por Canción</label>
+                
+                <label for="songId">Canción</label>
                 <p-autoComplete [(ngModel)]="selectedSong" name="selectedSong" [suggestions]="songs"
                     (completeMethod)="getAllSongsFilter($event)" field="name" (onSelect)="songSelected();"
                     (onClear)="songUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
