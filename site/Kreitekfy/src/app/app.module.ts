@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToastModule} from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -77,7 +78,8 @@ import { SongDetailComponent } from './entities/song-user/song-detail/song-detai
     BrowserAnimationsModule,
     FormsModule,
     AutoCompleteModule,
-    ToastModule,
+    MessageModule,
+    MessagesModule,
     ButtonModule
   ],
   providers: [
