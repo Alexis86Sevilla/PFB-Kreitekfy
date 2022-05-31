@@ -33,6 +33,7 @@ export class SongListComponent extends Pagination implements OnInit {
   selectedSong?: Song;
   
   
+  
 
   songIdToDelete?: number;
 
@@ -157,6 +158,22 @@ export class SongListComponent extends Pagination implements OnInit {
 
     if (this.songId) {
       filters.push("song.id:EQUAL:" + this.songId);
+    }
+
+    if (this.selectedAlbum) {
+      filters.push("album.name:MATCH:" + this.selectedAlbum.name);
+    }
+
+    if (this.selectedArtist) {
+      filters.push("artist.name:MATCH:" + this.selectedArtist.name);
+    }
+
+    if (this.selectedStyle) {
+      filters.push("style.name:MATCH:" + this.selectedStyle.name);
+    }
+
+    if (this.selectedSong) {
+      filters.push("name:MATCH:" + this.selectedSong.name);
     }
 
     if (filters.length > 0) {
