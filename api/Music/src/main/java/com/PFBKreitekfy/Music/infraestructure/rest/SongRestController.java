@@ -22,7 +22,7 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_album/{idAlbum}", produces = "application/json")
+    @GetMapping(value = "/songs_album/{albumId}", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongsByAlbum(@PathVariable Long albumId) {
         List<SongDTO> songs = this.songService.getSongsByAlbum(albumId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
@@ -75,14 +75,15 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs", produces = "application/json")
-    ResponseEntity<Page<SongDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+    @GetMapping(value = "/songs_filter", produces = "application/json")
+    public ResponseEntity<Page<SongDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
+
         Page<SongDTO> songs = this.songService.getSongsByCriteriaStringPaged(pageable, filter);
         return new ResponseEntity<Page<SongDTO>>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_filter", produces = "application/json")
+    @GetMapping(value = "/songs", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongs() {
         List<SongDTO> songs = this.songService.getAllSongs();
         return new ResponseEntity<>(songs, HttpStatus.OK);

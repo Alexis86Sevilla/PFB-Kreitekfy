@@ -21,6 +21,7 @@ export class SongListComponent extends Pagination implements OnInit {
   artistId?: number;
   albumId?:number;
   songId?: number;
+  title: string= "";
   songs: Song[] = [];
   styles: Style[] = [];
   artists: Artist[] = [];
@@ -44,9 +45,20 @@ export class SongListComponent extends Pagination implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.router.snapshot.paramMap.get("styleId")) {
+      this.styleId = +this.router.snapshot.paramMap.get("styleId")!;
+      this.title = "Canciones del estilo " + this.styleId;
+    } if (this.router.snapshot.paramMap.get("artistId")) {
+      this.artistId = +this.router.snapshot.paramMap.get("artistId")!;
+      this.title = "Canciones del artista " + this.artistId;
+    }if (this.router.snapshot.paramMap.get("albumId")) {
+      this.albumId = +this.router.snapshot.paramMap.get("albumId")!;
+      this.title = "Canciones del estilo " + this.albumId;
+    }else {
+      this.title = "Lista de canciones";
+    }
+    this.initializeSong();
     this.getAllSongs();
-    this.songId = +this.router.snapshot.paramMap.get("songId")!;
-    this.song = new Song(undefined, "", 0, new Date, 0, 0)  
   }
 
   public nextPage(): void {
@@ -234,13 +246,12 @@ export class SongListComponent extends Pagination implements OnInit {
     });
   }
 
+  /*
   public getSongsByAlbum(): void {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.albumId = +this.router.snapshot.paramMap.get("albumId")!;
-
-    this.songService.getSongsByAlbum(this.albumId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByAlbum(this.song?.albumId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -256,10 +267,7 @@ export class SongListComponent extends Pagination implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.styleId = +this.router.snapshot.paramMap.get("styleId")!;
-
-
-    this.songService.getSongsByStyle(this.styleId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -275,9 +283,7 @@ export class SongListComponent extends Pagination implements OnInit {
 
     const filters: string | undefined = this.buildFilters();
 
-    this.artistId = +this.router.snapshot.paramMap.get("artistId")!;
-
-    this.songService.getSongsByArtist(this.artistId!, this.page, this.size, this.sort).subscribe({
+    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         this.songs = data.content;
         this.first = data.first;
@@ -287,13 +293,11 @@ export class SongListComponent extends Pagination implements OnInit {
       },
       error: (err) => { this.handleError(err); }
     })
-  }
+  }*/
 
   public getSongbyId(songId: number): void {
 
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongById(songId!).subscribe({
+    this.songService.getSongById(songId).subscribe({
       next: (songRequest) => {
         this.song = songRequest;
         this.selectedSong = new Song(songRequest.id!, songRequest.name!, songRequest.duration!, 
@@ -304,6 +308,10 @@ export class SongListComponent extends Pagination implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
+  }
+
+  private initializeSong(): void {
+    this.song = new Song(undefined, "", 0, new Date, 0, 0)  
   }
 
   private handleError(error: any): void {
