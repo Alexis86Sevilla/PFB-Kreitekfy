@@ -5,38 +5,34 @@
             <button class="btn btn-primary" [routerLink]="['/songs','new']">Crear nueva Canción</button>
             <div class="form-group">
                 <label for="albumId">Buscar por Álbum</label>
-                <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums" 
-                (completeMethod)="getAllAlbums($event)" field="name" 
-                (onSelect)="albumSelected();" (onClear)="albumUnselected();"
-                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
+                    (completeMethod)="getAllAlbums($event)" field="name" (onSelect)="albumSelected();"
+                    (onClear)="albumUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                 <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
             </div>
             <div class="form-group">
                 <label for="artistId">Buscar por Artista</label>
-                <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists" 
-                (completeMethod)="getAllArtists($event)" field="name" 
-                (onSelect)="artistSelected();" (onClear)="artistUnselected();"
-                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists"
+                    (completeMethod)="getAllArtists($event)" field="name" (onSelect)="artistSelected();"
+                    (onClear)="artistUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                 <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
             </div>
             <div class="form-group">
                 <label for="styleId">Buscar por Estilo</label>
-                <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles" 
-                (completeMethod)="getAllStyles($event)" field="name" 
-                (onSelect)="styleSelected();" (onClear)="styleUnselected();"
-                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
+                    (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
+                    (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                 <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
             </div>
             <div class="form-group">
                 <label for="songId">Buscar por Canción</label>
-                <p-autoComplete [(ngModel)]="selectedSong" name="selectedSong" [suggestions]="songs" 
-                (completeMethod)="getAllSongsFilter($event)" field="name" 
-                (onSelect)="songSelected();" (onClear)="songUnselected();"
-                [required]="true" [forceSelection]="true"></p-autoComplete>
+                <p-autoComplete [(ngModel)]="selectedSong" name="selectedSong" [suggestions]="songs"
+                    (completeMethod)="getAllSongsFilter($event)" field="name" (onSelect)="songSelected();"
+                    (onClear)="songUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                 <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
             </div>
-            
-            <table class="table table-light table-hover table-striped " *ngIf="songs.length > 0">
+
+            <table class="table table-responsive table-light table-hover table-striped " *ngIf="songs.length > 0">
                 <thead>
                     <th>Nombre</th>
                     <th>Duración</th>
@@ -61,8 +57,8 @@
                             <button class="btn btn-primary" id="btnDeleteSong" data-bs-toggle="modal"
                                 data-bs-target="#askConfirmationDelete"
                                 (click)="prepareSongToDelete(song.id!);">Eliminar</button>
-                                <button class="btn btn-primary" [routerLink]="['/songs',song.id]">
-                                    Editar</button>
+                            <button class="btn btn-primary" [routerLink]="['/songs',song.id]">
+                                Editar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -73,26 +69,26 @@
                 <span>Página {{(page+1)}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
                 <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            ¿Desea eliminar la canción seleccionada? Esta operación no puede deshacerse
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                (click)="deleteSong();">Eliminar</button>
-                        </div>
-                    </div>
-                </div>
+<!-- Modal -->
+<div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea eliminar la canción seleccionada? Esta operación no puede deshacerse
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="deleteSong();">Eliminar</button>
             </div>
         </div>
     </div>
