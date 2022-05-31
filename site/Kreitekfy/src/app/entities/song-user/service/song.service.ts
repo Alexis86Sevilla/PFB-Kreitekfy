@@ -17,7 +17,8 @@ export class SongService {
 
   }
 
-  public getSongsByValoration(style: Style | undefined
+
+  public getSongsByValoration(style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
         this.baseUri + 'songs/valorations';
@@ -38,8 +39,7 @@ export class SongService {
 
   }
 
-  public getSongsByVisualizations(
-    style: Style | undefined
+  public getSongsByVisualizations(style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
         this.baseUri + 'songs/visualizations';
@@ -49,16 +49,8 @@ export class SongService {
       return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getAllNewSongs(): Observable<Song[]> {
+  public getAllNewSongs(style?: Style | undefined): Observable<Song[]> {
     let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs?page=0&size=5&sort=dateLaunch,desc";
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getNewSongs(
-    style: Style | undefined
-    ): Observable<Song[]> {
-      let urlEndpoint: string =
-        this.baseUri + 'songs/news';
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }

@@ -1,0 +1,13 @@
+@import "variables";
+
+.row {
+    background-color: $primaryColor;
+    color: $fontColor;
+    .btn {
+        background-color: red;
+        border: none;
+        margin: 1%;
+    }
+
+}
+  

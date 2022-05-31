@@ -20,11 +20,21 @@
   #formulario {
     color: $fontColor;
     background-color: $secondaryColor;
-    width: 40%;
+    width: 50%;
     padding: 1%;
     margin: auto;
     margin-bottom: 2%;
     border-radius: 2%;
+
+    .img-container{
+      margin-top: 2%;
+      text-align: center;
+      img{
+      
+        width: 50%;
+      }
+    }
+   
 
     .form-group, .p-inputgroup {
       margin-top: 2%;
