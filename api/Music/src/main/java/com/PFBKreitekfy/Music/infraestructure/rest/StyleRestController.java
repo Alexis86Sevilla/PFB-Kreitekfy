@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +25,13 @@ public class StyleRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/styles", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<StyleDTO> insertStyle(@RequestBody StyleDTO styleDTO) {
         StyleDTO styleSaved = this.styleService.saveStyle(styleDTO);
         return new ResponseEntity<>(styleSaved, HttpStatus.CREATED);
     }
     @CrossOrigin
-    @GetMapping(value = "/styles", produces = "application/json")
+    @GetMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<StyleDTO>> getAllStyles() {
         List<StyleDTO> styles = this.styleService.getAllStyles();
         return new ResponseEntity<>(styles, HttpStatus.OK);
@@ -55,14 +56,14 @@ public class StyleRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/styles", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<StyleDTO> updateStyle(@RequestBody StyleDTO styleDTO) {
         StyleDTO styleUpdated = this.styleService.saveStyle(styleDTO);
         return new ResponseEntity<>(styleUpdated, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/styles_filter", produces = "application/json")
+    @GetMapping(value = "/styles_filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<StyleDTO>> getStylesByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
 
         Page<StyleDTO> styles = this.styleService.getStylesByCriteriaStringPaged(pageable, filter);

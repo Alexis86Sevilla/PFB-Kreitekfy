@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,10 +46,10 @@ public class Song {
     private Style style;
 
     @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private Set<Rating> ratings;
+    private List<Rating> ratings;
 
     @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private Set<Views> views;
+    private List<Views> views;
 
 
     public Song() {
@@ -117,19 +118,20 @@ public class Song {
         this.style = style;
     }
 
-    public Set<Rating> getRatings() {
+
+    public List<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(Set<Rating> ratings) {
+    public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
 
-    public Set<Views> getViews() {
+    public List<Views> getViews() {
         return views;
     }
 
-    public void setViews(Set<Views> views) {
+    public void setViews(List<Views> views) {
         this.views = views;
     }
 }

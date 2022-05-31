@@ -5,6 +5,7 @@ import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class ViewsRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/views", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/views", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ViewsDTO> insertView(@RequestBody ViewsDTO viewDTO) {
         ViewsDTO viewSaved = this.viewsService.saveViews(viewDTO);
         return new ResponseEntity<>(viewSaved, HttpStatus.CREATED);
@@ -47,7 +48,7 @@ public class ViewsRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/views", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/views", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ViewsDTO> updateView(@RequestBody ViewsDTO viewDTO) {
         ViewsDTO viewUpdated = this.viewsService.saveViews(viewDTO);
         return new ResponseEntity<>(viewUpdated, HttpStatus.OK);

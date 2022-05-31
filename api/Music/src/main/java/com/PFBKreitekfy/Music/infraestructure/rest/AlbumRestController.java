@@ -24,13 +24,13 @@ public class AlbumRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/albums", produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/albums", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AlbumDTO> insertAlbum(@RequestBody AlbumDTO albumDTO) {
         albumDTO = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
     @CrossOrigin
-    @GetMapping(value = "/albums", produces = "application/json")
+    @GetMapping(value = "/albums", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<AlbumDTO>> getAllAlbums() {
         List<AlbumDTO> albums = this.albumService.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
@@ -55,14 +55,14 @@ public class AlbumRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/albums", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/albums", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AlbumDTO> updateAlbum(@RequestBody AlbumDTO albumDTO) {
         AlbumDTO albumUpdated = this.albumService.saveAlbum(albumDTO);
         return new ResponseEntity<>(albumUpdated, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/albums_filter", produces = "application/json")
+    @GetMapping(value = "/albums_filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<AlbumDTO>> getAlbumsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
         Page<AlbumDTO> albums = this.albumService.getAlbumsByCriteriaStringPaged(pageable, filter);
         return new ResponseEntity<Page<AlbumDTO>>(albums, HttpStatus.OK);

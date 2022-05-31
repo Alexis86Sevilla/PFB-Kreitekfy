@@ -5,6 +5,7 @@ import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/ratings", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/ratings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<RatingDTO> insertRating(@RequestBody RatingDTO ratingDTO) {
         RatingDTO ratingSaved = this.ratingService.saveRate(ratingDTO);
         return new ResponseEntity<>(ratingSaved, HttpStatus.CREATED);
@@ -47,7 +48,7 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/ratings", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/ratings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<RatingDTO> updateRating(@RequestBody RatingDTO ratingDTO) {
         RatingDTO ratingUpdated = this.ratingService.saveRate(ratingDTO);
         return new ResponseEntity<>(ratingUpdated, HttpStatus.OK);

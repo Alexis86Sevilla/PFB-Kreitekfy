@@ -33,5 +33,6 @@ public interface SongMapper extends EntityMapper<SongDTO, Song> {
 
     @Mapping(source = "style.id", target = "styleId")
     @Mapping(source = "style.name", target = "styleName")
+
     SongDTO toDto(Song entity);
 }

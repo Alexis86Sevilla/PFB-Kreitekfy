@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,13 @@ public class ArtistRestController {
 
 
     @CrossOrigin
-    @PostMapping(value = "/artists", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/artists", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ArtistDTO> insertArtist(@RequestBody ArtistDTO artistDTO) {
         ArtistDTO artistSaved = this.artistService.saveArtist(artistDTO);
         return new ResponseEntity<>(artistSaved, HttpStatus.CREATED);
     }
     @CrossOrigin
-    @GetMapping(value = "/artists", produces = "application/json")
+    @GetMapping(value = "/artists", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<ArtistDTO>> getAllArtists() {
         List<ArtistDTO> artists = this.artistService.getAllArtists();
         return new ResponseEntity<>(artists, HttpStatus.OK);
@@ -58,14 +59,14 @@ public class ArtistRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/artists", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/artists", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ArtistDTO> updateArtist(@RequestBody ArtistDTO artistDTO) {
         ArtistDTO artistUpdated = this.artistService.saveArtist(artistDTO);
         return new ResponseEntity<>(artistUpdated, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/artists_filter", produces = "application/json")
+    @GetMapping(value = "/artists_filter", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<ArtistDTO>> getArtistsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
 
         Page<ArtistDTO> artists = this.artistService.getArtistsByCriteriaStringPaged(pageable, filter);

@@ -4,6 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.UserDTO;
 import com.PFBKreitekfy.Music.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,14 @@ public class UserRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/users", produces = "application/json", consumes = "application/json")
+    @PostMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<UserDTO> insertUser(@RequestBody UserDTO userDTO) {
         UserDTO userSaved = this.userService.saveUser(userDTO);
         return new ResponseEntity<>(userSaved, HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/users", produces = "application/json")
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<UserDTO>> getAllUsers() {
         List<UserDTO> user = this.userService.getAllUsers();
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -52,7 +53,7 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @CrossOrigin
-    @PatchMapping(value = "/users", produces = "application/json", consumes = "application/json")
+    @PatchMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
         UserDTO userUpdated = this.userService.saveUser(userDTO);
         return new ResponseEntity<>(userUpdated, HttpStatus.OK);
