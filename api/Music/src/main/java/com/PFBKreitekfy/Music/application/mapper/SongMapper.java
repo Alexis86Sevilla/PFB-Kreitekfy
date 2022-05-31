@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {AlbumMapper.class, ArtistMapper.class, StyleMapper.class, RatingMapper.class, ViewsMapper.class})
+@Mapper(componentModel = "spring", uses = {AlbumMapper.class, ArtistMapper.class, StyleMapper.class})
 public interface SongMapper extends EntityMapper<SongDTO, Song> {
 
     default Song fromId(Long id) {
@@ -24,6 +24,8 @@ public interface SongMapper extends EntityMapper<SongDTO, Song> {
     @Mapping(source = "albumId", target = "album")
     @Mapping(source = "artistId", target = "artist")
     @Mapping(source = "styleId", target = "style")
+    @Mapping(target = "ratings", ignore = true)
+    @Mapping(target = "views", ignore = true)
     Song toEntity(SongDTO dto);
 
     @Override
