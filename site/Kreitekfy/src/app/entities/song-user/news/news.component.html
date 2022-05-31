@@ -1,8 +1,19 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <h3>Novedades</h3>
-            <hr>
+
+        <h3>Novedades</h3>
+        <hr>
+        <div id="novedades">
+
+            <div class="card" style="width: 10rem;" *ngFor="let song of songs">
+                <img src="http://placekitten.com/90/90" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-black">{{song.name}}</h5>
+                </div>
+            </div>
+
         </div>
+
+
     </div>
 </div>

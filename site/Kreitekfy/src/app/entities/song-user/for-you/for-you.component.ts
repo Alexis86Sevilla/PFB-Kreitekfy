@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Song } from '../../song/model/song.model';
 
 @Component({
   selector: 'app-for-you',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./for-you.component.scss']
 })
 export class ForYouComponent implements OnInit {
+
+  songs: Song[] =[];
+
 
   constructor() { }
 
