@@ -35,6 +35,7 @@ import { NewsComponent } from './entities/song-user/news/news.component';
 import { TopSongsComponent } from './entities/song-user/top-songs/top-songs.component';
 import { MostRatedComponent } from './entities/song-user/most-rated/most-rated.component';
 import { ForYouComponent } from './entities/song-user/for-you/for-you.component';
+import { SongDetailComponent } from './entities/song-user/song-detail/song-detail.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ForYouComponent } from './entities/song-user/for-you/for-you.component'
     NewsComponent,
     TopSongsComponent,
     MostRatedComponent,
-    ForYouComponent
+    ForYouComponent,
+    SongDetailComponent
   ],
   imports: [
     BrowserModule,

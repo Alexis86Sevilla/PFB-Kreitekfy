@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: 'albums/:albumId', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs/:songId', component: AlbumFormComponent},
-
+  {path: 'songsUser/songDetail/:songId', component: AlbumFormComponent}
 ];
 
 @NgModule({
