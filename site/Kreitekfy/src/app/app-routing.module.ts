@@ -5,6 +5,7 @@ import { AlbumFormComponent } from './entities/album/album-form/album-form.compo
 import { AlbumListComponent } from './entities/album/album-list/album-list.component';
 import { ArtistFormComponent } from './entities/artist/artist-form/artist-form.component';
 import { ArtistListComponent } from './entities/artist/artist-list/artist-list.component';
+import { SongDetailComponent } from './entities/song-user/song-detail/song-detail.component';
 import { SongUserComponent } from './entities/song-user/song-user.component';
 import { SongFormComponent } from './entities/song/song-form/song-form.component';
 import { SongListComponent } from './entities/song/song-list/song-list.component';
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'albums/:albumId', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs', component: AlbumFormComponent},
   {path: 'albums/:albumId/songs/:songId', component: AlbumFormComponent},
-  {path: 'songsUser/songDetail/:songId', component: AlbumFormComponent}
+  {path: 'songsUser/songDetail/:songId', component: SongDetailComponent}
 ];
 
 @NgModule({

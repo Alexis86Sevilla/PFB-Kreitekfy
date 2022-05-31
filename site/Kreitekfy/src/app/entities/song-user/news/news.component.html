@@ -6,8 +6,8 @@
         <div id="novedades" class="col-md-12">
 
             <div class="card" *ngFor="let song of songs">
-                <div class="img-container"><img [src]="'data:image/webp;base64,' + song.image" class="card-img-top"
-                        alt="...">
+                <div class="img-container"><a [routerLink]="['/songsUser','songDetail', song.id]"><img
+                            [src]="'data:image/webp;base64,' + song.image" class="card-img-top" alt="{{song.name}}"></a>
                 </div>
 
                 <div class="card-body">

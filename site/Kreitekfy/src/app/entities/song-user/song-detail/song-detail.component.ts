@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongDetailComponent implements OnInit {
 
+  songId?:number;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public getSongById(songId:number):void{
+
+
+    
   }
 
 }
