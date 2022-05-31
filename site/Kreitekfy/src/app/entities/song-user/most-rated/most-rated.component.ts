@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Song } from '../../song/model/song.model';
 
 @Component({
   selector: 'app-most-rated',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./most-rated.component.scss']
 })
 export class MostRatedComponent implements OnInit {
+
+  songs: Song[] =[];
 
   constructor() { }
 
