@@ -31,10 +31,6 @@ export class SongListComponent extends Pagination implements OnInit {
   selectedArtist?: Artist;
   selectedAlbum?: Album; 
   selectedSong?: Song;
-  
-  
-  
-
   songIdToDelete?: number;
 
   constructor(private router: ActivatedRoute,
@@ -262,55 +258,6 @@ export class SongListComponent extends Pagination implements OnInit {
       error: (err) => {this.handleError(err);}
     });
   }
-
-  /*
-  public getSongsByAlbum(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByAlbum(this.song?.albumId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  public getSongsByStyle(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  public getSongsByArtist(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }*/
 
   public getSongbyId(songId: number): void {
 
