@@ -38,6 +38,11 @@ export class SongUserService {
     //TODO
   }
 
+  public insertViews(views: Views): Observable<Views> {
+    let urlEndpoint: string = this.baseUri + "views/";
+    return this.http.post<Views>(urlEndpoint, views);
+  }
+
   public updateViews(views: Views): Observable<Views> {
     let urlEndpoint: string = this.baseUri + "views/";
     return this.http.patch<Views>(urlEndpoint, views);

@@ -14,6 +14,7 @@ import { Rating } from '../../ratings/model/rating.model';
 })
 export class SongDetailComponent implements OnInit {
 
+  mode: "NEW" | "UPDATE" = "NEW";
   songId?: number;
   song!: Song;
   style?: Style;
@@ -45,6 +46,16 @@ export class SongDetailComponent implements OnInit {
 
   }
 
+  private insertViews(): void {
+    this.songUserService.insertViews(this.views!).subscribe({
+      next: (viewsInserted) => {
+        console.log("Insertado correctamente");
+        console.log(viewsInserted);
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
   public updateViews(): void {
     this.songUserService.updateViews(this.views!).subscribe({
       next: (viewsUpdated) => {
@@ -53,6 +64,16 @@ export class SongDetailComponent implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
+  }
+
+  public saveViews(): void {
+    if (this.mode === "NEW") {
+      this.insertViews();
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateViews();
+    }
   }
 
   public updateRating(): void {
