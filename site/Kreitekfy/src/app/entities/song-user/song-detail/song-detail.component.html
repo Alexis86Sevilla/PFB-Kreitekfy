@@ -1,4 +1,18 @@
-<h1>{{songId}}
-</h1>
-
-<pre>{{song| json}} </pre>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header">{{song.name}}</h5>
+                <div class="card-body">
+                    <div class="img-container"><img [src]="'data:image/webp;base64,' + song.image" class="card-img-top"
+                            alt="{{song.name}}">
+                    </div>
+                    <p>Album: {{song.albumName}}</p>
+                    <p>Autor: {{song.artistName}}</p>
+                    <p>Estilo: {{song.styleName}}</p>
+                    <p>Duración: {{song.duration}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
