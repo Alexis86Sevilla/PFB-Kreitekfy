@@ -24,54 +24,6 @@ export class SongUserComponent extends Pagination implements OnInit {
   ngOnInit(): void {
   }
 
-  private getSongsByAlbum(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByAlbum(this.song?.albumId!, this.page, this.size, this.sort).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  private getSongsByStyle(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  private getSongsByArtist(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
   private handleError(error: any): void {
     console.log(error);
   }

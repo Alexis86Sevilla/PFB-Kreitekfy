@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Song } from '../../song/model/song.model';
+import { Style } from '../../style/model/style.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,16 +37,47 @@ export class SongService {
 
   }
 
+  public getSongsByValoration(style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/valorations';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getValorationById(
+    songId: string,
+    userId: string
+  ){
+    //TODO
+  }
+
   public addVisualizationToOneSong() {
 
   }
 
-  public getSongsByValoration() {
-
+  public getSongsByVisualizations(
+    style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/visualizations';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getSongsByVisualizations() {
-
+  public getNewSongs(
+    style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/news';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsForYou() {
