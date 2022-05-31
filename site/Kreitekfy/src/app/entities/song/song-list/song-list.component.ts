@@ -31,9 +31,6 @@ export class SongListComponent extends Pagination implements OnInit {
   selectedArtist?: Artist;
   selectedAlbum?: Album; 
   selectedSong?: Song;
-  
-  
-
   songIdToDelete?: number;
 
   constructor(private router: ActivatedRoute,
@@ -159,6 +156,22 @@ export class SongListComponent extends Pagination implements OnInit {
       filters.push("song.id:EQUAL:" + this.songId);
     }
 
+    if (this.selectedAlbum) {
+      filters.push("album.name:MATCH:" + this.selectedAlbum.name);
+    }
+
+    if (this.selectedArtist) {
+      filters.push("artist.name:MATCH:" + this.selectedArtist.name);
+    }
+
+    if (this.selectedStyle) {
+      filters.push("style.name:MATCH:" + this.selectedStyle.name);
+    }
+
+    if (this.selectedSong) {
+      filters.push("name:MATCH:" + this.selectedSong.name);
+    }
+
     if (filters.length > 0) {
 
       let globalFilters: string = "";
@@ -245,55 +258,6 @@ export class SongListComponent extends Pagination implements OnInit {
       error: (err) => {this.handleError(err);}
     });
   }
-
-  /*
-  public getSongsByAlbum(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByAlbum(this.song?.albumId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  public getSongsByStyle(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByStyle(this.song?.styleId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }
-
-  public getSongsByArtist(): void {
-
-    const filters: string | undefined = this.buildFilters();
-
-    this.songService.getSongsByArtist(this.song?.artistId!, this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.songs = data.content;
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => { this.handleError(err); }
-    })
-  }*/
 
   public getSongbyId(songId: number): void {
 

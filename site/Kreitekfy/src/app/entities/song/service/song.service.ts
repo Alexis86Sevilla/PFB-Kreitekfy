@@ -51,31 +51,5 @@ export class SongService {
     return this.http.get<Song[]>(urlEndpoint);
   }
 
-  /*
-  public getSongsByStyle(styleId: number, page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs_style/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    if (filters) {
-      urlEndpoint = urlEndpoint + "&filter=" + filters;
-    }
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByArtist(artistId: number, page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs_artist/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    if (filters) {
-      urlEndpoint = urlEndpoint + "&filter=" + filters;
-    }
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string, filters?: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs_album/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    if (filters) {
-      urlEndpoint = urlEndpoint + "&filter=" + filters;
-    }
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-  
-  */
 
 }

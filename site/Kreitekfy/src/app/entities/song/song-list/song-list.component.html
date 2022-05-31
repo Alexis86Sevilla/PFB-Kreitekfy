@@ -3,6 +3,7 @@
         <div class="col-md-12">
             <h3>Lista de canciones</h3>
             <button class="btn btn-primary" [routerLink]="['/songs','new']">Crear nueva Canción</button>
+            <h4>Buscar:</h4>
             <div class="form-group">
                 <label for="albumId">Buscar por Álbum</label>
                 <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
