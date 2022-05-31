@@ -1,0 +1,36 @@
+@import "variables";
+
+.row {
+  background-color: $primaryColor;
+  color: $fontColor;
+
+  #novedades {
+    display: flex;
+    margin-bottom: 2%;
+    justify-content: center;
+
+    .card {
+      margin: 1%;
+      border: none;
+
+      img{
+        padding: 5%;
+          background-color: $secondaryColor;
+      }
+
+      .card-body {
+        background-color: $secondaryColor;
+  
+        .card-title {
+          color: $fontColor !important;
+        }
+      }
+  
+    }
+
+   
+
+
+  }
+
+}
