@@ -9,6 +9,7 @@ import com.PFBKreitekfy.Music.domain.persistence.RatingPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +39,11 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public void deleteRate(Long rateId) {
         this.persistence.deleteRating(rateId);
+    }
+
+    @Override
+    public List<RatingDTO> getAllRatings() {
+        List<Rating> rating = this.persistence.getAllRatings();
+        return this.mapper.toDto(rating);
     }
 }

@@ -1,5 +1,6 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
+import com.PFBKreitekfy.Music.application.dto.ArtistDTO;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -52,5 +54,12 @@ public class ViewsRestController {
     ResponseEntity<ViewsDTO> updateView(@RequestBody ViewsDTO viewDTO) {
         ViewsDTO viewUpdated = this.viewsService.saveViews(viewDTO);
         return new ResponseEntity<>(viewUpdated, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/views", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<ViewsDTO>> getAllViews() {
+        List<ViewsDTO> views = this.viewsService.getAllViews();
+        return new ResponseEntity<>(views, HttpStatus.OK);
     }
 }
