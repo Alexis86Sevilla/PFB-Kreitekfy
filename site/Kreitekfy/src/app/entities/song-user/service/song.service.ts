@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Song } from '../../song/model/song.model';
+import { Style } from '../../style/model/style.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,35 +13,53 @@ export class SongService {
 
   constructor(private http: HttpClient) { }
 
-  public getSongsByStyle(styleId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + styleId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByArtist(artistId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + artistId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
-
-  public getSongsByAlbum(albumId: number, page: number, size: number, sort: string): Observable<Song[]> {
-    let urlEndpoint: string = this.baseUri + "songs/" + albumId + "?page=" + page + "&size=" + size + "&sort=" + sort;
-    return this.http.get<Song[]>(urlEndpoint);
-  }
+  
 
   public addValorationToOneSong() {
 
+  }
+
+  public getSongsByValoration(style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/valorations';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public getValorationById(
+    songId: string,
+    userId: string
+  ){
+    //TODO
   }
 
   public addVisualizationToOneSong() {
 
   }
 
-  public getSongsByValoration() {
-
+  public getSongsByVisualizations(
+    style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/visualizations';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getSongsByVisualizations() {
-
+  public getNewSongs(
+    style: Style | undefined
+    ): Observable<Song[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'songs/news';
+      if (style) {
+        urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
+      }
+      return this.http.get<Song[]>(urlEndpoint);
   }
 
   public getSongsForYou() {
