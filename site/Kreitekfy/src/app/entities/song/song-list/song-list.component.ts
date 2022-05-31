@@ -157,15 +157,15 @@ export class SongListComponent extends Pagination implements OnInit {
     }
 
     if (this.selectedAlbum) {
-      filters.push("album.name:MATCH:" + this.selectedAlbum.name);
+      filters.push("album.name:EQUAL:" + this.selectedAlbum.name);
     }
 
     if (this.selectedArtist) {
-      filters.push("artist.name:MATCH:" + this.selectedArtist.name);
+      filters.push("artist.name:EQUAL:" + this.selectedArtist.name);
     }
 
     if (this.selectedStyle) {
-      filters.push("style.name:MATCH:" + this.selectedStyle.name);
+      filters.push("style.name:EQUAL:" + this.selectedStyle.name);
     }
 
     if (this.selectedSong) {
