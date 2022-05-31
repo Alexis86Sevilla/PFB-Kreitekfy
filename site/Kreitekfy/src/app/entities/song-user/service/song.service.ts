@@ -10,14 +10,22 @@ import { Views } from '../../views/model/views.model';
   providedIn: 'root'
 })
 export class SongUserService {
-  baseUri = "http://localhost:8081/kreitekfy/";
- // baseUri = "http://localhost:3003/";
+ baseUri = "http://localhost:8081/kreitekfy/";
+  // baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 
   public updateRating(rating: Rating): Observable<Rating> {
     let urlEndpoint: string = this.baseUri + "rating/";
     return this.http.patch<Views>(urlEndpoint, rating);
+  }
+
+  public getRatingById(
+    songId: number,
+    userId: number
+  ): Observable<Rating>{
+    let urlEndpoint: string = this.baseUri + "raitings/" + songId + "/" + userId; 
+    return this.http.get<Rating>(urlEndpoint);
   }
 
 
@@ -31,21 +39,28 @@ export class SongUserService {
       return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getValorationById(
-    songId: string,
-    userId: string
-  ){
-    //TODO
+  public getViewsById(
+    songId: number,
+    userId: number
+  ): Observable<Views>{
+    let urlEndpoint: string = this.baseUri + "views/" + songId + "/" + userId;
+    return this.http.get<Views>(urlEndpoint);
   }
 
-  public insertViews(views: Views): Observable<Views> {
-    let urlEndpoint: string = this.baseUri + "views/";
-    return this.http.post<Views>(urlEndpoint, views);
+  public insertViews(
+    songId: number,
+    userId: number
+  ): Observable<Views> {
+    let urlEndpoint: string = this.baseUri + "views/"+ songId + "/" + userId;
+    return this.http.post<Views>(urlEndpoint, songId);
   }
 
-  public updateViews(views: Views): Observable<Views> {
-    let urlEndpoint: string = this.baseUri + "views/";
-    return this.http.patch<Views>(urlEndpoint, views);
+  public updateViews(
+    songId: number,
+    userId: number
+  ): Observable<Views> {
+    let urlEndpoint: string = this.baseUri + "views/"+ songId + "/" + userId;
+    return this.http.patch<Views>(urlEndpoint, songId);
   }
 
   public getSongsByVisualizations(style?: Style | undefined

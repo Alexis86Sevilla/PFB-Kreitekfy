@@ -13,6 +13,11 @@ public class ViewsDTO implements Serializable {
     public ViewsDTO() {
     }
 
+    public ViewsDTO(Long songId, Long userId) {
+        this.userId = userId;
+        this.songId = songId;
+    }
+
     public Long getQuantity() {
         return quantity;
     }

@@ -1,6 +1,7 @@
 package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Views;
+import com.PFBKreitekfy.Music.domain.entity.ViewsPK;
 import com.PFBKreitekfy.Music.domain.persistence.ViewsPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,8 +25,8 @@ public class ViewsPersistenceImpl implements ViewsPersistence {
     }
 
     @Override
-    public Optional<Views> getViewsById(Long albumId) {
-        return this.viewsRepository.findById(albumId);
+    public Optional<Views> getViewsById(ViewsPK viewsId) {
+        return this.viewsRepository.findById(viewsId);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class ViewsPersistenceImpl implements ViewsPersistence {
     }
 
     @Override
-    public void deleteView(Long viewId) {
+    public void deleteView(ViewsPK viewId) {
         this.viewsRepository.deleteById(viewId);
     }
 }

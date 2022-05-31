@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = {UserMapper.class, SongMapper.class})
 public interface RatingMapper extends EntityMapper<RatingDTO, Rating> {
 
-    default Views fromId(Long userId, Long songId) {
+    default Views fromId(Long songId, Long userId) {
 
         if (userId == null || songId == null) return null;
 

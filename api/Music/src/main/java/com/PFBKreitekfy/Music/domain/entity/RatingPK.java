@@ -10,6 +10,14 @@ public class RatingPK implements Serializable {
     @Column
     private Long songId;
 
+    public RatingPK() {
+    }
+
+    public RatingPK(Long songId, Long userId) {
+        this.userId = userId;
+        this.songId = songId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
