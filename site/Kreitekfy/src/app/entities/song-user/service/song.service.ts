@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Song } from '../../song/model/song.model';
 import { Style } from '../../style/model/style.model';
+import { Views } from '../../views/model/views.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,9 @@ export class SongService {
     //TODO
   }
 
-  public addVisualizationToOneSong() {
-
+  public updateViews(views: Views): Observable<Views> {
+    let urlEndpoint: string = this.baseUri + "views/";
+    return this.http.patch<Views>(urlEndpoint, views);
   }
 
   public getSongsByVisualizations(style?: Style | undefined
