@@ -1,11 +1,15 @@
-<div class="form-group">
-    <label for="styleId">Estilo</label>
-    <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
-        (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
-        (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
-    <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="form-group">
+            <label class="style" for="styleId">Estilo</label>
+            <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
+                (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
+                (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
+            <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
+        </div>
+        <app-news></app-news>
+        <app-top-songs></app-top-songs>
+        <app-most-rated></app-most-rated>
+        <app-for-you></app-for-you>
+    </div>
 </div>
-<app-news></app-news>
-<app-top-songs></app-top-songs>
-<app-most-rated></app-most-rated>
-<app-for-you></app-for-you>
