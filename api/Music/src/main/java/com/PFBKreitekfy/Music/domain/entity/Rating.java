@@ -2,36 +2,41 @@ package com.PFBKreitekfy.Music.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ratings")
+@IdClass(value = RatingPK.class)
 public class Rating {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ratingSequence")
-    private Long id;
+    private Long userId;
+
+    @Id
+    private Long songId;
+
     @Column
     @Positive
     private Long quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "song_id")
-    private Song song;
-
     public Rating() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getSongId() {
+        return songId;
+    }
+
+    public void setSongId(Long songId) {
+        this.songId = songId;
     }
 
     public Long getQuantity() {
@@ -42,19 +47,16 @@ public class Rating {
         this.quantity = quantity;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rating rating = (Rating) o;
+        return userId.equals(rating.userId) && songId.equals(rating.songId) && quantity.equals(rating.quantity);
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, songId, quantity);
     }
 }

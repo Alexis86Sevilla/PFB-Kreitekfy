@@ -3,29 +3,27 @@ package com.PFBKreitekfy.Music.application.mapper;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.domain.entity.Album;
 import com.PFBKreitekfy.Music.domain.entity.Rating;
+import com.PFBKreitekfy.Music.domain.entity.Views;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {UserMapper.class, SongMapper.class})
 public interface RatingMapper extends EntityMapper<RatingDTO, Rating> {
 
-    default Rating fromId(Long id) {
+    default Views fromId(Long userId, Long songId) {
 
-        if (id == null) return null;
+        if (userId == null || songId == null) return null;
 
-        Rating rating = new Rating();
-        rating.setId(id);
-        return rating;
+        Views views = new Views();
+        views.setUserId(userId);
+        views.setSongId(songId);
+        return views;
     }
 
     @Override
-    @Mapping(source = "songId", target = "song")
-    @Mapping(source = "userId", target = "user")
     Rating toEntity(RatingDTO dto);
 
 
     @Override
-    @Mapping(source = "song.id", target = "songId")
-    @Mapping(source = "user.id", target = "userId")
     RatingDTO toDto(Rating entity);
 }
