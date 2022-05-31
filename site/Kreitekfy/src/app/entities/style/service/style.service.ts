@@ -8,8 +8,8 @@ import { Style } from '../model/style.model';
 })
 export class StyleService {
 
-   //baseUri = "http://localhost:8081/kreitekfy/";
-   baseUri = "http://localhost:3003/";
+   baseUri = "http://localhost:8081/kreitekfy/";
+   //baseUri = "http://localhost:3003/";
 
   constructor(private http: HttpClient) { }
 

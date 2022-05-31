@@ -22,21 +22,21 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_album/{albumId}", produces = "application/json")
+    @GetMapping(value = "/albums/{albumId}/songs", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongsByAlbum(@PathVariable Long albumId) {
         List<SongDTO> songs = this.songService.getSongsByAlbum(albumId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_artist/{artistId}", produces = "application/json")
+    @GetMapping(value = "/artists/{artistId}/songs", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongsByArtist(@PathVariable Long artistId) {
         List<SongDTO> songs = this.songService.getSongsByArtist(artistId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_style/{styleId}", produces = "application/json")
+    @GetMapping(value = "/styles/{styleId}/songs", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongsByStyles(@PathVariable Long styleId) {
         List<SongDTO> songs = this.songService.getSongsByStyle(styleId);
         return new ResponseEntity<>(songs, HttpStatus.OK);
@@ -75,7 +75,7 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_filter", produces = "application/json")
+    @GetMapping(value = "/songs", produces = "application/json")
     public ResponseEntity<Page<SongDTO>> getSongsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
 
         Page<SongDTO> songs = this.songService.getSongsByCriteriaStringPaged(pageable, filter);
@@ -83,7 +83,7 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs", produces = "application/json")
+    @GetMapping(value = "/songs_filter", produces = "application/json")
     ResponseEntity<List<SongDTO>> getAllSongs() {
         List<SongDTO> songs = this.songService.getAllSongs();
         return new ResponseEntity<>(songs, HttpStatus.OK);
