@@ -1,3 +1,10 @@
+<div class="form-group">
+    <label for="styleId">Estilo</label>
+    <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
+        (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
+        (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
+    <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
+</div>
 <app-news></app-news>
 <app-top-songs></app-top-songs>
 <app-most-rated></app-most-rated>

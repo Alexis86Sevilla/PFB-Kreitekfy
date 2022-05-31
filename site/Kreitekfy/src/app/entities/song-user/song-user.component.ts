@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Pagination } from 'src/app/shared/pagination';
 import { Song } from '../song/model/song.model';
+import { Style } from '../style/model/style.model';
+import { StyleService } from '../style/service/style.service';
 import { SongService } from './service/song.service';
 
 @Component({
@@ -11,13 +13,14 @@ import { SongService } from './service/song.service';
 export class SongUserComponent extends Pagination implements OnInit {
 
   songs: Song[] = [];
+  styles: Style[] = [];
   song?: Song;  
+  style?: Style;
+  selectedStyle?: Style;
   styleId?: number;
-  artistId?: number;
-  albumId?:number;
 
  
-  constructor(private songService: SongService) {
+  constructor(private songService: SongService, private styleService: StyleService) {
     super();
   }
 
@@ -28,19 +31,15 @@ export class SongUserComponent extends Pagination implements OnInit {
     console.log(error);
   }
 
-  private buildFilters(): string | undefined {
+  private buildFilters():string | undefined {
     const filters: string[] = [];
 
     if (this.styleId) {
       filters.push("style.id:EQUAL:" + this.styleId);
     }
 
-    if (this.artistId) {
-      filters.push("artist.id:EQUAL:" + this.artistId);
-    }
-
-    if (this.albumId) {
-      filters.push("album.id:EQUAL:" + this.albumId);
+    if (this.selectedStyle) {
+      filters.push("style.name:EQUAL:" + this.selectedStyle.name);
     }
 
     if (filters.length > 0) {
@@ -57,5 +56,34 @@ export class SongUserComponent extends Pagination implements OnInit {
     }
 
   }
+
+  public styleSelected(): void {
+    this.song!.styleId = this.selectedStyle!.id;
+    this.song!.styleName = this.selectedStyle!.name;
+  }
+
+  public styleUnselected(): void {
+    this.song!.styleId = undefined;
+    this.song!.styleName = undefined;
+  }
+
+  public searchByFilters(): void {
+    //TODO añadir los métodos que cargan las canciones por novedades, escuchadas...
+  }
+
+  public getAllStyles(event?: any): void {
+    let styleSearch: string | undefined;
+
+    if (event?.query) {
+      styleSearch = event.query;
+    }
+    this.styleService.getAllStyles(styleSearch).subscribe({
+      next: (stylesFiltered) => {
+        this.styles = stylesFiltered;
+      },
+      error: (err) => {this.handleError(err);}
+    });
+  }
+
 
 }
