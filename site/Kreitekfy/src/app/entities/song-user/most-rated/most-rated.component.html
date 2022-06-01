@@ -1,11 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-
-        <pre>{{songs | json}}</pre>
-
         <h3>Las más valoradas</h3>
         <hr>
-        <div id="bestRating" class="col-md-12">
+        <div id="contenedor-canciones" class="col-md-12">
 
             <div class="card" *ngFor="let song of songs">
                 <div class="img-container"><a [routerLink]="['/songsUser','songDetail', song.id]"><img
@@ -18,7 +15,5 @@
             </div>
 
         </div>
-
-
     </div>
 </div>

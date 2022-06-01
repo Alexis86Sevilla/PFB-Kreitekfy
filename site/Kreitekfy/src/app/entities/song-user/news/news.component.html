@@ -3,7 +3,7 @@
 
         <h3>Novedades</h3>
         <hr>
-        <div id="novedades" class="col-md-12">
+        <div id="contenedor-canciones" class="col-md-12">
 
             <div class="card" *ngFor="let song of songs">
                 <div class="img-container"><a [routerLink]="['/songsUser','songDetail', song.id]"><img
