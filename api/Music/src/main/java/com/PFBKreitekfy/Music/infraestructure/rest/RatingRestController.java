@@ -46,9 +46,8 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/ratings/{songId}/{userId}")
-    ResponseEntity<?> deleteRatingById(@PathVariable Long songId, @PathVariable Long userId) {
-        RatingPK ratingId = new RatingPK(songId, userId);
+    @DeleteMapping(value = "/ratings/{ratingId}")
+    ResponseEntity<?> deleteRatingById(@PathVariable RatingPK ratingId) {
         this.ratingService.deleteRate(ratingId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -56,7 +55,7 @@ public class RatingRestController {
     @CrossOrigin
     @PatchMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<RatingDTO> updateRating(@PathVariable Long songId, @PathVariable Long userId, @PathVariable Long quantity) {
-        RatingDTO ratingDTO = new RatingDTO(songId, userId,quantity);
+        RatingDTO ratingDTO = new RatingDTO(songId, userId, quantity);
         RatingDTO ratingUpdated = this.ratingService.saveRate(ratingDTO);
         return new ResponseEntity<>(ratingUpdated, HttpStatus.OK);
     }

@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public class RatingDTO implements Serializable {
 
-    private Long quantity;
 
     private Long userId;
 
     private Long songId;
+
+    private Long quantity;
+
 
     public RatingDTO() {
     }
@@ -18,7 +20,7 @@ public class RatingDTO implements Serializable {
         this.songId = songId;
     }
 
-    public RatingDTO(Long quantity, Long userId, Long songId) {
+    public RatingDTO(Long userId, Long songId, Long quantity) {
         this.quantity = quantity;
         this.userId = userId;
         this.songId = songId;

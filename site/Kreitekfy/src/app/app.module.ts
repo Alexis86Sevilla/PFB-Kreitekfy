@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
+import {RatingModule} from 'primeng/rating';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -80,7 +81,8 @@ import { SongDetailComponent } from './entities/song-user/song-detail/song-detai
     AutoCompleteModule,
     MessageModule,
     MessagesModule,
-    ButtonModule
+    ButtonModule,
+    RatingModule
   ],
   providers: [
     {
