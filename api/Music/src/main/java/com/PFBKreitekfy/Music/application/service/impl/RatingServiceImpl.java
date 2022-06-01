@@ -52,4 +52,10 @@ public class RatingServiceImpl implements RatingService {
         List<Rating> rating = this.persistence.getAllRatings();
         return this.mapper.toDto(rating);
     }
+
+    @Override
+    public List<RatingDTO> getAllRatingsByUserId(Long userId) {
+        List<Rating> rating = this.persistence.getAllRatingsByUserId(userId);
+        return this.mapper.toDto(rating);
+    }
 }

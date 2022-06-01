@@ -75,8 +75,6 @@ export class MostRatedComponent implements OnInit {
     console.log(error);
   }
 
-  getSongsByRating(): void {
-    
-  }
+  
   
 }

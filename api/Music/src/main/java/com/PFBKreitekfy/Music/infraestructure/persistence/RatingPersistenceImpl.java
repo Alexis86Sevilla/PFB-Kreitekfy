@@ -1,5 +1,6 @@
 package com.PFBKreitekfy.Music.infraestructure.persistence;
 
+import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.domain.entity.Rating;
 import com.PFBKreitekfy.Music.domain.entity.RatingPK;
 import com.PFBKreitekfy.Music.domain.entity.Views;
@@ -38,6 +39,11 @@ public class RatingPersistenceImpl implements RatingPersistence {
     @Override
     public List<Rating> getAllRatings() {
         return this.ratingRepository.findAll();
+    }
+
+    @Override
+    public List<Rating> getAllRatingsByUserId(Long userId) {
+        return this.ratingRepository.findAllById(userId);
     }
 
 

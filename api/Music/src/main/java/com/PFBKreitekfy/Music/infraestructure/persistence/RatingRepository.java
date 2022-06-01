@@ -6,9 +6,12 @@ import com.PFBKreitekfy.Music.domain.entity.Views;
 import com.PFBKreitekfy.Music.domain.entity.ViewsPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface RatingRepository extends JpaRepository<Rating, RatingPK> {
     Optional<Rating> findById(RatingPK ratingId);
+
+    List<Rating> findAllById(Long userId);
 
 }

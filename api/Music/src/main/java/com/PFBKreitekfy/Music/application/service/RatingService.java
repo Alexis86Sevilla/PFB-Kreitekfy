@@ -16,4 +16,7 @@ public interface RatingService {
     void deleteRate(RatingPK ratingId);
 
     List<RatingDTO> getAllRatings();
+
+    List<RatingDTO> getAllRatingsByUserId(Long userId);
+
 }

@@ -7,8 +7,10 @@ import com.PFBKreitekfy.Music.domain.entity.Views;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class SongDTO implements Serializable {
 
@@ -128,5 +130,18 @@ public class SongDTO implements Serializable {
         this.styleName = styleName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SongDTO songDTO = (SongDTO) o;
+        return id == songDTO.id && name.equals(songDTO.name) && Arrays.equals(image, songDTO.image) && Objects.equals(duration, songDTO.duration) && Objects.equals(dateLaunch, songDTO.dateLaunch) && albumId.equals(songDTO.albumId) && Objects.equals(albumName, songDTO.albumName) && artistId.equals(songDTO.artistId) && Objects.equals(artistName, songDTO.artistName) && styleId.equals(songDTO.styleId) && Objects.equals(styleName, songDTO.styleName);
+    }
 
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, name, duration, dateLaunch, albumId, albumName, artistId, artistName, styleId, styleName);
+        result = 31 * result + Arrays.hashCode(image);
+        return result;
+    }
 }

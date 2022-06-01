@@ -7,6 +7,7 @@ import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.application.service.SongService;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
+import com.PFBKreitekfy.Music.domain.entity.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -137,6 +138,48 @@ public class SongRestController {
             }
         });
         Collections.reverse(ratingDTOS);
+        List<Optional<SongDTO>> songs = new ArrayList<>();
+        for( int i = 0; i<5; i++){
+            Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
+            songs.add(songDTO);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/songs_foryou", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<Optional<SongDTO>>> getSongsForYou (@PathVariable Long userId) {
+        //1. obtener la lista con todos los ratings de un usuario
+
+        List<RatingDTO> ratingDTOS = ratingService.getAllRatingsByUserId(userId);
+
+        //2. Obtener las cancionesDTO de esta lista
+
+        List<Optional<SongDTO>> songs = new ArrayList<>();
+        for( int i = 0; i<ratingDTOS.size(); i++){
+            Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
+            songs.add(songDTO);
+        }
+
+        //3. Buscar por el estilo más escuchado
+
+        List<Style> styles = new ArrayList<>();
+        for( int i = 0; i<songs.size(); i++){
+            int idStyle = songs.get(i).getStyleId();
+            styles.add();
+        }
+
+
+        List<RatingDTO> yourRatings = new ArrayList<>();
+        for( int i = 0; i<2; i++){
+            yourRatings.add(ratingDTOS.get(i));
+        }
+
+        //getAllSongsByStyle con más de tres estrellas
+        //get5SongsByStyle con el mayor número de reproducciones
+
+
         List<Optional<SongDTO>> songs = new ArrayList<>();
         for( int i = 0; i<5; i++){
             Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());

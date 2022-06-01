@@ -105,7 +105,8 @@ export class SongUserService {
     return this.http.get<Song[]>(urlEndpoint);
   }
 
-  public getSongsForYou() {
-
+  public getSongsForYou(): Observable<Song[]> {
+    let urlEndpoint: string = this.baseUri + 'songs_foryou';
+    return this.http.get<Song[]>(urlEndpoint);
   }
 }
