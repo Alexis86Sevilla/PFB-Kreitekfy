@@ -104,7 +104,7 @@ public class SongRestController {
     @GetMapping(value = "/songs/views", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByViews () {
         List<ViewsDTO> viewsDTOS = viewService.getAllViews();
-        Collections.sort(viewsDTOS, Collections.reverseOrder());
+        //Collections.sort(viewsDTOS, Collections.reverseOrder());
         List<Optional<SongDTO>> songs = new ArrayList<>();
         for(ViewsDTO vistas : viewsDTOS){
             for(int i=0; i<5; i++){

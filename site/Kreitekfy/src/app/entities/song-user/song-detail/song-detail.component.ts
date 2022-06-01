@@ -135,9 +135,9 @@ export class SongDetailComponent implements OnInit {
       this.insertRating();
     }
 
-    if (this.mode === "UPDATE") {
+    /*if (this.mode === "UPDATE") {
       this.updateRating();
-    }
+    }*/
   }
 
   private handleError(error: any): void {

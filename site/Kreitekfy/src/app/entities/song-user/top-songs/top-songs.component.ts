@@ -20,7 +20,7 @@ export class TopSongsComponent implements OnInit {
   constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
-    this.getAllViews();
+    this.getFiveSongsByViews();
   }
 
   private buildFilters():string | undefined {
