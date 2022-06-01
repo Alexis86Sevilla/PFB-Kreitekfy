@@ -4,6 +4,7 @@ import { Song } from '../song/model/song.model';
 import { Style } from '../style/model/style.model';
 import { StyleService } from '../style/service/style.service';
 import { SongUserService } from './service/song.service';
+import { NewsComponent } from './news/news.component';
 
 @Component({
   selector: 'app-song-user',
@@ -18,6 +19,7 @@ export class SongUserComponent extends Pagination implements OnInit {
   style?: Style;
   selectedStyle?: Style;
   styleId?: number;
+  newComponent?: NewsComponent;
 
  
   constructor(private songUserService: SongUserService, private styleService: StyleService) {
@@ -68,6 +70,7 @@ export class SongUserComponent extends Pagination implements OnInit {
   }
 
   public searchByFilters(): void {
+    this.newComponent?.getNewSongs();
     //TODO añadir los métodos que cargan las canciones por novedades, escuchadas...
   }
 
