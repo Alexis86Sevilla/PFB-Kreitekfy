@@ -14,5 +14,5 @@ public interface SongRepository extends JpaRepository<Song, Long>, JpaSpecificat
 
     List<Song> findByArtist(Long styleId);
 
-
+    List<Song> findByNameContainsIgnoreCase(String partialName);
 }

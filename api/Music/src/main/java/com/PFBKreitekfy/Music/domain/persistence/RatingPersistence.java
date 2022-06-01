@@ -17,5 +17,4 @@ public interface RatingPersistence {
     void deleteRating(RatingPK ratingId);
 
     List<Rating> getAllRatings();
-
 }

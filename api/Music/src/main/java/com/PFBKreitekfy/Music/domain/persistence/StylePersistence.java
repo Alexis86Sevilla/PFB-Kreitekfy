@@ -2,6 +2,7 @@ package com.PFBKreitekfy.Music.domain.persistence;
 
 
 import com.PFBKreitekfy.Music.domain.entity.Artist;
+import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.entity.Style;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,6 @@ public interface StylePersistence {
     void deleteStyle(Long styleId);
 
     Page<Style> findAll(Pageable pageable, String filter);
+
+    List<Style> getStylesByName(String partialName);
 }

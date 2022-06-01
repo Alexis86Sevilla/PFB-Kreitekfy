@@ -30,12 +30,6 @@ public class AlbumRestController {
         return new ResponseEntity<>(albumDTO, HttpStatus.CREATED);
     }
 
-    @CrossOrigin
-    @GetMapping(value = "/albums", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<AlbumDTO>> getAllAlbums() {
-        List<AlbumDTO> albums = this.albumService.getAllAlbums();
-        return new ResponseEntity<>(albums, HttpStatus.OK);
-    }
 
     @CrossOrigin
     @GetMapping(value = "/albums/{albumId}")
@@ -48,6 +42,7 @@ public class AlbumRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @CrossOrigin
     @DeleteMapping(value = "/albums/{albumId}")
@@ -68,5 +63,18 @@ public class AlbumRestController {
     public ResponseEntity<Page<AlbumDTO>> getAlbumsByCriteriaPaged(@RequestParam(value = "filter", required = false) String filter, Pageable pageable) {
         Page<AlbumDTO> albums = this.albumService.getAlbumsByCriteriaStringPaged(pageable, filter);
         return new ResponseEntity<Page<AlbumDTO>>(albums, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/albums", produces = "application/json")
+    ResponseEntity<List<AlbumDTO>> getAllAlbums(@RequestParam(name = "partialName", required = false) String partialName) {
+        List<AlbumDTO> albums;
+
+        if (partialName == null) {
+            albums = this.albumService.getAllAlbums();
+        } else {
+            albums = this.albumService.getAlbumsByName(partialName);
+        }
+        return new ResponseEntity<>(albums, HttpStatus.OK);
     }
 }

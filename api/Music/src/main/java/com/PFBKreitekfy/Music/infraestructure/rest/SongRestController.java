@@ -1,5 +1,6 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
+import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
@@ -12,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +22,7 @@ import java.util.Optional;
 public class SongRestController {
 
     private final SongService songService;
+
     private final ViewsService viewService;
     private final RatingService ratingService;
 
@@ -94,9 +95,15 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_filter", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<SongDTO>> getAllSongs() {
-        List<SongDTO> songs = this.songService.getAllSongs();
+    @GetMapping(value = "/songs_filter", produces = "application/json")
+    ResponseEntity<List<SongDTO>> getAllSongs(@RequestParam(name = "partialName", required = false) String partialName) {
+        List<SongDTO> songs;
+
+        if (partialName == null) {
+            songs = this.songService.getAllSongs();
+        } else {
+            songs = this.songService.getSongsByName(partialName);
+        }
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
@@ -111,10 +118,8 @@ public class SongRestController {
                 Optional<SongDTO> songDTO = songService.getSongById(vistas.getSongId());
                 songs.add(songDTO);
             }
-
             System.out.println(vistas);
         }
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
-
 }
