@@ -42,7 +42,7 @@ export class SongUserService {
   public getFiveSongsByRating(style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
-        this.baseUri + 'songs/ratings';
+        this.baseUri + 'songs_ratings';
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }
@@ -81,11 +81,8 @@ export class SongUserService {
       return this.http.get<Views[]>(urlEndpoint);
   }
 
-  public getFiveSongsBylVisualizations(
-    style?: Style | undefined
-    ): Observable<Song[]> {
-      let urlEndpoint: string =
-        this.baseUri + 'songs/views';
+  public getFiveSongsBylVisualizations(style?: Style | undefined): Observable<Song[]> {
+      let urlEndpoint: string = this.baseUri + 'songs_views';
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }
@@ -101,7 +98,7 @@ export class SongUserService {
   }
 
   public getAllNewSongs(style?: Style | undefined): Observable<Song[]> {
-    let urlEndpoint: string = "http://localhost:8081/kreitekfy/songs?page=0&size=5&sort=dateLaunch,desc";
+    let urlEndpoint: string = this.baseUri + "songs?page=0&size=5&sort=dateLaunch,desc";
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }

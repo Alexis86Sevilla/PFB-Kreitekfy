@@ -20,7 +20,7 @@ export class MostRatedComponent implements OnInit {
   constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
-    this.getAllRatings();
+    this.getFiveSongsByRatings();
   }
 
   private buildFilters():string | undefined {

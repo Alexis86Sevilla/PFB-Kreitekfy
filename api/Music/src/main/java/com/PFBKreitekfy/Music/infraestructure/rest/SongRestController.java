@@ -1,6 +1,7 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
 import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
+import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
@@ -108,17 +109,27 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs/views", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/songs_views", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByViews () {
         List<ViewsDTO> viewsDTOS = viewService.getAllViews();
         //Collections.sort(viewsDTOS, Collections.reverseOrder());
         List<Optional<SongDTO>> songs = new ArrayList<>();
-        for(ViewsDTO vistas : viewsDTOS){
-            for(int i=0; i<5; i++){
-                Optional<SongDTO> songDTO = songService.getSongById(vistas.getSongId());
-                songs.add(songDTO);
-            }
-            System.out.println(vistas);
+        for(ViewsDTO views : viewsDTOS){
+            Optional<SongDTO> songDTO = songService.getSongById(views.getSongId());
+            songs.add(songDTO);
+        }
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/songs_ratings", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByRatings () {
+        List<RatingDTO> ratingsDTOS = ratingService.getAllRatings();
+        //Collections.sort(viewsDTOS, Collections.reverseOrder());
+        List<Optional<SongDTO>> songs = new ArrayList<>();
+        for(RatingDTO ratings : ratingsDTOS){
+            Optional<SongDTO> songDTO = songService.getSongById(ratings.getSongId());
+            songs.add(songDTO);
         }
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }

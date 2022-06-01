@@ -3,10 +3,13 @@
 
         <h3>Las más valoradas</h3>
         <hr>
-        <div id="bestValoration">
+        <div id="bestRating" class="col-md-12">
 
-            <div class="card" style="width: 10rem;" *ngFor="let song of songs">
-                <img src="http://placekitten.com/90/90" class="card-img-top" alt="...">
+            <div class="card" *ngFor="let song of songs">
+                <div class="img-container"><a [routerLink]="['/songsUser','songDetail', song.id]"><img
+                            [src]="'data:image/webp;base64,' + song.image" class="card-img-top" alt="{{song.name}}"></a>
+                </div>
+
                 <div class="card-body">
                     <h5 class="card-title text-black">{{song.name}}</h5>
                 </div>

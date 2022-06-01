@@ -60,7 +60,7 @@ export class TopSongsComponent implements OnInit {
     })
   }
 
-  getFiveSongsByViews(): void {
+  public getFiveSongsByViews(): void {
     const filters:string | undefined = this.buildFilters();
     
     this.songUserService.getFiveSongsBylVisualizations(this.style).subscribe({
