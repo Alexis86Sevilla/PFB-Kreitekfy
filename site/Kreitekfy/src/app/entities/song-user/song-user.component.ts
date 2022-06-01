@@ -3,7 +3,7 @@ import { Pagination } from 'src/app/shared/pagination';
 import { Song } from '../song/model/song.model';
 import { Style } from '../style/model/style.model';
 import { StyleService } from '../style/service/style.service';
-import { SongService } from './service/song.service';
+import { SongUserService } from './service/song.service';
 
 @Component({
   selector: 'app-song-user',
@@ -20,7 +20,7 @@ export class SongUserComponent extends Pagination implements OnInit {
   styleId?: number;
 
  
-  constructor(private songService: SongService, private styleService: StyleService) {
+  constructor(private songUserService: SongUserService, private styleService: StyleService) {
     super();
   }
 

@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class ViewsDTO implements Serializable {
 
-    private Long id;
-
     private Long quantity;
 
     private Long userId;
@@ -15,12 +13,9 @@ public class ViewsDTO implements Serializable {
     public ViewsDTO() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ViewsDTO(Long songId, Long userId) {
+        this.userId = userId;
+        this.songId = songId;
     }
 
     public Long getQuantity() {

@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToastModule} from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {ButtonModule} from 'primeng/button';
+import {RatingModule} from 'primeng/rating';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +38,7 @@ import { NewsComponent } from './entities/song-user/news/news.component';
 import { TopSongsComponent } from './entities/song-user/top-songs/top-songs.component';
 import { MostRatedComponent } from './entities/song-user/most-rated/most-rated.component';
 import { ForYouComponent } from './entities/song-user/for-you/for-you.component';
+import { SongDetailComponent } from './entities/song-user/song-detail/song-detail.component';
 
 
 @NgModule({
@@ -64,7 +68,8 @@ import { ForYouComponent } from './entities/song-user/for-you/for-you.component'
     NewsComponent,
     TopSongsComponent,
     MostRatedComponent,
-    ForYouComponent
+    ForYouComponent,
+    SongDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +79,10 @@ import { ForYouComponent } from './entities/song-user/for-you/for-you.component'
     BrowserAnimationsModule,
     FormsModule,
     AutoCompleteModule,
-    ToastModule
+    MessageModule,
+    MessagesModule,
+    ButtonModule,
+    RatingModule
   ],
   providers: [
     {

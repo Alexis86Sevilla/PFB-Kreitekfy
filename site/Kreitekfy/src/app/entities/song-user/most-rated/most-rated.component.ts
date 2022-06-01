@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Rating } from '../../ratings/model/rating.model';
 import { Song } from '../../song/model/song.model';
 import { Style } from '../../style/model/style.model';
-import { SongService } from '../service/song.service';
+import { SongUserService } from '../service/song.service';
 
 @Component({
   selector: 'app-most-rated',
@@ -15,10 +16,11 @@ export class MostRatedComponent implements OnInit {
   selectedStyle?: Style;
   styleId?: number;
 
-  constructor(private songUserService: SongService) { }
+
+  constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
-    this.getSongsByValoration();
+    //this.getSongsByValoration();
   }
 
   private buildFilters():string | undefined {
@@ -47,10 +49,10 @@ export class MostRatedComponent implements OnInit {
 
   }
 
-  getSongsByValoration(): void {
+  /*getSongsByValoration(): void {
     const filters:string | undefined = this.buildFilters();
     
-    this.songUserService.getSongsByValoration(this.style).subscribe({
+    this.songUserService.getSongsByRating(this.style).subscribe({
       next: (data: any) => { 
         this.songs = data.content; 
       },
@@ -60,5 +62,7 @@ export class MostRatedComponent implements OnInit {
 
   private handleError(error: any): void {
     console.log(error);
-  }
+  }*/
+
+  
 }

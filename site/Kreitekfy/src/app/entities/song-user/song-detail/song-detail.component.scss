@@ -1,0 +1,48 @@
+@import "variables";
+
+.row {
+  display: flex;
+  justify-content: center;
+  background-color: $primaryColor;
+  color: $fontColor;
+ 
+
+  h3 {
+    margin-top: 1%;
+    text-transform: uppercase;
+  }
+
+
+
+  .card {
+
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: none;
+
+
+    .img-container {
+      background-color: $secondaryColor;
+      padding: 5%;
+
+
+      img {
+        width: 80%;
+        border-radius: 5%;
+      }
+    }
+
+    .card-body,
+    .card-header {
+      background-color: $secondaryColor;
+
+      .card-title {
+        text-align: center;
+        color: $fontColor !important;
+      }
+    }
+  }
+
+}

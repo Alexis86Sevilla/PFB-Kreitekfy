@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from '../../song/model/song.model';
-import { SongService } from '../../song/service/song.service';
 import { Style } from '../../style/model/style.model';
+import { Views } from '../../views/model/views.model';
+import { SongUserService } from '../service/song.service';
 
 @Component({
   selector: 'app-top-songs',
@@ -11,17 +12,14 @@ import { Style } from '../../style/model/style.model';
 export class TopSongsComponent implements OnInit {
 
   songs: Song[] =[];
-  style?: Style;
+  
 
-  constructor(private songService: SongService) { }
+  constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
   }
 
-  public addValorationToOneSong(valoration: number) {
-
-  }
-
   
+
 
 }

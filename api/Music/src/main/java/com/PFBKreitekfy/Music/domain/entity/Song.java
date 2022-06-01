@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "songs")
@@ -44,13 +42,6 @@ public class Song {
     @ManyToOne()
     @JoinColumn(name = "style_id", nullable = false)
     private Style style;
-
-    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private List<Rating> ratings;
-
-    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private List<Views> views;
-
 
     public Song() {
     }
@@ -118,20 +109,18 @@ public class Song {
         this.style = style;
     }
 
-
-    public List<Rating> getRatings() {
-        return ratings;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return id == song.id && Objects.equals(name, song.name) && Arrays.equals(image, song.image) && Objects.equals(duration, song.duration) && Objects.equals(dateLaunch, song.dateLaunch) && Objects.equals(album, song.album) && Objects.equals(artist, song.artist) && Objects.equals(style, song.style);
     }
 
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public List<Views> getViews() {
-        return views;
-    }
-
-    public void setViews(List<Views> views) {
-        this.views = views;
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, name, duration, dateLaunch, album, artist, style);
+        result = 31 * result + Arrays.hashCode(image);
+        return result;
     }
 }

@@ -2,19 +2,24 @@ package com.PFBKreitekfy.Music.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
+import java.util.Objects;
 
 @Entity
 @Table(name = "views")
+@IdClass(value = ViewsPK.class)
 public class Views {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "viewsSequence")
-    private Long id;
+    private Long userId;
+
+    @Id
+    private Long songId;
 
     @Column
     @Positive
     private Long quantity;
 
+<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -22,16 +27,25 @@ public class Views {
     @ManyToOne
     @JoinColumn(name = "song_id")
     private Song song;
-
+=======
     public Views() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
+    }
+>>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getSongId() {
+        return songId;
+    }
+
+    public void setSongId(Long songId) {
+        this.songId = songId;
     }
 
     public Long getQuantity() {
@@ -42,19 +56,16 @@ public class Views {
         this.quantity = quantity;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Views views = (Views) o;
+        return userId.equals(views.userId) && songId.equals(views.songId) && quantity.equals(views.quantity);
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, songId, quantity);
     }
 }

@@ -24,8 +24,6 @@ public interface SongMapper extends EntityMapper<SongDTO, Song> {
     @Mapping(source = "albumId", target = "album")
     @Mapping(source = "artistId", target = "artist")
     @Mapping(source = "styleId", target = "style")
-    @Mapping(target = "ratings", ignore = true)
-    @Mapping(target = "views", ignore = true)
     Song toEntity(SongDTO dto);
 
     @Override

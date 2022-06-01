@@ -2,6 +2,7 @@ package com.PFBKreitekfy.Music.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 @Entity
 @Table(name = "artists")
@@ -32,5 +33,18 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(id, artist.id) && Objects.equals(name, artist.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

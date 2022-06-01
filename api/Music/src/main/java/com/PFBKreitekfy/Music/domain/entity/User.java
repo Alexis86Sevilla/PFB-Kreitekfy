@@ -3,6 +3,7 @@ package com.PFBKreitekfy.Music.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -20,10 +21,13 @@ public class User {
     @Column(nullable = false)
     private Boolean isAdmin;
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
     public User() {
     }
     public Long getId() {
@@ -50,4 +54,19 @@ public class User {
         isAdmin = admin;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(isAdmin, user.isAdmin);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, isAdmin);
+    }
+>>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
 }
