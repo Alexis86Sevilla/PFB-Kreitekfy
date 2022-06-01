@@ -64,8 +64,8 @@ export class MostRatedComponent implements OnInit {
     const filters:string | undefined = this.buildFilters();
     
     this.songUserService.getFiveSongsByRating(this.style).subscribe({
-      next: (data: any) => { 
-        this.songs = data.content; 
+      next: (songsRequest) => { 
+        this.songs = songsRequest; 
       },
       error: (err) => {this.handleError(err);}
     })

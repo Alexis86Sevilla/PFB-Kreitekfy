@@ -2,7 +2,7 @@
     <div class="row">
         <div class="form-group">
             <label class="style" for="styleId">Estilo</label>
-            <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
+            <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" class="auto" [suggestions]="styles"
                 (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
                 (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
             <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>

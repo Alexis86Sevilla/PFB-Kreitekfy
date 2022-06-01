@@ -11,11 +11,11 @@ import { SongUserService } from '../service/song.service';
 })
 export class TopSongsComponent implements OnInit {
 
-  songs: Song[] =[];
+  songs: Song[] = [];
   style?: Style;
   selectedStyle?: Style;
   styleId?: number;
-  
+
 
   constructor(private songUserService: SongUserService) { }
 
@@ -23,7 +23,7 @@ export class TopSongsComponent implements OnInit {
     this.getFiveSongsByViews();
   }
 
-  private buildFilters():string | undefined {
+  private buildFilters(): string | undefined {
     const filters: string[] = [];
 
     if (this.styleId) {
@@ -50,24 +50,24 @@ export class TopSongsComponent implements OnInit {
   }
 
   getAllViews(): void {
-    const filters:string | undefined = this.buildFilters();
-    
+    const filters: string | undefined = this.buildFilters();
+
     this.songUserService.getAllVisualizations().subscribe({
-      next: (data: any) => { 
-        this.songs = data.content; 
+      next: (data: any) => {
+        this.songs = data.content;
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(err); }
     })
   }
 
   public getFiveSongsByViews(): void {
-    const filters:string | undefined = this.buildFilters();
-    
+    const filters: string | undefined = this.buildFilters();
+
     this.songUserService.getFiveSongsBylVisualizations(this.style).subscribe({
-      next: (data: any) => { 
-        this.songs = data.content; 
+      next: (songsRequest) => {
+        this.songs = songsRequest;
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(err); }
     })
   }
 

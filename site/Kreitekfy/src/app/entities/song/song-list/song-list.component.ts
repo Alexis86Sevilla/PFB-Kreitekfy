@@ -245,11 +245,13 @@ export class SongListComponent extends Pagination implements OnInit {
     });
   }
 
-  public getAllAlbums(event?: any): void {
+  public getAllAlbums(event: any): void {
+
     let albumSearch: string | undefined;
 
-    if (event?.query) {
+    if (event.query) {
       albumSearch = event.query;
+
     }
     this.albumService.getAllAlbumsFilter(albumSearch).subscribe({
       next: (albumsFiltered) => {

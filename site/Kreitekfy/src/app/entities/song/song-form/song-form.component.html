@@ -30,7 +30,8 @@
                     <div class="form-group">
                         <label for="image">Imagen</label>
                         <input type="file" class="form-control" id="image" (change)="includeImageInSong($event);">
-                        <div class="img-container"><img *ngIf="song.image" [src]="'data:image/jpeg;base64,' + song.image"></div>
+                        <div class="img-container"><img *ngIf="song.image"
+                                [src]="'data:image/jpeg;base64,' + song.image"></div>
                     </div>
 
                     <div class="form-group">
@@ -51,13 +52,13 @@
                             (completeMethod)="getAllAlbums($event)" field="name" (onSelect)="albumSelected();"
                             (onClear)="albumUnselected();" [required]="true" [forceSelection]="true">
                         </p-autoComplete>
-           
+
                         <label for="styleId">Estilo</label><br>
                         <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" [suggestions]="styles"
                             (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
                             (onClear)="styleUnselected();" [required]="true" [forceSelection]="true">
                         </p-autoComplete>
-                
+
                         <label for="artistId">Cantante</label> <br>
                         <p-autoComplete [(ngModel)]="selectedArtist" name="selectedArtist" [suggestions]="artists"
                             (completeMethod)="getAllArtists($event)" field="name" (onSelect)="artistSelected();"
@@ -65,8 +66,10 @@
                     </div>
 
                     <div id="opcionesCanciones">
-                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" [disabled]="songForm.invalid" (click)="saveSong()" [routerLink]="['/songs']"></button>
-                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/songs']"></button>
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
+                            [disabled]="songForm.invalid" (click)="saveSong()" [routerLink]="['/songs']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger"
+                            [routerLink]="['/songs']"></button>
                     </div>
 
                 </form>
