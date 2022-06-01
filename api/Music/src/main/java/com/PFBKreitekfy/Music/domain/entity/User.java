@@ -20,8 +20,7 @@ public class User {
     @Column(nullable = false)
     private Boolean isAdmin;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private Set<Rating> ratings;
+
 
 
 
@@ -51,11 +50,4 @@ public class User {
         isAdmin = admin;
     }
 
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
-    }
 }

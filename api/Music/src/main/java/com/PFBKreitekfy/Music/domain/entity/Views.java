@@ -16,11 +16,11 @@ public class Views {
     private Long quantity;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "song_id", nullable = false)
+    @JoinColumn(name = "song_id")
     private Song song;
 
     public Views() {

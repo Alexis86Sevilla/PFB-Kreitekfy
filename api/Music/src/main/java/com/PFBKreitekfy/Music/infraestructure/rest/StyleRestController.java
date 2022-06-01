@@ -25,12 +25,6 @@ public class StyleRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<StyleDTO> insertStyle(@RequestBody StyleDTO styleDTO) {
-        StyleDTO styleSaved = this.styleService.saveStyle(styleDTO);
-        return new ResponseEntity<>(styleSaved, HttpStatus.CREATED);
-    }
-    @CrossOrigin
     @GetMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<StyleDTO>> getAllStyles() {
         List<StyleDTO> styles = this.styleService.getAllStyles();
@@ -47,6 +41,14 @@ public class StyleRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @CrossOrigin
+    @PostMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<StyleDTO> insertStyle(@RequestBody StyleDTO styleDTO) {
+        StyleDTO styleSaved = this.styleService.saveStyle(styleDTO);
+        return new ResponseEntity<>(styleSaved, HttpStatus.CREATED);
+    }
+
+
 
     @CrossOrigin
     @DeleteMapping(value = "/styles/{styleId}")
