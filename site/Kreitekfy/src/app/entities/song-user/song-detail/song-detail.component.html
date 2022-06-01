@@ -13,7 +13,8 @@
                     <p>Estilo: {{song.styleName}}</p>
                     <p>Duración: {{song.duration}}</p>
                     <p>Valoración:</p> 
-                    <p-rating [stars]="4" [(ngModel)]="quantity" [cancel]="false" (click)="saveRating()"></p-rating><br>
+                    <p-rating *ngIf="rating" [stars]="4" [(ngModel)]="rating.quantity" [cancel]="false" (click)="saveRating()"></p-rating><br>
+                    <p-rating *ngIf="!rating" [stars]="4" [(ngModel)]="quantity" [cancel]="false" (click)="saveRating()"></p-rating><br>
                     <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success"(click)="saveViews();"></button>
                 </div>
             </div>

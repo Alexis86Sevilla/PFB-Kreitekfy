@@ -53,7 +53,7 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/ratings/{songId}/{userId}/{quantity}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<RatingDTO> updateRating(@PathVariable Long songId, @PathVariable Long userId, @PathVariable Long quantity) {
         RatingDTO ratingDTO = new RatingDTO(songId, userId, quantity);
         RatingDTO ratingUpdated = this.ratingService.saveRate(ratingDTO);
