@@ -3,8 +3,6 @@ export class Song {
     name: string | undefined;
     duration: number;
     dateLaunch: Date;
-    valoration: number;
-    visualizations: number;
     albumId?: number;
     albumName?: string;
     albumDescription?: string;
@@ -20,8 +18,6 @@ export class Song {
     name: string, 
     duration: number, 
     dateLaunch: Date, 
-    valoration: number, 
-    visualizations: number, 
     albumId?: number, 
     albumName?: string, 
     artistId?: number, 
@@ -35,8 +31,6 @@ export class Song {
     this.name = name
     this.duration = duration
     this.dateLaunch = dateLaunch
-    this.valoration = valoration
-    this.visualizations = visualizations
     this.albumId = albumId
     this.albumName = albumName
     this.albumDescription = albumDescription

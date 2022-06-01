@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="buttonsForm">
-                        <button class="btn btn-primary" (click)="saveAlbum()" [disabled]="albumForm.invalid">Guardar</button>
+                        <button class="btn btn-primary" (click)="saveAlbum() " [disabled]="albumForm.invalid" [routerLink]="['/albums']">Guardar</button>
                         <button class="btn btn-primary" [routerLink]="['/albums']">Volver</button>
                     </div>
 

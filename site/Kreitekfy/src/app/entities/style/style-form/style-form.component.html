@@ -28,7 +28,7 @@
 
                     <div class="buttonsForm">
                         <button class="btn btn-primary" [disabled]="styleForm.invalid"
-                            (click)="saveStyle()">Guardar</button>
+                            (click)="saveStyle()"[routerLink]="['/styles']">Guardar</button>
                         <button class="btn btn-primary" [routerLink]="['/styles']">Volver</button>
                     </div>
 
