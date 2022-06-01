@@ -68,10 +68,10 @@
                             (completeMethod)="getAllArtists($event)" field="name" (onSelect)="artistSelected();"
                             (onClear)="artistUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                     </div>
-
+                    <p-messages></p-messages>
                     <div id="opcionesCanciones">
                         <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
-                            [disabled]="songForm.invalid" (click)="saveSong()" [routerLink]="['/songs']"></button>
+                            [disabled]="songForm.invalid" (click)="saveSong()"></button>
                         <button pButton pRipple type="button" label="Volver" class="p-button-danger"
                             [routerLink]="['/songs']"></button>
                     </div>

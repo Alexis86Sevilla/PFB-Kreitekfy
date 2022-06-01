@@ -27,10 +27,10 @@
                             Este campo debe tener una longitud mínima de 3 caracteres
                         </small>
                     </div>
-
+                    <p-messages></p-messages>
                     <div class="buttonsForm">
                         <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
-                            [disabled]="styleForm.invalid" (click)="saveStyle()" [routerLink]="['/styles']"></button>
+                            [disabled]="styleForm.invalid" (click)="saveStyle()"></button>
                         <button pButton pRipple type="button" label="Volver" class="p-button-danger"
                             [routerLink]="['/styles']"></button>
                     </div>

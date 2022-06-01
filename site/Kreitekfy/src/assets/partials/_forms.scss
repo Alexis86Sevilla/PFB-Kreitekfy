@@ -3,7 +3,7 @@
 .row {
   background-color: $primaryColor;
   color: $fontColor;
-  m-height: 700px;
+  min-height: 700px;
 
   h2 {
     margin-top: 2%;
@@ -73,5 +73,6 @@
     }   
 
   }
+
 
 }
