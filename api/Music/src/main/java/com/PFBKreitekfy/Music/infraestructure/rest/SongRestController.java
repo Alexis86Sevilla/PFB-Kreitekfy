@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +21,14 @@ import java.util.Optional;
 public class SongRestController {
 
     private final SongService songService;
-    private final ViewsService viewsService;
+
+    private final ViewsService viewService;
     private final RatingService ratingService;
+
     @Autowired
-    public SongRestController(SongService songService, ViewsService viewsService, RatingService ratingService) {
+    public SongRestController(SongService songService, ViewsService viewService, RatingService ratingService) {
         this.songService = songService;
-        this.viewsService = viewsService;
+        this.viewService = viewService;
         this.ratingService = ratingService;
     }
 
@@ -95,6 +97,23 @@ public class SongRestController {
     @GetMapping(value = "/songs_filter", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getAllSongs() {
         List<SongDTO> songs = this.songService.getAllSongs();
+        return new ResponseEntity<>(songs, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/songs/views", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByViews () {
+        List<ViewsDTO> viewsDTOS = viewService.getAllViews();
+        Collections.sort(viewsDTOS, Collections.reverseOrder());
+        List<Optional<SongDTO>> songs = new ArrayList<>();
+        for(ViewsDTO vistas : viewsDTOS){
+            for(int i=0; i<5; i++){
+                Optional<SongDTO> songDTO = songService.getSongById(vistas.getSongId());
+                songs.add(songDTO);
+            }
+
+            System.out.println(vistas);
+        }
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
