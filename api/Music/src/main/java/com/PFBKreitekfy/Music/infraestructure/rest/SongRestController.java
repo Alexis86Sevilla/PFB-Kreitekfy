@@ -14,10 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @RestController
 public class SongRestController {
@@ -112,25 +110,39 @@ public class SongRestController {
     @GetMapping(value = "/songs_views", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByViews () {
         List<ViewsDTO> viewsDTOS = viewService.getAllViews();
-        //Collections.sort(viewsDTOS, Collections.reverseOrder());
+        Collections.sort(viewsDTOS, new Comparator<ViewsDTO>() {
+            @Override
+            public int compare(ViewsDTO o1, ViewsDTO o2) {
+                return o1.getQuantity().compareTo(o2.getQuantity());
+            }
+        });
+        Collections.reverse(viewsDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
-        for(ViewsDTO views : viewsDTOS){
-            Optional<SongDTO> songDTO = songService.getSongById(views.getSongId());
+        for( int i = 0; i<5; i++){
+            Optional<SongDTO> songDTO = songService.getSongById(viewsDTOS.get(i).getSongId());
             songs.add(songDTO);
         }
+
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping(value = "/songs_ratings", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByRatings () {
-        List<RatingDTO> ratingsDTOS = ratingService.getAllRatings();
-        //Collections.sort(viewsDTOS, Collections.reverseOrder());
+        List<RatingDTO> ratingDTOS = ratingService.getAllRatings();
+        Collections.sort(ratingDTOS, new Comparator<RatingDTO>() {
+            @Override
+            public int compare(RatingDTO o1, RatingDTO o2) {
+                return o1.getQuantity().compareTo(o2.getQuantity());
+            }
+        });
+        Collections.reverse(ratingDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
-        for(RatingDTO ratings : ratingsDTOS){
-            Optional<SongDTO> songDTO = songService.getSongById(ratings.getSongId());
+        for( int i = 0; i<5; i++){
+            Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
             songs.add(songDTO);
         }
+
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 }

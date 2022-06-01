@@ -53,7 +53,7 @@ export class NewsComponent extends Pagination implements OnInit {
   public getNewSongs(): void {
     const filters:string | undefined = this.buildFilters();
     
-    this.songUserService.getAllNewSongs().subscribe({
+    this.songUserService.getAllNewSongs(this.style).subscribe({
       next: (data: any) => {
         this.songs = data.content;
       },

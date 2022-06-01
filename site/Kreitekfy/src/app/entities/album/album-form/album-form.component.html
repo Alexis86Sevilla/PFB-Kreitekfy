@@ -6,38 +6,46 @@
             <div id="formulario">
                 <form *ngIf="album" #albumForm="ngForm" name="albumForm" role="form" novalidate autocomplete="off">
 
-                    <div class="form-group">
-                        <label class="form-label" for="number">Id</label>
-                        <input type="number" [(ngModel)]="album.id" name="id" class="form-control" id="id"
-                            #name="ngModel" disabled>
+                    <div class="form-group id">
+                        <span class="p-float-label">
+
+                            <input type="number" [(ngModel)]="album.id" name="id" class="form-control" id="id"
+                                #name="ngModel" disabled>
+                            <label class="form-label" for="number">Id</label>
+                        </span>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="name">Nombre</label>
-                        <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name"
-                            #nombre="ngModel" minlength="3" required>
+                        <span class="p-float-label">
+                            <input type="text" [(ngModel)]="album.name" name="name" class="form-control" id="name"
+                                #nombre="ngModel" minlength="3" pInputText required>
+                            <label for="name">Nombre</label>
+                        </span>
                     </div>
-                    
+
                     <div *ngIf="(nombre.dirty && nombre.errors)">
-                        <small class=" form-text text-danger"
-                        *ngIf="nombre.errors['required']">
-                        Este campo es requerido
+                        <small class=" form-text text-danger" *ngIf="nombre.errors['required']">
+                            Este campo es requerido
                         </small>
-                        <small class="form-text text-danger"
-                        *ngIf="nombre.errors['minlength']">
-                        Este campo debe tener una longitud mínima de 3 caracteres
+                        <small class="form-text text-danger" *ngIf="nombre.errors['minlength']">
+                            Este campo debe tener una longitud mínima de 3 caracteres
                         </small>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="name">Descripción</label>
-                        <input type="text" [(ngModel)]="album.description" name="description" class="form-control"
-                            id="description" #name="ngModel">
+                        <span class="p-float-label">
+
+                            <input type="text" [(ngModel)]="album.description" name="description" class="form-control"
+                                id="description" #name="ngModel" pInputText>
+                            <label class="form-label" for="name">Descripción</label>
+                        </span>
                     </div>
 
                     <div class="buttonsForm">
-                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" (click)="saveAlbum() " [disabled]="albumForm.invalid" [routerLink]="['/albums']"></button>
-                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/albums']"></button>
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
+                            (click)="saveAlbum() " [disabled]="albumForm.invalid" [routerLink]="['/albums']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger"
+                            [routerLink]="['/albums']"></button>
                     </div>
 
                 </form>

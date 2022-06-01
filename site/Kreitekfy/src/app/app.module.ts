@@ -7,6 +7,7 @@ import {MessageModule} from 'primeng/message';
 import {ButtonModule} from 'primeng/button';
 import {RatingModule} from 'primeng/rating';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,7 +83,8 @@ import { SongDetailComponent } from './entities/song-user/song-detail/song-detai
     MessageModule,
     MessagesModule,
     ButtonModule,
-    RatingModule
+    RatingModule,
+    InputTextModule
   ],
   providers: [
     {

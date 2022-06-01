@@ -6,16 +6,19 @@
             <div id="formulario">
                 <form *ngIf="artist" #artistForm="ngForm" name="artistForm" role="form" novalidate autocomplete="off">
 
-                    <div class="form-group">
+                    <div class="form-group id">
                         <label class="form-label" for="number">Id</label>
                         <input type="number" [(ngModel)]="artist.id" name="id" class="form-control" id="id"
                             #name="ngModel">
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="name">Nombre</label>
-                        <input type="text" [(ngModel)]="artist.name" name="name" class="form-control" id="name"
-                            #nombre="ngModel" minlength="3" required>
+                        <span class="p-float-label">
+
+                            <input type="text" [(ngModel)]="artist.name" name="name" class="form-control" id="name"
+                                #nombre="ngModel" minlength="3" pInputText required>
+                            <label class="form-label" for="name">Nombre</label>
+                        </span>
                     </div>
                     <div *ngIf="(nombre.dirty && nombre.errors)">
                         <small class=" form-text text-danger" *ngIf="nombre.errors['required']">
@@ -27,8 +30,10 @@
                     </div>
 
                     <div class="buttonsForm">
-                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" [disabled]="artistForm.invalid" (click)="saveArtist()" [routerLink]="['/artists']"></button>
-                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/artists']"></button>
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
+                            [disabled]="artistForm.invalid" (click)="saveArtist()" [routerLink]="['/artists']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger"
+                            [routerLink]="['/artists']"></button>
                     </div>
 
                 </form>
