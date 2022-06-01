@@ -29,10 +29,8 @@
         </div>
 
         <div id="botonera">
-           <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Usuarios
-            </button>-->
-            <button pButton pRipple type="button" label="Danger" class="p-button-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+            <button pButton pRipple type="button" label="Usuarios" class="p-button-danger" data-bs-toggle="modal"
+                data-bs-target="#exampleModal"></button>
         </div>
     </div>
 </nav>
@@ -44,7 +42,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Seleccione su usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <img class="user img-fluid"
@@ -52,13 +51,14 @@
                     alt="usuario">
             </div>
             <div id="modal-buttons">
-                <button class="btn btn-info" (click)="toggleToAdmin()" data-bs-dismiss="modal">Administrador</button>
-                <button class="btn btn-info" (click)="toggleToUser()" data-bs-dismiss="modal">Ana</button>
-                <button class="btn btn-info" (click)="toggleToUser()" data-bs-dismiss="modal">María</button>
-                <button class="btn btn-info" (click)="toggleToUser()" data-bs-dismiss="modal">Paco</button>
+                <button pButton pRipple type="button" (click)="toggleToAdmin()" label="Administrador" class="p-button-raised p-button-danger p-button-text" data-bs-dismiss="modal"></button>
+                <button pButton pRipple type="button" (click)="toggleToUser()" label="Ana" class="p-button-raised p-button-danger p-button-text" data-bs-dismiss="modal"></button>
+                <button pButton pRipple type="button" (click)="toggleToUser()"  label="María" class="p-button-raised p-button-danger p-button-text" data-bs-dismiss="modal"></button>
+                <button pButton pRipple type="button" (click)="toggleToUser()"  label="Paco" class="p-button-raised p-button-danger p-button-text" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button pButton pRipple type="button" label="Cerrar" class="p-button-danger"
+                    data-bs-dismiss="modal"></button>
             </div>
         </div>
     </div>
