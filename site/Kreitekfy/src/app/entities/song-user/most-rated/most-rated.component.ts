@@ -58,11 +58,11 @@ export class MostRatedComponent implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
-  }*/
+  }
 
   private handleError(error: any): void {
     console.log(error);
-  }
+  }*/
 
   
 }
