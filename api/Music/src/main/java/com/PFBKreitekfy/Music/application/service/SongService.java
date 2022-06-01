@@ -2,6 +2,7 @@ package com.PFBKreitekfy.Music.application.service;
 
 
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
+import com.PFBKreitekfy.Music.domain.entity.Artist;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -25,5 +26,7 @@ public interface SongService {
     List<SongDTO> getSongsByAlbum(Long albumId);
 
     Page<SongDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter);
+
+    List<SongDTO> getSongsByName(String partialName);
 
 }

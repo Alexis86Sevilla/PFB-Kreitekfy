@@ -25,9 +25,15 @@ public class StyleRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/styles", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<StyleDTO>> getAllStyles() {
-        List<StyleDTO> styles = this.styleService.getAllStyles();
+    @GetMapping(value = "/styles", produces = "application/json")
+    ResponseEntity<List<StyleDTO>> getAllStyles(@RequestParam(name = "partialName", required = false) String partialName) {
+        List<StyleDTO> styles;
+
+        if (partialName == null) {
+            styles = this.styleService.getAllStyles();
+        } else {
+            styles = this.styleService.getStylesByName(partialName);
+        }
         return new ResponseEntity<>(styles, HttpStatus.OK);
     }
     @CrossOrigin

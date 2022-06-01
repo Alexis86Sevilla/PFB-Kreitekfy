@@ -1,5 +1,6 @@
 package com.PFBKreitekfy.Music.infraestructure.persistence;
 
+import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.entity.Style;
 import com.PFBKreitekfy.Music.domain.persistence.StylePersistence;
 import com.PFBKreitekfy.Music.infraestructure.specs.ArtistSpecification;
@@ -47,5 +48,10 @@ public class StylePersistenceImpl implements StylePersistence {
     public Page<Style> findAll(Pageable pageable, String filter) {
         StyleSpecification specification = new StyleSpecification(SearchCriteriaHelper.fromFilterString(filter));
         return this.styleRepository.findAll(specification, pageable);
+    }
+
+    @Override
+    public List<Style> getStylesByName(String partialName) {
+        return this.styleRepository.findByNameContainsIgnoreCase(partialName);
     }
 }

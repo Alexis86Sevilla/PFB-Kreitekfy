@@ -1,6 +1,7 @@
 package com.PFBKreitekfy.Music.domain.persistence;
 
 
+import com.PFBKreitekfy.Music.domain.entity.Artist;
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,9 @@ public interface SongPersistence {
     List<Song> getSongsByAlbum(Long albumId);
 
     Page<Song> findAll(Pageable pageable, String filter);
+
+    List<Song> getSongsByName(String partialName);
+
 
 
 }

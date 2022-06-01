@@ -63,4 +63,9 @@ public class SongPersistenceImpl implements SongPersistence {
         return this.songRepository.findAll(specification, pageable);
     }
 
+    @Override
+    public List<Song> getSongsByName(String partialName) {
+        return this.songRepository.findByNameContainsIgnoreCase(partialName);
+    }
+
 }

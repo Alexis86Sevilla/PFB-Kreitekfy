@@ -52,4 +52,10 @@ public class StyleServiceImpl implements StyleService {
         Page<Style> stylePage = this.persistence.findAll(pageable, filter);
         return stylePage.map(mapper::toDto);
     }
+
+    @Override
+    public List<StyleDTO> getStylesByName(String partialName) {
+        List<Style> styles = this.persistence.getStylesByName(partialName);
+        return mapper.toDto(styles);
+    }
 }

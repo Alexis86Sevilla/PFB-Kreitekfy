@@ -52,4 +52,10 @@ public class ArtistServiceImpl implements ArtistService {
         Page<Artist> artistPage = this.persistence.findAll(pageable, filter);
         return artistPage.map(mapper::toDto);
     }
+
+    @Override
+    public List<ArtistDTO> getArtistsByName(String partialName) {
+        List<Artist> artists = this.persistence.getArtistsByName(partialName);
+        return mapper.toDto(artists);
+    }
 }

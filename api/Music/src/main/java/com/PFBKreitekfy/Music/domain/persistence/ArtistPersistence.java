@@ -20,4 +20,6 @@ public interface ArtistPersistence {
     void deleteArtist(Long artistId);
 
     Page<Artist> findAll(Pageable pageable, String filter);
+
+    List<Artist> getArtistsByName(String partialName);
 }

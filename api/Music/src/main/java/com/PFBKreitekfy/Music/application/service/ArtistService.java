@@ -19,4 +19,6 @@ public interface ArtistService {
     void deleteArtist(Long artistId);
 
     Page<ArtistDTO> getArtistsByCriteriaStringPaged(Pageable pageable, String filter);
+
+    List<ArtistDTO> getArtistsByName(String partialName);
 }

@@ -20,5 +20,5 @@ public interface AlbumService {
 
     Page<AlbumDTO> getAlbumsByCriteriaStringPaged(Pageable pageable, String filter);
 
-    List<AlbumDTO> getAllAlbumsByName(String partialName);
+    List<AlbumDTO> getAlbumsByName(String partialName);
 }

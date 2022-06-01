@@ -3,6 +3,7 @@ package com.PFBKreitekfy.Music.application.service;
 
 
 import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
+import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.dto.StyleDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,6 @@ public interface StyleService {
     void deleteStyle(Long styleId);
 
     Page<StyleDTO> getStylesByCriteriaStringPaged(Pageable pageable, String filter);
+
+    List<StyleDTO> getStylesByName(String partialName);
 }

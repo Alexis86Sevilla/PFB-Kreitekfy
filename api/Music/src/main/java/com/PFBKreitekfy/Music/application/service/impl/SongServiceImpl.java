@@ -3,6 +3,7 @@ package com.PFBKreitekfy.Music.application.service.impl;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.mapper.SongMapper;
 import com.PFBKreitekfy.Music.application.service.SongService;
+import com.PFBKreitekfy.Music.domain.entity.Artist;
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,12 @@ public class SongServiceImpl implements SongService {
     public Page<SongDTO> getSongsByCriteriaStringPaged(Pageable pageable, String filter) {
         Page<Song> songPage = this.persistence.findAll(pageable, filter);
         return songPage.map(mapper::toDto);
+    }
+
+    @Override
+    public List<SongDTO> getSongsByName(String partialName) {
+        List<Song> songs = this.persistence.getSongsByName(partialName);
+        return mapper.toDto(songs);
     }
 
 }

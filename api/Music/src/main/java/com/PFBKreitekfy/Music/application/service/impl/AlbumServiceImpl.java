@@ -54,8 +54,8 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<AlbumDTO> getAllAlbumsByName(String partialName) {
-        List<Album> categories = this.persistence.getAlbumsByName(partialName);
-        return mapper.toDto(categories);
+    public List<AlbumDTO> getAlbumsByName(String partialName) {
+        List<Album> albums = this.persistence.getAlbumsByName(partialName);
+        return mapper.toDto(albums);
     }
 }
