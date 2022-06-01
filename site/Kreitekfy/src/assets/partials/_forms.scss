@@ -3,7 +3,7 @@
 .row {
   background-color: $primaryColor;
   color: $fontColor;
-  min-height: 500px;
+  min-height: 700px;
 
   h2 {
     margin-top: 2%;
@@ -26,19 +26,29 @@
     margin-bottom: 2%;
     border-radius: 2%;
 
-    .img-container{
+    input {
+      margin-top: 4%;
+    }
+
+    .id {
+      display: none;
+    }
+
+    .img-container {
       margin-top: 2%;
       text-align: center;
-      img{
-      
+
+      img {
+
         width: 50%;
       }
     }
-   
 
-    .form-group, .p-inputgroup {
+
+    .form-group,
+    .p-inputgroup {
       margin-top: 2%;
-      
+
     }
 
     .buttonsForm {
@@ -57,6 +67,12 @@
     .ng-invalid:not(form) {
       border-left: 5px solid red;
     }
+
+    p-autocomplete.ng-invalid {
+      border-left: 0 none;
+    }
+
+  
   }
 
 

@@ -6,17 +6,21 @@
             <div id="formulario">
                 <form *ngIf="song" #songForm="ngForm" name="songForm" role="form" novalidate autocomplete="off">
 
-                    <div class="form-group">
+                    <div class="form-group id">
                         <label for="id">Id</label>
                         <input disabled type="number" [(ngModel)]="song.id" name="id" class="form-control" id="id"
                             #id="ngModel">
                     </div>
 
+
                     <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name"
-                            #name="ngModel" required minlength="3" maxlength="100">
+                        <span class="p-float-label">
+                            <input type="text" [(ngModel)]="song.name" name="name" class="form-control" id="name"
+                                #name="ngModel" required minlength="3" maxlength="100" pInputText>
+                            <label for="name">Nombre</label>
+                        </span>
                     </div>
+
 
                     <div *ngIf="(name.dirty && name.errors)">
                         <small class="form-tex text-danger" *ngIf="name.errors['required']">
@@ -48,7 +52,7 @@
 
                     <div class="form-group">
                         <label for="albumId">Disco</label><br>
-                        <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
+                        <p-autoComplete class="ng-invalid ng-dirty" [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
                             (completeMethod)="getAllAlbums($event)" field="name" (onSelect)="albumSelected();"
                             (onClear)="albumUnselected();" [required]="true" [forceSelection]="true">
                         </p-autoComplete>

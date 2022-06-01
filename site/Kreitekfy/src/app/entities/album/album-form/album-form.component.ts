@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../model/album.model';
 import { AlbumService } from '../service/album.service';
-import {MessageService} from 'primeng/api';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-album-form',
   templateUrl: './album-form.component.html',
-  styleUrls: ['./album-form.component.scss']
+  styleUrls: ['./album-form.component.scss'],
 })
 export class AlbumFormComponent implements OnInit {
   albumId?: number;
