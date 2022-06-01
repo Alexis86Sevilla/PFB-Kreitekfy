@@ -33,7 +33,13 @@ export class SongUserService {
   }
 
 
-  public getSongsByRating(style?: Style | undefined
+  public getAllRating(): Observable<Rating[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'ratings';
+      return this.http.get<Rating[]>(urlEndpoint);
+  }
+
+  public getFiveSongsByRating(style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
         this.baseUri + 'songs/ratings';
@@ -68,10 +74,18 @@ export class SongUserService {
     return this.http.patch<Views>(urlEndpoint, songId);
   }
 
-  public getSongsByVisualizations(style?: Style | undefined
+  public getAllVisualizations(
+    ): Observable<Views[]> {
+      let urlEndpoint: string =
+        this.baseUri + 'views';
+      return this.http.get<Views[]>(urlEndpoint);
+  }
+
+  public getFiveSongsBylVisualizations(
+    style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
-        this.baseUri + 'songs/visualizations';
+        this.baseUri + 'songs/views';
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }

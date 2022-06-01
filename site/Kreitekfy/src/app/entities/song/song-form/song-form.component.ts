@@ -226,8 +226,6 @@ export class SongFormComponent implements OnInit {
       name: song.name,
       duration: song.duration,
       dateLaunch: song.dateLaunch,
-      valoration: song.valoration,
-      visualizations: song.visualizations,
       Album: new Album(song.albumId!, song.albumName!, song.albumDescription!),
       Artist: new Artist(song.artistId!, song.artistName!),
       Style: new Style(song.styleId!, song.styleName!)
@@ -241,8 +239,6 @@ export class SongFormComponent implements OnInit {
       name: this.songForm?.get(['name'])!.value,
       duration: this.songForm?.get(['duration'])!.value,
       dateLaunch: this.songForm?.get(['dateLaunch'])!.value,
-      valoration: this.songForm?.get(['valoration'])!.value,
-      visualizations: this.songForm?.get(['visualizations'])!.value,
       albumId: this.songForm?.get(['album'])!.value.id,
       albumName: this.songForm?.get(['album'])!.value.name,
       albumDescription: this.songForm?.get(['album'])!.value.description,
@@ -255,7 +251,7 @@ export class SongFormComponent implements OnInit {
   }
 
   private initializeSong(): void {
-    this.song = new Song(undefined, "", 0, new Date, 0, 0);
+    this.song = new Song(undefined, "", 0, new Date);
   }
 
   private handleError(error: any): void {

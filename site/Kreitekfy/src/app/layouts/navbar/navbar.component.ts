@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +11,10 @@ export class NavbarComponent implements OnInit {
 
   isAdmin: boolean = false;
 
-  constructor(private primengConfig: PrimeNGConfig) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+   
   }
 
   public toggleToAdmin(): void {

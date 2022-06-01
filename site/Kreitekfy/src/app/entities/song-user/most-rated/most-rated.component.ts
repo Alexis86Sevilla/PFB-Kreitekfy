@@ -20,7 +20,7 @@ export class MostRatedComponent implements OnInit {
   constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
-    //this.getSongsByValoration();
+    this.getAllRatings();
   }
 
   private buildFilters():string | undefined {
@@ -49,10 +49,21 @@ export class MostRatedComponent implements OnInit {
 
   }
 
-  /*getSongsByValoration(): void {
+  getAllRatings(): void {
     const filters:string | undefined = this.buildFilters();
     
-    this.songUserService.getSongsByRating(this.style).subscribe({
+    this.songUserService.getAllRating().subscribe({
+      next: (data: any) => { 
+        this.songs = data.content; 
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
+  getFiveSongsByRatings(): void {
+    const filters:string | undefined = this.buildFilters();
+    
+    this.songUserService.getFiveSongsByRating(this.style).subscribe({
       next: (data: any) => { 
         this.songs = data.content; 
       },
@@ -62,7 +73,10 @@ export class MostRatedComponent implements OnInit {
 
   private handleError(error: any): void {
     console.log(error);
-  }*/
+  }
 
+  getSongsByRating(): void {
+    
+  }
   
 }

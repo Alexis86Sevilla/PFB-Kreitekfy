@@ -64,10 +64,9 @@
                             (onClear)="artistUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
                     </div>
 
-                    <div class="buttonsForm">
-                        <button class="btn btn-primary" (click)="saveSong()"
-                            [disabled]="songForm.invalid">Guardar</button>
-                        <button class="btn btn-primary" [routerLink]="['/songs']">Volver</button>
+                    <div id="opcionesCanciones">
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" [disabled]="songForm.invalid" (click)="saveSong()" [routerLink]="['/songs']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/songs']"></button>
                     </div>
 
                 </form>

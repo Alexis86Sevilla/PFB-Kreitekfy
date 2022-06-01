@@ -33,12 +33,13 @@ export class SongDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.songId = +this.router.snapshot.paramMap.get("songId")!;
     this.userId = +this.router.snapshot.paramMap.get("userId")!;
-    this.getSongById(this.songId);
-    //this.primengConfig.ripple = true;
-    this.getViews(this.songId, this.userId);
     this.getRating(this.songId, this.userId);
+    this.getSongById(this.songId);
+    this.getViews(this.songId, this.userId);
+    
   }
 
   public getSongById(songId: number): void {

@@ -2,7 +2,8 @@
     <div class="row contenido">
         <div class="col-md-12">
             <h3>Lista de Albumes</h3>
-            <button class="btn btn-primary" [routerLink]="['/albums','new']">Crear nuevo álbum</button>
+            <button pButton pRipple type="button" [routerLink]="['/albums','new']" label="Crear nuevo álbum"
+                class="p-button-danger"></button>
             <table class="table table-light table-hover table-striped " *ngIf="albums.length > 0">
                 <thead>
                     <th>Nombre</th>
@@ -14,20 +15,24 @@
                         <td class="align-middle">{{ album.name }}</td>
                         <td class="align-middle">{{ album.description }}</td>
                         <td class="align-middle">
-                            <button class="btn btn-primary" id="btnDeleteAlbum" data-bs-toggle="modal"
-                                data-bs-target="#askConfirmationDelete"
-                                (click)="prepareAlbumToDelete(album.id!);">Eliminar</button>
-                                <button class="btn btn-primary" id="btnDeleteAlbum"
-                                [routerLink]="['/albums',album.id]">Editar</button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-danger"
+                                id="btnDeleteAlbum" data-bs-toggle="modal" data-bs-target="#askConfirmationDelete"
+                                (click)="prepareAlbumToDelete(album.id!);"></button>
+                            <button pButton pRipple type="button" label="Editar" class="p-button-danger"
+                                id="btnDeleteAlbum" [routerLink]="['/albums',album.id]"></button>
+
                         </td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="botoneraPaginacion">
-                <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previousPage()">Anterior</button>
+                <button [disabled]="first" pButton pRipple type="button" label="Anterior" (click)="previousPage()"
+                    class="p-button-danger">
+                </button>
                 <span>Pagina {{page + 1}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
-                <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
+                <button [disabled]="last" pButton pRipple type="button" label="Siguiente" class="p-button-danger"
+                    (click)="nextPage()"></button>
             </div>
 
             <!-- Modal -->
@@ -37,15 +42,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             ¿Desea eliminar el album seleccionado? Esta operación no puede deshacerse
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                (click)="deleteAlbum();">Eliminar</button>
+                            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"
+                            data-bs-dismiss="modal"></button>
+                          <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" data-bs-dismiss="modal"
+                            (click)="deleteAlbum();"></button>
                         </div>
                     </div>
                 </div>
