@@ -15,12 +15,12 @@ public class RatingDTO implements Serializable {
     public RatingDTO() {
     }
 
-    public RatingDTO(Long userId, Long songId) {
+    public RatingDTO(Long songId, Long userId) {
         this.userId = userId;
         this.songId = songId;
     }
 
-    public RatingDTO(Long userId, Long songId, Long quantity) {
+    public RatingDTO(Long songId, Long userId, Long quantity) {
         this.quantity = quantity;
         this.userId = userId;
         this.songId = songId;

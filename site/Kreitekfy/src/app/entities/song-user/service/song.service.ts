@@ -20,7 +20,7 @@ export class SongUserService {
     userId: number, 
     quantity: number
   ): Observable<Rating> {
-    let urlEndpoint: string = this.baseUri + "views/"+ + songId + "/" + userId + "/" + quantity;
+    let urlEndpoint: string = this.baseUri + "ratings/"+ + songId + "/" + userId + "/" + quantity;
     return this.http.patch<Rating>(urlEndpoint, songId);
   }
 
