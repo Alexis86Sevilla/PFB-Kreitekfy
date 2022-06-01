@@ -16,27 +16,35 @@ export class SongUserService {
   constructor(private http: HttpClient) { }
 
   public updateRating(rating: Rating): Observable<Rating> {
-    let urlEndpoint: string = this.baseUri + "rating/";
-    return this.http.patch<Views>(urlEndpoint, rating);
+    let urlEndpoint: string = this.baseUri + "ratings/";
+    return this.http.patch<Rating>(urlEndpoint, rating);
   }
 
   public getRatingById(
     songId: number,
     userId: number
   ): Observable<Rating>{
-    let urlEndpoint: string = this.baseUri + "raitings/" + songId + "/" + userId; 
+    let urlEndpoint: string = this.baseUri + "ratings/" + songId + "/" + userId; 
     return this.http.get<Rating>(urlEndpoint);
   }
 
 
-  public getSongsByValoration(style?: Style | undefined
+  public getSongsByRating(style?: Style | undefined
     ): Observable<Song[]> {
       let urlEndpoint: string =
-        this.baseUri + 'songs/valorations';
+        this.baseUri + 'songs/ratings';
       if (style) {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }
       return this.http.get<Song[]>(urlEndpoint);
+  }
+  
+  public insertRating(
+    songId: number,
+    userId: number
+  ): Observable<Rating> {
+    let urlEndpoint: string = this.baseUri + "ratings/"+ songId + "/" + userId;
+    return this.http.post<Rating>(urlEndpoint, songId);
   }
 
   public getViewsById(
@@ -45,14 +53,6 @@ export class SongUserService {
   ): Observable<Views>{
     let urlEndpoint: string = this.baseUri + "views/" + songId + "/" + userId;
     return this.http.get<Views>(urlEndpoint);
-  }
-
-  public insertViews(
-    songId: number,
-    userId: number
-  ): Observable<Views> {
-    let urlEndpoint: string = this.baseUri + "views/"+ songId + "/" + userId;
-    return this.http.post<Views>(urlEndpoint, songId);
   }
 
   public updateViews(
@@ -71,6 +71,14 @@ export class SongUserService {
         urlEndpoint = urlEndpoint + '?filter=style.id:EQUAL:' + style.id;
       }
       return this.http.get<Song[]>(urlEndpoint);
+  }
+
+  public insertViews(
+    songId: number,
+    userId: number
+  ): Observable<Views> {
+    let urlEndpoint: string = this.baseUri + "views/"+ songId + "/" + userId;
+    return this.http.post<Views>(urlEndpoint, songId);
   }
 
   public getAllNewSongs(style?: Style | undefined): Observable<Song[]> {

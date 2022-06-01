@@ -1,6 +1,7 @@
 package com.PFBKreitekfy.Music.infraestructure.persistence;
 
 import com.PFBKreitekfy.Music.domain.entity.Rating;
+import com.PFBKreitekfy.Music.domain.entity.RatingPK;
 import com.PFBKreitekfy.Music.domain.entity.Views;
 import com.PFBKreitekfy.Music.domain.persistence.RatingPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class RatingPersistenceImpl implements RatingPersistence {
     }
 
     @Override
-    public Optional<Rating> getRatingById(Long ratingId) {
+    public Optional<Rating> getRatingById(RatingPK ratingId) {
         return this.ratingRepository.findById(ratingId);
     }
 
@@ -30,7 +31,7 @@ public class RatingPersistenceImpl implements RatingPersistence {
     }
 
     @Override
-    public void deleteRating(Long ratingId) {
+    public void deleteRating(RatingPK ratingId) {
         this.ratingRepository.deleteById(ratingId);
     }
 

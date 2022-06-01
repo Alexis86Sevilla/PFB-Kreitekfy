@@ -95,6 +95,30 @@ export class SongDetailComponent implements OnInit {
     }
   }
 
+  private getRating(songId: number, userId: number): void{
+    this.songUserService.getRatingById(songId, userId).subscribe({
+      next: (ratingRequest) => {
+        this.rating = ratingRequest;
+        this.mode = "UPDATE";
+      },
+      error: (err) => { 
+        this.mode = "NEW";
+        this.handleError(err); }
+    })
+  }
+
+  private insertRating(songId?: number, userId?: number): void {
+    this.songUserService.insertRating(this.songId!, this.userId!).subscribe({
+      next: (ratingInserted) => {
+        console.log("Insertado correctamente");
+        console.log(ratingInserted);
+        this.mode = "UPDATE";
+      },
+      error: (err) => {this.handleError(err);}
+    })
+  }
+
+  
   public updateRating(): void {
     this.songUserService.updateRating(this.rating!).subscribe({
       next: (ratingUpdated) => {
@@ -103,6 +127,16 @@ export class SongDetailComponent implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
+  }
+
+  public saveRating(): void {
+    if (this.mode === "NEW") {
+      this.insertRating(this.songId, this.userId);
+    }
+
+    if (this.mode === "UPDATE") {
+      this.updateViews(this.songId, this.userId);
+    }
   }
 
   private handleError(error: any): void {
