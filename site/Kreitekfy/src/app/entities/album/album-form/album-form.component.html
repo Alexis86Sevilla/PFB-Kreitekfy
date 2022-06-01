@@ -3,6 +3,7 @@
         <div class="col-md-12 my-auto">
             <h2>Ficha de album</h2>
             <hr class="barra">
+
             <div id="formulario">
                 <form *ngIf="album" #albumForm="ngForm" name="albumForm" role="form" novalidate autocomplete="off">
 
@@ -40,10 +41,10 @@
                             <label class="form-label" for="name">Descripción</label>
                         </span>
                     </div>
-
+                    <p-messages></p-messages>
                     <div class="buttonsForm">
                         <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
-                            (click)="saveAlbum() " [disabled]="albumForm.invalid" [routerLink]="['/albums']"></button>
+                            (click)="saveAlbum()" [disabled]="albumForm.invalid"></button>
                         <button pButton pRipple type="button" label="Volver" class="p-button-danger"
                             [routerLink]="['/albums']"></button>
                     </div>

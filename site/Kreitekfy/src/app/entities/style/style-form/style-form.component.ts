@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Style } from '../model/style.model';
 import { StyleService } from '../service/style.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-style-form',
   templateUrl: './style-form.component.html',
-  styleUrls: ['./style-form.component.scss']
+  styleUrls: ['./style-form.component.scss'],
+  providers: [MessageService]
 })
 export class StyleFormComponent implements OnInit {
 
@@ -16,7 +18,7 @@ export class StyleFormComponent implements OnInit {
 
   style?: Style;
 
-  constructor(private route: ActivatedRoute, private styleService: StyleService) { }
+  constructor(private route: ActivatedRoute, private styleService: StyleService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     const entryParam: string = this.route.snapshot.paramMap.get("styleId") ?? "new"
@@ -43,27 +45,25 @@ export class StyleFormComponent implements OnInit {
   public insertStyle(): void {
     this.styleService.insert(this.style!).subscribe({
       next: (styleInserted) => {
-        console.log("Añadido correctamente");
-        console.log(styleInserted);
+        this.successAdd();
       },
-      error: (err) => { this.handleError(err); }
+      error: (err) => { this.handleError(); }
     })
   }
 
   public updateStyle(): void {
     this.styleService.update(this.style!).subscribe({
       next: (styleUpdated) => {
-        console.log("Añadido correctamente");
-        console.log(styleUpdated);
+        this.successUpdate();
       },
-      error: (err) => { this.handleError(err); }
+      error: (err) => { this.handleError(); }
     })
   }
 
   private getStyle(styleId: number) {
     this.styleService.getStyleById(this.styleId!).subscribe({
       next: (artistRequest) => { this.style = artistRequest },
-      error: (err) => { this.handleError(err) }
+      error: (err) => { this.handleError() }
     })
   }
 
@@ -71,8 +71,20 @@ export class StyleFormComponent implements OnInit {
     this.style = new Style(undefined, "");
   }
 
-  private handleError(error: any): void {
-    console.log(error);
+  private handleError(): void {
+    this.errorMessage();
+  }
+
+  successUpdate() {
+    this.messageService.add({ severity: 'success', summary: 'Estilo actualizado', detail: 'Se ha actualizado correctamente' });
+  }
+
+  successAdd() {
+    this.messageService.add({ severity: 'success', summary: 'Estilo añadido', detail: 'Se ha insertado un nuevo estilo' });
+  }
+
+  errorMessage() {
+    this.messageService.add({ severity: 'error', summary: 'Error!', detail: 'Se ha producido un error. Asegúrate que todos los campos estén rellenos' });
   }
 
 }

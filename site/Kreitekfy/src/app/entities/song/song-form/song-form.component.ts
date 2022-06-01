@@ -9,11 +9,13 @@ import { Style } from '../../style/model/style.model';
 import { StyleService } from '../../style/service/style.service';
 import { Song } from '../model/song.model';
 import { SongService } from '../service/song.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-song-form',
   templateUrl: './song-form.component.html',
-  styleUrls: ['./song-form.component.scss']
+  styleUrls: ['./song-form.component.scss'],
+  providers: [MessageService]
 })
 export class SongFormComponent implements OnInit {
 
@@ -36,7 +38,8 @@ export class SongFormComponent implements OnInit {
     private styleService: StyleService, 
     private artistService: ArtistService, 
     private albumService: AlbumService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService: MessageService
     ) { }
 
   ngOnInit(): void {
@@ -61,7 +64,7 @@ export class SongFormComponent implements OnInit {
       next: (stylesFiltered) => {
         this.styles = stylesFiltered;
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     });
   }
 
@@ -75,7 +78,7 @@ export class SongFormComponent implements OnInit {
       next: (artistsFiltered) => {
         this.artists = artistsFiltered;
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     });
   }
 
@@ -89,7 +92,7 @@ export class SongFormComponent implements OnInit {
       next: (albumsFiltered) => {
         this.albums = albumsFiltered;
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     });
   }
 
@@ -100,6 +103,7 @@ export class SongFormComponent implements OnInit {
 
     if (this.mode === "UPDATE") {
       this.updateSong();
+      
     }
   }
 
@@ -136,20 +140,18 @@ export class SongFormComponent implements OnInit {
   private insertSong(): void {
     this.songService.insert(this.song!).subscribe({
       next: (songInserted) => {
-        console.log("Insertado correctamente");
-        console.log(songInserted);
+        this.successAdd();
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     })
   }
   
   private updateSong(): void {
     this.songService.update(this.song!).subscribe({
       next: (songUpdated) => {
-        console.log("Modificado correctamente");
-        console.log(songUpdated);
+        this.successUpdate();
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     })
   }
 
@@ -181,7 +183,7 @@ export class SongFormComponent implements OnInit {
         this.selectedArtist = new Artist(songRequest.artistId!, songRequest.artistName!);
         this.selectedStyle = new Style(songRequest.styleId!, songRequest.styleName!);
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => {this.handleError();}
     })
   }
    
@@ -213,13 +215,6 @@ export class SongFormComponent implements OnInit {
     }) 
   }
 
-  private buildForm():void {
-    this.songForm = this.fb.group({
-      id: [{value: undefined, disabled: true}],
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
-    })
-  }
-
   private updateForm(song: Song): void {
     this.songForm?.patchValue({
       id: song.id, 
@@ -232,29 +227,23 @@ export class SongFormComponent implements OnInit {
     });
   }
 
-  private createFromForm(): Song {
-    return {
-      ...this.song,
-      id: this.songForm?.get(['id'])!.value,
-      name: this.songForm?.get(['name'])!.value,
-      duration: this.songForm?.get(['duration'])!.value,
-      dateLaunch: this.songForm?.get(['dateLaunch'])!.value,
-      albumId: this.songForm?.get(['album'])!.value.id,
-      albumName: this.songForm?.get(['album'])!.value.name,
-      albumDescription: this.songForm?.get(['album'])!.value.description,
-      artistId: this.songForm?.get(['artist'])!.value.id,
-      artistName: this.songForm?.get(['artist'])!.value.name,
-      styleId: this.songForm?.get(['style'])!.value.id,
-      styleName: this.songForm?.get(['style'])!.value.name,
-      image: this.song!.image      
-    };
-  }
-
   private initializeSong(): void {
     this.song = new Song(undefined, "", 0, new Date);
   }
 
-  private handleError(error: any): void {
-    console.log(error);
+  private handleError(): void {
+    this.errorMessage();
+  }
+
+  successUpdate() {
+    this.messageService.add({ severity: 'success', summary: 'Canción actualizada', detail: 'Se ha actualizado correctamente' });
+  }
+
+  successAdd() {
+    this.messageService.add({ severity: 'success', summary: 'Canción añadida', detail: 'Se ha añadido una nueva canción' });
+  }
+
+  errorMessage() {
+    this.messageService.add({ severity: 'error', summary: 'Error!', detail: 'Se ha producido un error. Asegúrate que todos los campos estén rellenos' });
   }
 }

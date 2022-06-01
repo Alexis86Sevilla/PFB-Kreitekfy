@@ -28,10 +28,10 @@
                             Este campo debe tener una longitud mínima de 3 caracteres
                         </small>
                     </div>
-
+                    <p-messages></p-messages>
                     <div class="buttonsForm">
                         <button pButton pRipple type="button" label="Guardar" class="p-button-danger"
-                            [disabled]="artistForm.invalid" (click)="saveArtist()" [routerLink]="['/artists']"></button>
+                            [disabled]="artistForm.invalid" (click)="saveArtist()"></button>
                         <button pButton pRipple type="button" label="Volver" class="p-button-danger"
                             [routerLink]="['/artists']"></button>
                     </div>
