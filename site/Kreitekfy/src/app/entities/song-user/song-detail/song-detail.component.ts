@@ -6,7 +6,6 @@ import { SongUserService } from '../service/song.service';
 import { Style } from '../../style/model/style.model';
 import { Views } from '../../views/model/views.model';
 import { Rating } from '../../ratings/model/rating.model';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-song-detail',
@@ -28,8 +27,7 @@ export class SongDetailComponent implements OnInit {
   constructor(
     private songService: SongService, 
     private router: ActivatedRoute, 
-    private songUserService: SongUserService,
-    private primengConfig: PrimeNGConfig
+    private songUserService: SongUserService
     ) {
 
   }
@@ -38,8 +36,9 @@ export class SongDetailComponent implements OnInit {
     this.songId = +this.router.snapshot.paramMap.get("songId")!;
     this.userId = +this.router.snapshot.paramMap.get("userId")!;
     this.getSongById(this.songId);
-    this.primengConfig.ripple = true;
+    //this.primengConfig.ripple = true;
     this.getViews(this.songId, this.userId);
+    this.getRating(this.songId, this.userId);
   }
 
   public getSongById(songId: number): void {
@@ -108,8 +107,8 @@ export class SongDetailComponent implements OnInit {
     })
   }
 
-  private insertRating(): void {
-    this.songUserService.insertRating(this.rating!).subscribe({
+  private insertRating(songId?: number, userId?: number, quantity?: number): void {
+    this.songUserService.insertRating(this.songId!, this.userId!, this.quantity!).subscribe({
       next: (ratingInserted) => {
         console.log("Insertado correctamente");
         console.log(ratingInserted);
@@ -120,8 +119,8 @@ export class SongDetailComponent implements OnInit {
   }
 
   
-  public updateRating(): void {
-    this.songUserService.updateRating(this.rating!).subscribe({
+  public updateRating(songId?: number, userId?: number, quantity?: number): void {
+    this.songUserService.updateRating(this.songId!, this.userId!, this.quantity!).subscribe({
       next: (ratingsUpdated) => {
         console.log("Actualizado correctamente");
         console.log(ratingsUpdated);

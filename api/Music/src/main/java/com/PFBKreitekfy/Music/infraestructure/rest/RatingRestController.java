@@ -38,7 +38,7 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/ratings/{songId}/{userId}/{quantity}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<RatingDTO> insertRating(@PathVariable Long songId, @PathVariable Long userId, @PathVariable Long quantity) {
         RatingDTO ratingDTO = new RatingDTO(songId, userId, quantity);
         RatingDTO ratingSaved = this.ratingService.saveRate(ratingDTO);
