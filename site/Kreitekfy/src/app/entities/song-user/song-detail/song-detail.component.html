@@ -12,9 +12,7 @@
                     <p>Autor: {{song.artistName}}</p>
                     <p>Estilo: {{song.styleName}}</p>
                     <p>Duración: {{song.duration}}</p>
-                    <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success" ></button>
-
-    
+                    <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success"(click)="saveViews();"></button>
                 </div>
             </div>
 
