@@ -26,7 +26,9 @@
                     (completeMethod)="getAllSongsFilter($event)" field="name" (onSelect)="songSelected();"
                     (onClear)="songUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
             </div>
-            <button pButton pRipple type="button" label="Buscar" class="p-button-danger" (click)="searchByFilters()"></button>
+            <button pButton pRipple type="button" label="Buscar" class="p-button-danger" (click)="searchByFilters()">
+              <i class="pi pi-search" style="font-size: 1rem"></i>
+            </button>
             </div>
             
             <div class="table-responsive">
