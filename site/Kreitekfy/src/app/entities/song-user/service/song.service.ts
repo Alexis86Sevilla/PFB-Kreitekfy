@@ -15,8 +15,10 @@ export class SongUserService {
 
   constructor(private http: HttpClient) { }
 
-  public updateRating(rating: Rating): Observable<Rating> {
-    let urlEndpoint: string = this.baseUri + "ratings/";
+  public updateRating(
+    rating: Rating
+  ): Observable<Rating> {
+    let urlEndpoint: string = this.baseUri + "views/"+ rating.songId + "/" + rating.userId;
     return this.http.patch<Rating>(urlEndpoint, rating);
   }
 
@@ -40,11 +42,10 @@ export class SongUserService {
   }
   
   public insertRating(
-    songId: number,
-    userId: number
+    rating: Rating
   ): Observable<Rating> {
-    let urlEndpoint: string = this.baseUri + "ratings/"+ songId + "/" + userId;
-    return this.http.post<Rating>(urlEndpoint, songId);
+    let urlEndpoint: string = this.baseUri + "ratings/"+ rating.songId + "/" + rating.userId;
+    return this.http.post<Rating>(urlEndpoint, rating);
   }
 
   public getViewsById(

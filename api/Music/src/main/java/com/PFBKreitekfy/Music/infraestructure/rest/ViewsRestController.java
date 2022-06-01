@@ -47,9 +47,8 @@ public class ViewsRestController {
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/views/{songId}/{userId}")
-    ResponseEntity<?> deleteViewById(@PathVariable Long songId, @PathVariable Long userId) {
-        ViewsPK viewId = new ViewsPK(songId,userId);
+    @DeleteMapping(value = "/views/{viewId}")
+    ResponseEntity<?> deleteViewById(@PathVariable ViewsPK viewId) {
         this.viewsService.deleteViews(viewId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

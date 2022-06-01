@@ -18,6 +18,7 @@ export class SongDetailComponent implements OnInit {
   mode: "NEW" | "UPDATE" = "NEW";
   songId?: number;
   userId?: number;
+  quantity?: number;
   song!: Song;
   style?: Style;
   views?: Views;
@@ -107,8 +108,8 @@ export class SongDetailComponent implements OnInit {
     })
   }
 
-  private insertRating(songId?: number, userId?: number): void {
-    this.songUserService.insertRating(this.songId!, this.userId!).subscribe({
+  private insertRating(): void {
+    this.songUserService.insertRating(this.rating!).subscribe({
       next: (ratingInserted) => {
         console.log("Insertado correctamente");
         console.log(ratingInserted);
@@ -121,9 +122,9 @@ export class SongDetailComponent implements OnInit {
   
   public updateRating(): void {
     this.songUserService.updateRating(this.rating!).subscribe({
-      next: (ratingUpdated) => {
+      next: (ratingsUpdated) => {
         console.log("Actualizado correctamente");
-        console.log(ratingUpdated);
+        console.log(ratingsUpdated);
       },
       error: (err) => {this.handleError(err);}
     })
@@ -131,11 +132,11 @@ export class SongDetailComponent implements OnInit {
 
   public saveRating(): void {
     if (this.mode === "NEW") {
-      this.insertRating(this.songId, this.userId);
+      this.insertRating();
     }
 
     if (this.mode === "UPDATE") {
-      this.updateViews(this.songId, this.userId);
+      this.updateRating();
     }
   }
 
