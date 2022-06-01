@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Artist } from '../model/artist.model';
 import { ArtistService } from '../service/artist.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-artist-form',
   templateUrl: './artist-form.component.html',
-  styleUrls: ['./artist-form.component.scss']
+  styleUrls: ['./artist-form.component.scss'],
+  providers: [MessageService]
 })
 export class ArtistFormComponent implements OnInit {
 
   artistId?: number;
-  
+
   mode: "NEW" | "UPDATE" = "NEW";
 
   artist?: Artist;
 
-  constructor(private route: ActivatedRoute, private artistService: ArtistService) { }
+  constructor(private route: ActivatedRoute, private artistService: ArtistService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     const entryParam: string = this.route.snapshot.paramMap.get("artistId") ?? "new"
@@ -43,36 +45,46 @@ export class ArtistFormComponent implements OnInit {
   public insertArtist(): void {
     this.artistService.insert(this.artist!).subscribe({
       next: (artistInserted) => {
-        console.log("Añadido correctamente");
-        console.log(artistInserted);
+        this.successAdd();
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(); }
     })
   }
 
   public updateArtist(): void {
     this.artistService.update(this.artist!).subscribe({
       next: (artistUpdated) => {
-        console.log("Modificado correctamente");
-        console.log(artistUpdated);
+        this.successUpdate();
       },
-      error: (err) => {this.handleError(err);}
+      error: (err) => { this.handleError(); }
     })
   }
 
-  private getArtist(artistId:number){
+  private getArtist(artistId: number) {
     this.artistService.getArtistById(this.artistId!).subscribe({
-      next: (artistRequest) => {this.artist = artistRequest},
-      error: (err) => {this.handleError(err)}
+      next: (artistRequest) => { this.artist = artistRequest },
+      error: (err) => { this.handleError() }
     })
   }
 
-  private initializeArtist(): void{
+  private initializeArtist(): void {
     this.artist = new Artist(undefined, "");
   }
 
-  private handleError(error: any): void {
-    console.log(error);
+  private handleError(): void {
+    this.errorMessage();
+  }
+
+  successUpdate() {
+    this.messageService.add({ severity: 'success', summary: 'Artista actualizado', detail: 'Se ha actualizado correctamente' });
+  }
+
+  successAdd() {
+    this.messageService.add({ severity: 'success', summary: 'Artista añadido', detail: 'Se ha insertado un nuevo artista' });
+  }
+
+  errorMessage() {
+    this.messageService.add({ severity: 'error', summary: 'Error!', detail: 'Se ha producido un error. Asegúrate que todos los campos estén rellenos' });
   }
 
 }
