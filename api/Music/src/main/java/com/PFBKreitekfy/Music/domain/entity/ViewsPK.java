@@ -1,26 +1,23 @@
 package com.PFBKreitekfy.Music.domain.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.Positive;
+import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "ratings")
-@IdClass(value = RatingPK.class)
-public class Rating {
-
-
-    @Id
-    private Long userId;
-
-    @Id
-    private Long songId;
+public class ViewsPK implements Serializable {
 
     @Column
-    @Positive
-    private Long quantity;
+    private Long userId;
+    @Column
+    private Long songId;
 
-    public Rating() {
+    public ViewsPK(Long songId, Long userId) {
+        this.userId = userId;
+        this.songId = songId;
+    }
+
+    public ViewsPK(){
+
     }
 
     public Long getUserId() {
@@ -39,24 +36,16 @@ public class Rating {
         this.songId = songId;
     }
 
-    public Long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rating rating = (Rating) o;
-        return userId.equals(rating.userId) && songId.equals(rating.songId) && quantity.equals(rating.quantity);
+        ViewsPK viewsPK = (ViewsPK) o;
+        return userId.equals(viewsPK.userId) && songId.equals(viewsPK.songId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, songId, quantity);
+        return Objects.hash(userId, songId);
     }
 }

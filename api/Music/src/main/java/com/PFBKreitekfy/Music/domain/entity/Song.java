@@ -45,13 +45,6 @@ public class Song {
     @JoinColumn(name = "style_id", nullable = false)
     private Style style;
 
-    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private List<Rating> ratings;
-
-    @OneToMany(mappedBy = "song",cascade = CascadeType.ALL)
-    private List<Views> views;
-
-
     public Song() {
     }
     public long getId() {
@@ -118,20 +111,4 @@ public class Song {
         this.style = style;
     }
 
-
-    public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public List<Views> getViews() {
-        return views;
-    }
-
-    public void setViews(List<Views> views) {
-        this.views = views;
-    }
 }

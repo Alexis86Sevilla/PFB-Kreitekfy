@@ -4,6 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.ArtistDTO;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
+import com.PFBKreitekfy.Music.domain.entity.RatingPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,8 +25,9 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/ratings/{ratingId}")
-    ResponseEntity<RatingDTO> getRatingById(@PathVariable Long ratingId) {
+    @GetMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<RatingDTO> getRatingById(@PathVariable Long songId, @PathVariable Long userId) {
+        RatingPK ratingId = new RatingPK(songId, userId);
         Optional<RatingDTO> rating = this.ratingService.getRateById(ratingId);
 
         if (rating.isPresent()) {
@@ -36,22 +38,25 @@ public class RatingRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/ratings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<RatingDTO> insertRating(@RequestBody RatingDTO ratingDTO) {
+    @PostMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<RatingDTO> insertRating(@PathVariable Long songId, @PathVariable Long userId, @PathVariable Long quantity) {
+        RatingDTO ratingDTO = new RatingDTO(songId, userId, quantity);
         RatingDTO ratingSaved = this.ratingService.saveRate(ratingDTO);
         return new ResponseEntity<>(ratingSaved, HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/ratings/{ratingId}")
-    ResponseEntity<?> deleteRatingById(@PathVariable Long ratingId) {
+    @DeleteMapping(value = "/ratings/{songId}/{userId}")
+    ResponseEntity<?> deleteRatingById(@PathVariable Long songId, @PathVariable Long userId) {
+        RatingPK ratingId = new RatingPK(songId, userId);
         this.ratingService.deleteRate(ratingId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/ratings", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<RatingDTO> updateRating(@RequestBody RatingDTO ratingDTO) {
+    @PatchMapping(value = "/ratings/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<RatingDTO> updateRating(@PathVariable Long songId, @PathVariable Long userId, @PathVariable Long quantity) {
+        RatingDTO ratingDTO = new RatingDTO(songId, userId,quantity);
         RatingDTO ratingUpdated = this.ratingService.saveRate(ratingDTO);
         return new ResponseEntity<>(ratingUpdated, HttpStatus.OK);
     }

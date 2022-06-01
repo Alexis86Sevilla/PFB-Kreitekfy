@@ -4,6 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.mapper.RatingMapper;
 import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.domain.entity.Rating;
+import com.PFBKreitekfy.Music.domain.entity.RatingPK;
 import com.PFBKreitekfy.Music.domain.entity.Views;
 import com.PFBKreitekfy.Music.domain.persistence.RatingPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public Optional<RatingDTO> getRateById(Long rateId) {
+    public Optional<RatingDTO> getRateById(RatingPK rateId) {
         return this.persistence.getRatingById(rateId).map(mapper::toDto);
     }
 
@@ -37,8 +38,8 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public void deleteRate(Long rateId) {
-        this.persistence.deleteRating(rateId);
+    public void deleteRate(RatingPK ratingId) {
+        this.persistence.deleteRating(ratingId);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.PFBKreitekfy.Music.application.dto.ArtistDTO;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
+import com.PFBKreitekfy.Music.domain.entity.ViewsPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,10 +24,12 @@ public class ViewsRestController {
         this.viewsService = viewsService;
     }
 
+
     @CrossOrigin
-    @GetMapping(value = "/views/{viewId}")
-    ResponseEntity<ViewsDTO> getViewById(@PathVariable Long viewId) {
-        Optional<ViewsDTO> view = this.viewsService.getViewsById(viewId);
+    @GetMapping(value = "/views/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ViewsDTO> getViewById(@PathVariable Long songId, @PathVariable Long userId){
+        ViewsPK viewsId = new ViewsPK(songId,userId);
+        Optional<ViewsDTO> view = this.viewsService.getViewsById(viewsId);
 
         if (view.isPresent()) {
             return new ResponseEntity<>(view.get(), HttpStatus.OK);
@@ -36,23 +39,26 @@ public class ViewsRestController {
     }
 
     @CrossOrigin
-    @PostMapping(value = "/views", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ViewsDTO> insertView(@RequestBody ViewsDTO viewDTO) {
-        ViewsDTO viewSaved = this.viewsService.saveViews(viewDTO);
+    @PostMapping(value = "/views/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ViewsDTO> insertView(@PathVariable Long songId, @PathVariable Long userId) {
+        ViewsDTO viewsDTO = new ViewsDTO(songId, userId);
+        ViewsDTO viewSaved = this.viewsService.saveViews(viewsDTO);
         return new ResponseEntity<>(viewSaved, HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/views/{viewId}")
-    ResponseEntity<?> deleteViewById(@PathVariable Long viewId) {
+    @DeleteMapping(value = "/views/{songId}/{userId}")
+    ResponseEntity<?> deleteViewById(@PathVariable Long songId, @PathVariable Long userId) {
+        ViewsPK viewId = new ViewsPK(songId,userId);
         this.viewsService.deleteViews(viewId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PatchMapping(value = "/views", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ViewsDTO> updateView(@RequestBody ViewsDTO viewDTO) {
-        ViewsDTO viewUpdated = this.viewsService.saveViews(viewDTO);
+    @PatchMapping(value = "/views/{songId}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ViewsDTO> updateView(@PathVariable Long songId, @PathVariable Long userId) {
+        ViewsDTO viewsDTO = new ViewsDTO(songId, userId);
+        ViewsDTO viewUpdated = this.viewsService.saveViews(viewsDTO);
         return new ResponseEntity<>(viewUpdated, HttpStatus.OK);
     }
 
