@@ -6,6 +6,7 @@
             <h4>Buscar:</h4>
             <div class="table-responsive" id="hola">
               <div class="form-group">
+                
                 <label for="albumId">Álbum</label>
                 <p-autoComplete [(ngModel)]="selectedAlbum" name="selectedAlbum" [suggestions]="albums"
                     (completeMethod)="getAllAlbums($event)" field="name" (onSelect)="albumSelected();"
