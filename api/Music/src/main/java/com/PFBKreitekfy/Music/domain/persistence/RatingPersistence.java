@@ -17,5 +17,4 @@ public interface RatingPersistence {
 
     List<Rating> getAllRatings();
 
-    List<Rating> getAllRatingsByUserId(Long userId);
 }

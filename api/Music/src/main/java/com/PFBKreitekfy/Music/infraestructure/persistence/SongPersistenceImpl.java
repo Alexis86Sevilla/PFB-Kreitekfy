@@ -1,5 +1,6 @@
 package com.PFBKreitekfy.Music.infraestructure.persistence;
 
+import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.domain.entity.Song;
 import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
 import com.PFBKreitekfy.Music.infraestructure.specs.SongSpecification;
@@ -7,6 +8,7 @@ import com.PFBKreitekfy.Music.infraestructure.specs.shared.SearchCriteriaHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -46,6 +48,10 @@ public class SongPersistenceImpl implements SongPersistence {
     public List<Song> getSongsByStyle(Long styleId) {
         return this.songRepository.findByStyle(styleId);
     }
+    @Override
+    public List<Song> getSongsByUserAndStyle(Long userId, List<Long> styleId) {
+        return this.songRepository.findByStyle(userId,styleId);
+    }
 
     @Override
     public List<Song> getSongsByArtist(Long artistId) {
@@ -67,5 +73,6 @@ public class SongPersistenceImpl implements SongPersistence {
     public List<Song> getSongsByName(String partialName) {
         return this.songRepository.findByNameContainsIgnoreCase(partialName);
     }
+
 
 }

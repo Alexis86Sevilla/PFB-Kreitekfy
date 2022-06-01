@@ -17,6 +17,4 @@ public interface RatingService {
 
     List<RatingDTO> getAllRatings();
 
-    List<RatingDTO> getAllRatingsByUserId(Long userId);
-
 }

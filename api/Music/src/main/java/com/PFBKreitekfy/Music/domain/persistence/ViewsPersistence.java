@@ -15,4 +15,6 @@ public interface ViewsPersistence {
     Views saveView(Views views);
 
     void deleteView(ViewsPK viewId);
+
+    List<Views> getAllViewsByUserId(Long userId);
 }

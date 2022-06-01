@@ -8,6 +8,7 @@ import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.application.service.SongService;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
 import com.PFBKreitekfy.Music.domain.entity.Style;
+import com.PFBKreitekfy.Music.domain.entity.StyleQuantity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -148,44 +149,49 @@ public class SongRestController {
     }
 
     @CrossOrigin
-    @GetMapping(value = "/songs_foryou", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<Optional<SongDTO>>> getSongsForYou (@PathVariable Long userId) {
-        //1. obtener la lista con todos los ratings de un usuario
+    @GetMapping(value = "/songs_foryou/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<SongDTO>> getSongsForYou (@PathVariable Long userId) {
+        List<ViewsDTO> viewsDTOS = viewService.getAllViewsByUserId(userId);
 
-        List<RatingDTO> ratingDTOS = ratingService.getAllRatingsByUserId(userId);
+        Map<Long,Long> styleIdMap = new HashMap<>();
+        for(ViewsDTO viewDTO: viewsDTOS){
+            Optional<SongDTO> optionalSongDTO= songService.getSongById(viewDTO.getSongId());
+            if(optionalSongDTO.isPresent()){
+                Long idStyle = optionalSongDTO.get().getStyleId();
+                if (!styleIdMap.containsKey(idStyle)){
+                    styleIdMap.put(idStyle,viewDTO.getQuantity());
+                } else{
+                    styleIdMap.put(idStyle,styleIdMap.get(idStyle)+viewDTO.getQuantity());
+                }
 
-        //2. Obtener las cancionesDTO de esta lista
+            }
 
-        List<Optional<SongDTO>> songs = new ArrayList<>();
-        for( int i = 0; i<ratingDTOS.size(); i++){
-            Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
-            songs.add(songDTO);
         }
-
+        List<StyleQuantity> mostViewsStyles = new ArrayList<>();
         //3. Buscar por el estilo más escuchado
-
-        List<Style> styles = new ArrayList<>();
-        for( int i = 0; i<songs.size(); i++){
-            int idStyle = songs.get(i).getStyleId();
-            styles.add();
+        for(Map.Entry<Long,Long> entry: styleIdMap.entrySet()){
+            Long styleId = entry.getKey();
+            Long quantity = entry.getValue();
+            mostViewsStyles.add(new StyleQuantity(styleId,quantity));
+        }
+        if (mostViewsStyles.size()>2) {
+            Collections.sort(mostViewsStyles, (o1, o2)
+                    -> o1.getQuantity() < o2.getQuantity() ? 1 : o1.getQuantity() > o2.getQuantity() ? -1 : 0);
         }
 
-
-        List<RatingDTO> yourRatings = new ArrayList<>();
-        for( int i = 0; i<2; i++){
-            yourRatings.add(ratingDTOS.get(i));
+        List<SongDTO> songDTOList = new ArrayList<>();
+        if(mostViewsStyles.size()>0) {
+            List<Long> styleIdList = new ArrayList<>();
+            for (int i = 0 ; mostViewsStyles.size()>i && i<3;i++) {
+                styleIdList.add(mostViewsStyles.get(i).getStyleId());
+            }
+            if(styleIdList!=null && styleIdList.size()>0){
+                songDTOList = this.songService.getSongsByUserAndStyle(userId,styleIdList);
+            }
         }
 
-        //getAllSongsByStyle con más de tres estrellas
-        //get5SongsByStyle con el mayor número de reproducciones
-
-
-        List<Optional<SongDTO>> songs = new ArrayList<>();
-        for( int i = 0; i<5; i++){
-            Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
-            songs.add(songDTO);
-        }
-
-        return new ResponseEntity<>(songs, HttpStatus.OK);
+        return new ResponseEntity<>(songDTOList, HttpStatus.OK);
     }
+
+
 }

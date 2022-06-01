@@ -59,4 +59,11 @@ public class ViewsServiceImpl implements ViewsService {
     public void deleteViews(ViewsPK viewsId) {
         this.persistence.deleteView(viewsId);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ViewsDTO> getAllViewsByUserId(Long userId) {
+        List<Views> views = this.persistence.getAllViewsByUserId(userId);
+        return this.mapper.toDto(views);
+    }
 }

@@ -41,10 +41,7 @@ public class RatingPersistenceImpl implements RatingPersistence {
         return this.ratingRepository.findAll();
     }
 
-    @Override
-    public List<Rating> getAllRatingsByUserId(Long userId) {
-        return this.ratingRepository.findAllById(userId);
-    }
+
 
 
 }

@@ -6,11 +6,27 @@
 
 
 
+
     .btn {
         background-color: red;
         border: none;
-        margin: 1%;
+        margin-left: 1%;
     }
 
+}
+
+.form-group {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.style {
+    margin-right: 10px;
+}
+
+button i {
+    margin-right: 5px;
 }
   

@@ -21,6 +21,8 @@ public interface SongPersistence {
 
     List<Song> getSongsByStyle(Long styleId);
 
+    List<Song> getSongsByUserAndStyle(Long userId,List<Long> styleId);
+
     List<Song> getSongsByArtist(Long artistId);
 
     List<Song> getSongsByAlbum(Long albumId);

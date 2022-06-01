@@ -9,6 +9,7 @@ import com.PFBKreitekfy.Music.domain.persistence.SongPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +54,11 @@ public class SongServiceImpl implements SongService {
         List<Song> songs = this.persistence.getSongsByStyle(styleId);
         return this.mapper.toDto(songs);
     }
+    @Override
+    public List<SongDTO> getSongsByUserAndStyle(Long userId, List<Long> styleId) {
+        List<Song> songs = this.persistence.getSongsByUserAndStyle(userId,styleId);
+        return this.mapper.toDto(songs);
+    }
 
     @Override
     public List<SongDTO> getSongsByArtist(Long artistId) {
@@ -77,5 +83,7 @@ public class SongServiceImpl implements SongService {
         List<Song> songs = this.persistence.getSongsByName(partialName);
         return mapper.toDto(songs);
     }
+
+
 
 }

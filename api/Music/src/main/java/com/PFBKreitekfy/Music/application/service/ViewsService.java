@@ -16,4 +16,6 @@ public interface ViewsService {
     ViewsDTO saveViews(ViewsDTO views);
 
     void deleteViews(ViewsPK viewsId);
+
+    List<ViewsDTO> getAllViewsByUserId(Long userId);
 }

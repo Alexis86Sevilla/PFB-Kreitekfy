@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Song } from '../../song/model/song.model';
 import { SongUserService } from '../service/song.service';
 
@@ -10,17 +11,22 @@ import { SongUserService } from '../service/song.service';
 export class ForYouComponent implements OnInit {
 
   songs: Song[] =[];
+  userId?: number;
 
 
-  constructor(private songUserService: SongUserService) { }
+  constructor(private songUserService: SongUserService, 
+    private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.userId = +this.router.snapshot.paramMap.get("userId")!;
+
     this.getSongsForYou();
   }
 
   getSongsForYou(): void {
     
-    this.songUserService.getSongsForYou().subscribe({
+    this.songUserService.getSongsForYou(this.userId!).subscribe({
       next: (songsRequest) => { 
         this.songs = songsRequest; 
       },

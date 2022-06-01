@@ -38,4 +38,9 @@ public class ViewsPersistenceImpl implements ViewsPersistence {
     public void deleteView(ViewsPK viewId) {
         this.viewsRepository.deleteById(viewId);
     }
+
+    @Override
+    public List<Views> getAllViewsByUserId(Long userId) {
+        return this.viewsRepository.findAllByUserId(userId);
+    }
 }

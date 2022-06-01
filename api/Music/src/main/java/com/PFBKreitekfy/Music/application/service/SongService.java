@@ -5,6 +5,7 @@ import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.domain.entity.Artist;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface SongService {
     SongDTO saveSong(SongDTO song);
 
     void deleteSong(Long songId);
+
+    List<SongDTO> getSongsByUserAndStyle(Long userId, List<Long> styleId);
 
     List<SongDTO> getSongsByStyle(Long styleId);
 
