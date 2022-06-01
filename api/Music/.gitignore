@@ -32,6 +32,9 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+/kreitekfy.mv.db/
+
+
 
 ### VS Code ###
 .vscode/

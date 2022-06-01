@@ -36,8 +36,8 @@
                     </div>
 
                     <div class="buttonsForm">
-                        <button class="btn btn-primary" (click)="saveAlbum()" [disabled]="albumForm.invalid">Guardar</button>
-                        <button class="btn btn-primary" [routerLink]="['/albums']">Volver</button>
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" (click)="saveAlbum() " [disabled]="albumForm.invalid" [routerLink]="['/albums']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/albums']"></button>
                     </div>
 
                 </form>

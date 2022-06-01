@@ -63,7 +63,7 @@ export class SongListComponent extends Pagination implements OnInit {
     this.getAllSongs();
   }
 
-  public previusPage(): void{
+  public previousPage(): void{
     this.page = this.page -1;
     this.getAllSongs();
   }
@@ -265,8 +265,7 @@ export class SongListComponent extends Pagination implements OnInit {
       next: (songRequest) => {
         this.song = songRequest;
         this.selectedSong = new Song(songRequest.id!, songRequest.name!, songRequest.duration!, 
-          songRequest.dateLaunch!, songRequest.valoration!, songRequest.visualizations!,
-          songRequest.albumId!, songRequest.albumName!, 
+          songRequest.dateLaunch!, songRequest.albumId!, songRequest.albumName!, 
           songRequest.artistId!, songRequest.artistName!, songRequest.albumDescription!,
           songRequest.styleId!, songRequest.styleName!)
       },
@@ -275,7 +274,7 @@ export class SongListComponent extends Pagination implements OnInit {
   }
 
   private initializeSong(): void {
-    this.song = new Song(undefined, "", 0, new Date, 0, 0)  
+    this.song = new Song(undefined, "", 0, new Date)  
   }
 
   private handleError(error: any): void {

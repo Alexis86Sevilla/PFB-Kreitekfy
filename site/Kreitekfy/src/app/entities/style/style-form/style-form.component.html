@@ -27,9 +27,9 @@
                     </div>
 
                     <div class="buttonsForm">
-                        <button class="btn btn-primary" [disabled]="styleForm.invalid"
-                            (click)="saveStyle()">Guardar</button>
-                        <button class="btn btn-primary" [routerLink]="['/styles']">Volver</button>
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-danger" [disabled]="styleForm.invalid"
+                        (click)="saveStyle()"[routerLink]="['/styles']"></button>
+                        <button pButton pRipple type="button" label="Volver" class="p-button-danger" [routerLink]="['/styles']"></button>
                     </div>
 
                 </form>

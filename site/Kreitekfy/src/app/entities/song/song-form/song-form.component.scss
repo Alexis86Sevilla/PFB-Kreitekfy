@@ -1,1 +1,12 @@
 @import "partials/forms";
+
+#opcionesCanciones {
+  display: flex;
+  margin: auto;
+
+
+  button {
+    margin-top: 5%;
+    margin-right: 5%;
+  }
+}

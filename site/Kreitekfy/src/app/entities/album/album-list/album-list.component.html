@@ -42,15 +42,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             ¿Desea eliminar el album seleccionado? Esta operación no puede deshacerse
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                (click)="deleteAlbum();">Eliminar</button>
+                            <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"
+                            data-bs-dismiss="modal"></button>
+                          <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" data-bs-dismiss="modal"
+                            (click)="deleteAlbum();"></button>
                         </div>
                     </div>
                 </div>
