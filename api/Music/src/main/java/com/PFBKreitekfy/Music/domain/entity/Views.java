@@ -19,22 +19,12 @@ public class Views {
     @Positive
     private Long quantity;
 
-<<<<<<< HEAD
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "song_id")
-    private Song song;
-=======
     public Views() {
     }
 
     public Long getUserId() {
         return userId;
     }
->>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
 
     public void setUserId(Long userId) {
         this.userId = userId;

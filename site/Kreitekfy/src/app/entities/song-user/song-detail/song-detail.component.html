@@ -15,7 +15,8 @@
                     <p>Valoración:</p> 
                     <p-rating *ngIf="rating" [stars]="4" [(ngModel)]="rating.quantity" [cancel]="false" (click)="saveRating()"></p-rating><br>
                     <p-rating *ngIf="!rating" [stars]="4" [(ngModel)]="quantity" [cancel]="false" (click)="saveRating()"></p-rating><br>
-                    <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success"(click)="saveViews();"></button>
+                    <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success"(click)="saveViews();"></button><br>
+                    <button class="btn btn-primary" [routerLink]="['/songsUser']">Volver</button>
                 </div>
             </div>
 

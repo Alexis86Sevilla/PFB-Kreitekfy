@@ -21,13 +21,6 @@ public class User {
     @Column(nullable = false)
     private Boolean isAdmin;
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
     public User() {
     }
     public Long getId() {
@@ -54,8 +47,6 @@ public class User {
         isAdmin = admin;
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,5 +59,4 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, name, isAdmin);
     }
->>>>>>> 7fc3a1c40e71bf6cd78aee68961d199c0b03d2ee
 }
