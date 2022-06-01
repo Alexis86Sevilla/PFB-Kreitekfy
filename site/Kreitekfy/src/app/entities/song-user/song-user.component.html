@@ -1,11 +1,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="form-group">
-            <label class="style" for="styleId">Estilo</label>
-            <p-autoComplete [(ngModel)]="selectedStyle" name="selectedStyle" class="auto" [suggestions]="styles"
-                (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
-                (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
-            <button class="btn btn-primary" (click)="searchByFilters()">Buscar</button>
+            <span class="p-float-label">
+                <p-autoComplete inputId="styleId" [(ngModel)]="selectedStyle" name="selectedStyle" class="auto" [suggestions]="styles"
+                    (completeMethod)="getAllStyles($event)" field="name" (onSelect)="styleSelected();"
+                    (onClear)="styleUnselected();" [required]="true" [forceSelection]="true"></p-autoComplete>
+                <label for="styleId">Estilo</label>
+            </span>
+            <button class="btn btn-primary" (click)="searchByFilters()">
+                <i class="pi pi-search" style="font-size: 1rem"></i>
+            </button>
         </div>
         <app-news></app-news>
         <app-top-songs></app-top-songs>

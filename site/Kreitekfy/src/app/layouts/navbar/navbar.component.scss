@@ -24,15 +24,29 @@
     }
 
     #modal-buttons{
+        display: flex;
+        justify-content: center;
+
         button{
             margin: 2%;
             background-color: white;
+            width: 110px;
         }
 
     }
 
     #close{
         background-color: red;
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .modal-body img {
+        margin-right: 6%;
+        padding: 0;
     }
 }
 
