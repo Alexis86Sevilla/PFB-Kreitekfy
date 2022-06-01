@@ -6,12 +6,13 @@
                 <h5 class="card-header">{{song.name}}</h5>
                 <div class="card-body">
                     <div class="img-container"><img [src]="'data:image/webp;base64,' + song.image"
-                            class="img-fluid card-img-top" alt="{{song.name}}">
+                            class="img-fluid card-img-top">
                     </div>
                     <p>Album: {{song.albumName}}</p>
                     <p>Autor: {{song.artistName}}</p>
                     <p>Estilo: {{song.styleName}}</p>
                     <p>Duración: {{song.duration}}</p>
+                    <p>Valoración: <p-rating [(ngModel)]="rating"></p-rating></p>
                     <button pButton pRipple type="button" icon="pi pi-play" class="p-button-rounded p-button-success"(click)="saveViews();"></button>
                 </div>
             </div>

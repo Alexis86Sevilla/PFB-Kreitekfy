@@ -6,7 +6,6 @@ import { SongUserService } from '../service/song.service';
 import { Style } from '../../style/model/style.model';
 import { Views } from '../../views/model/views.model';
 import { Rating } from '../../ratings/model/rating.model';
-import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-song-detail',
@@ -28,8 +27,7 @@ export class SongDetailComponent implements OnInit {
   constructor(
     private songService: SongService, 
     private router: ActivatedRoute, 
-    private songUserService: SongUserService,
-    private primengConfig: PrimeNGConfig
+    private songUserService: SongUserService
     ) {
 
   }
@@ -38,7 +36,7 @@ export class SongDetailComponent implements OnInit {
     this.songId = +this.router.snapshot.paramMap.get("songId")!;
     this.userId = +this.router.snapshot.paramMap.get("userId")!;
     this.getSongById(this.songId);
-    this.primengConfig.ripple = true;
+    //this.primengConfig.ripple = true;
     this.getViews(this.songId, this.userId);
   }
 

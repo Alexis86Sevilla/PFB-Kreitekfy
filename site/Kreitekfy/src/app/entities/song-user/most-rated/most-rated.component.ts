@@ -20,7 +20,7 @@ export class MostRatedComponent implements OnInit {
   constructor(private songUserService: SongUserService) { }
 
   ngOnInit(): void {
-    this.getSongsByValoration();
+    //this.getSongsByValoration();
   }
 
   private buildFilters():string | undefined {
@@ -49,7 +49,7 @@ export class MostRatedComponent implements OnInit {
 
   }
 
-  getSongsByValoration(): void {
+  /*getSongsByValoration(): void {
     const filters:string | undefined = this.buildFilters();
     
     this.songUserService.getSongsByRating(this.style).subscribe({
@@ -58,7 +58,7 @@ export class MostRatedComponent implements OnInit {
       },
       error: (err) => {this.handleError(err);}
     })
-  }
+  }*/
 
   private handleError(error: any): void {
     console.log(error);

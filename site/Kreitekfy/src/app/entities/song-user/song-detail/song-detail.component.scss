@@ -12,8 +12,6 @@
     text-transform: uppercase;
   }
 
-
-
   .card {
 
     text-align: center;
@@ -21,7 +19,6 @@
     margin-top: 5%;
     margin-bottom: 5%;
     border: none;
-
 
     .img-container {
       background-color: $secondaryColor;
@@ -50,6 +47,7 @@
         background-color: green;
     }
 
+    
   }
 
 }
