@@ -38,6 +38,7 @@ export class SongDetailComponent implements OnInit {
     this.getSongById(this.songId);
     //this.primengConfig.ripple = true;
     this.getViews(this.songId, this.userId);
+    this.getRating(this.songId, this.userId);
   }
 
   public getSongById(songId: number): void {
