@@ -2,7 +2,8 @@
   <div class="row contenido">
     <div class="col-md-12">
       <h3>Lista de artistas</h3>
-      <button class="btn btn-primary" [routerLink]="['/artists','new']">Crear nuevo artista</button>
+      <button pButton pRipple type="button" label="Crear nuevo artista" class="p-button-danger"
+        [routerLink]="['/artists','new']"></button>
 
       <table class="table table-light table-hover table-striped " *ngIf="artists.length > 0">
         <thead>
@@ -13,19 +14,23 @@
           <tr *ngFor="let artist of artists">
             <td class="align-middle">{{ artist.name }}</td>
             <td class="align-middle">
-              <button class="btn btn-primary" id="btnDeleteArtist" data-bs-toggle="modal"
-                data-bs-target="#askConfirmationDelete" (click)="prepareArtistToDelete(artist.id!);">Eliminar</button>
-                <button class="btn btn-primary" [routerLink]="['/artists', artist.id]">Editar</button>
+              <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" id="btnDeleteArtist"
+                data-bs-toggle="modal" data-bs-target="#askConfirmationDelete"
+                (click)="prepareArtistToDelete(artist.id!);"></button>
+              <button pButton pRipple type="button" label="Editar" class="p-button-danger"
+                [routerLink]="['/artists', artist.id]"></button>
             </td>
           </tr>
         </tbody>
       </table>
 
       <div class="botoneraPaginacion">
-        <button [disabled]="first" class="btn btn-secondary btnAtras" (click)="previousPage()">Anterior</button>
+        <button [disabled]="first" pButton pRipple type="button" label="Anterior" class="p-button-danger"
+          (click)="previousPage()"></button>
         <span>Pagina {{page + 1}} de {{totalPages}} - Elementos totales: {{totalElements}}</span>
-        <button [disabled]="last" class="btn btn-secondary btnSiguiente" (click)="nextPage()">Siguiente</button>
-    </div>
+        <button [disabled]="last" pButton pRipple type="button" label="Siguiente" class="p-button-danger"
+          (click)="nextPage()"></button>
+      </div>
 
       <!-- Modal -->
       <div class="modal fade" id="askConfirmationDelete" tabindex="-1" aria-labelledby="askConfirmationDelete"
@@ -34,15 +39,16 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Confirmación de borrado</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               ¿Desea eliminar el artísta seleccionado? Esta operación no puede deshacerse
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                (click)="deleteArtist();">Eliminar</button>
+              <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"
+                data-bs-dismiss="modal"></button>
+              <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" data-bs-dismiss="modal"
+                (click)="deleteArtist();"></button>
             </div>
           </div>
         </div>

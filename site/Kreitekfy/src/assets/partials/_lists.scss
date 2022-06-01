@@ -1,0 +1,52 @@
+@import "variables";
+
+.contenido {
+  background-color: $primaryColor;
+  color: $fontColor;
+  text-align: center;
+  min-height: 500px;
+
+  h3 {
+    margin-top: 2%;
+  }
+
+  table {
+    th {
+      color: $fontColor;
+    }
+
+
+
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 50%;
+  }
+
+  .p-button-danger {
+    margin: 1%;
+  }
+
+  .botoneraPaginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.modal {
+  .modal-content {
+    background-color: $primaryColor;
+  }
+
+  .modal-body,
+  .modal-header,
+  .modal-footer,
+  #modal-buttons {
+    background-color: $secondaryColor;
+    color: $fontColor;
+    border: 0.5px solid rgba(0, 0, 0, 0.318);
+  }
+
+}
