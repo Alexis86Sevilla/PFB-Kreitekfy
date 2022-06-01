@@ -1,7 +1,10 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
+import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
+import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.application.service.SongService;
+import com.PFBKreitekfy.Music.application.service.ViewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +21,13 @@ import java.util.Optional;
 public class SongRestController {
 
     private final SongService songService;
+    private final ViewsService viewsService;
+    private final RatingService ratingService;
     @Autowired
-    public SongRestController(SongService songService) {
+    public SongRestController(SongService songService, ViewsService viewsService, RatingService ratingService) {
         this.songService = songService;
+        this.viewsService = viewsService;
+        this.ratingService = ratingService;
     }
 
     @CrossOrigin
