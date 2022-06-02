@@ -1,13 +1,11 @@
 package com.PFBKreitekfy.Music.infraestructure.rest;
 
-import com.PFBKreitekfy.Music.application.dto.AlbumDTO;
 import com.PFBKreitekfy.Music.application.dto.RatingDTO;
 import com.PFBKreitekfy.Music.application.dto.SongDTO;
 import com.PFBKreitekfy.Music.application.dto.ViewsDTO;
 import com.PFBKreitekfy.Music.application.service.RatingService;
 import com.PFBKreitekfy.Music.application.service.SongService;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
-import com.PFBKreitekfy.Music.domain.entity.Style;
 import com.PFBKreitekfy.Music.domain.entity.StyleQuantity;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -165,12 +163,12 @@ public class SongRestController {
         Map<Long, Long> styleIdMap = getAllViewsByStyles(viewsDTOS);
         List<StyleQuantity> mostViewsStyles = getStylesMostViews(styleIdMap);
 
-        List<SongDTO> songDTOList = getSongsForYou(userId, mostViewsStyles);
+        List<SongDTO> songDTOList = getSongListForYou(userId, mostViewsStyles);
 
         return new ResponseEntity<>(songDTOList, HttpStatus.OK);
     }
 
-    private List<SongDTO> getSongsForYou(Long userId, List<StyleQuantity> mostViewsStyles) {
+    private List<SongDTO> getSongListForYou(Long userId, List<StyleQuantity> mostViewsStyles) {
         List<SongDTO> songDTOList = new ArrayList<>();
         if(mostViewsStyles.size()>0) {
             List<Long> styleIdList = new ArrayList<>();
