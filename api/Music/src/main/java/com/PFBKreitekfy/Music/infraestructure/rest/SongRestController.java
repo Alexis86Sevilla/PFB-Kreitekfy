@@ -9,6 +9,7 @@ import com.PFBKreitekfy.Music.application.service.SongService;
 import com.PFBKreitekfy.Music.application.service.ViewsService;
 import com.PFBKreitekfy.Music.domain.entity.Style;
 import com.PFBKreitekfy.Music.domain.entity.StyleQuantity;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -112,13 +113,7 @@ public class SongRestController {
     @GetMapping(value = "/songs_views", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByViews () {
         List<ViewsDTO> viewsDTOS = viewService.getAllViews();
-        Collections.sort(viewsDTOS, new Comparator<ViewsDTO>() {
-            @Override
-            public int compare(ViewsDTO o1, ViewsDTO o2) {
-                return o1.getQuantity().compareTo(o2.getQuantity());
-            }
-        });
-        Collections.reverse(viewsDTOS);
+        orderListOfViews(viewsDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
         for( int i = 0; i<5 && i<viewsDTOS.size(); i++){
             Optional<SongDTO> songDTO = songService.getSongById(viewsDTOS.get(i).getSongId());
@@ -128,17 +123,21 @@ public class SongRestController {
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
+    private void orderListOfViews(List<ViewsDTO> viewsDTOS) {
+        Collections.sort(viewsDTOS, new Comparator<ViewsDTO>() {
+            @Override
+            public int compare(ViewsDTO o1, ViewsDTO o2) {
+                return o1.getQuantity().compareTo(o2.getQuantity());
+            }
+        });
+        Collections.reverse(viewsDTOS);
+    }
+
     @CrossOrigin
     @GetMapping(value = "/songs_ratings", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<Optional<SongDTO>>> getFiveSongsByRatings () {
         List<RatingDTO> ratingDTOS = ratingService.getAllRatings();
-        Collections.sort(ratingDTOS, new Comparator<RatingDTO>() {
-            @Override
-            public int compare(RatingDTO o1, RatingDTO o2) {
-                return o1.getQuantity().compareTo(o2.getQuantity());
-            }
-        });
-        Collections.reverse(ratingDTOS);
+        orderListOfRatings(ratingDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
         for( int i = 0; i<5 && i<ratingDTOS.size(); i++){
             Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
@@ -148,11 +147,60 @@ public class SongRestController {
         return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
+    private void orderListOfRatings(List<RatingDTO> ratingDTOS) {
+        Collections.sort(ratingDTOS, new Comparator<RatingDTO>() {
+            @Override
+            public int compare(RatingDTO o1, RatingDTO o2) {
+                return o1.getQuantity().compareTo(o2.getQuantity());
+            }
+        });
+        Collections.reverse(ratingDTOS);
+    }
+
     @CrossOrigin
     @GetMapping(value = "/songs_foryou/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<SongDTO>> getSongsForYou (@PathVariable Long userId) {
         List<ViewsDTO> viewsDTOS = viewService.getAllViewsByUserId(userId);
 
+        Map<Long, Long> styleIdMap = getAllViewsByStyles(viewsDTOS);
+        List<StyleQuantity> mostViewsStyles = getStylesMostViews(styleIdMap);
+
+        List<SongDTO> songDTOList = getSongsForYou(userId, mostViewsStyles);
+
+        return new ResponseEntity<>(songDTOList, HttpStatus.OK);
+    }
+
+    private List<SongDTO> getSongsForYou(Long userId, List<StyleQuantity> mostViewsStyles) {
+        List<SongDTO> songDTOList = new ArrayList<>();
+        if(mostViewsStyles.size()>0) {
+            List<Long> styleIdList = new ArrayList<>();
+            for (int i = 0; mostViewsStyles.size()>i && i<3; i++) {
+                styleIdList.add(mostViewsStyles.get(i).getStyleId());
+            }
+            if(styleIdList!=null && styleIdList.size()>0){
+                songDTOList = this.songService.getSongsByUserAndStyle(userId,styleIdList);
+            }
+        }
+        return songDTOList;
+    }
+
+    @NotNull
+    private List<StyleQuantity> getStylesMostViews(Map<Long, Long> styleIdMap) {
+        List<StyleQuantity> mostViewsStyles = new ArrayList<>();
+        for(Map.Entry<Long,Long> entry: styleIdMap.entrySet()){
+            Long styleId = entry.getKey();
+            Long quantity = entry.getValue();
+            mostViewsStyles.add(new StyleQuantity(styleId,quantity));
+        }
+        if (mostViewsStyles.size()>2) {
+            Collections.sort(mostViewsStyles, (o1, o2)
+                    -> o1.getQuantity() < o2.getQuantity() ? 1 : o1.getQuantity() > o2.getQuantity() ? -1 : 0);
+        }
+        return mostViewsStyles;
+    }
+
+    @NotNull
+    private Map<Long, Long> getAllViewsByStyles(List<ViewsDTO> viewsDTOS) {
         Map<Long,Long> styleIdMap = new HashMap<>();
         for(ViewsDTO viewDTO: viewsDTOS){
             Optional<SongDTO> optionalSongDTO= songService.getSongById(viewDTO.getSongId());
@@ -165,30 +213,7 @@ public class SongRestController {
                 }
             }
         }
-        List<StyleQuantity> mostViewsStyles = new ArrayList<>();
-        //3. Buscar por el estilo más escuchado
-        for(Map.Entry<Long,Long> entry: styleIdMap.entrySet()){
-            Long styleId = entry.getKey();
-            Long quantity = entry.getValue();
-            mostViewsStyles.add(new StyleQuantity(styleId,quantity));
-        }
-        if (mostViewsStyles.size()>2) {
-            Collections.sort(mostViewsStyles, (o1, o2)
-                    -> o1.getQuantity() < o2.getQuantity() ? 1 : o1.getQuantity() > o2.getQuantity() ? -1 : 0);
-        }
-
-        List<SongDTO> songDTOList = new ArrayList<>();
-        if(mostViewsStyles.size()>0) {
-            List<Long> styleIdList = new ArrayList<>();
-            for (int i = 0 ; mostViewsStyles.size()>i && i<3;i++) {
-                styleIdList.add(mostViewsStyles.get(i).getStyleId());
-            }
-            if(styleIdList!=null && styleIdList.size()>0){
-                songDTOList = this.songService.getSongsByUserAndStyle(userId,styleIdList);
-            }
-        }
-
-        return new ResponseEntity<>(songDTOList, HttpStatus.OK);
+        return styleIdMap;
     }
 
 
