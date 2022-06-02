@@ -15,8 +15,8 @@
                         class="nav-link">Inicio</a>
                 </li>
             </ul>
-            <app-user *ngIf="!isAdmin"></app-user>
-            <app-admin *ngIf="isAdmin"></app-admin>
+            <app-user *ngIf="!isAdmin && isLogged"></app-user>
+            <app-admin *ngIf="isAdmin && isLogged"></app-admin>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['nosotros']" [routerLinkActive]="'active'"
