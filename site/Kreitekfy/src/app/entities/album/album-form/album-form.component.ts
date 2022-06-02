@@ -34,12 +34,10 @@ export class AlbumFormComponent implements OnInit {
   public saveAlbum(): void {
     if (this.mode === "NEW") {
       this.insertAlbum();
-      this.successAdd();
     }
 
     if (this.mode === "UPDATE") {
       this.updateAlbum();
-      this.successUpdate();
     }
   }
 
