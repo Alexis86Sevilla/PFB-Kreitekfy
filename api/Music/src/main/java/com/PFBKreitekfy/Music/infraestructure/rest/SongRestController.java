@@ -120,7 +120,7 @@ public class SongRestController {
         });
         Collections.reverse(viewsDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
-        for( int i = 0; i<5; i++){
+        for( int i = 0; i<5 && i<viewsDTOS.size(); i++){
             Optional<SongDTO> songDTO = songService.getSongById(viewsDTOS.get(i).getSongId());
             songs.add(songDTO);
         }
@@ -140,7 +140,7 @@ public class SongRestController {
         });
         Collections.reverse(ratingDTOS);
         List<Optional<SongDTO>> songs = new ArrayList<>();
-        for( int i = 0; i<5; i++){
+        for( int i = 0; i<5 && i<ratingDTOS.size(); i++){
             Optional<SongDTO> songDTO = songService.getSongById(ratingDTOS.get(i).getSongId());
             songs.add(songDTO);
         }
@@ -163,9 +163,7 @@ public class SongRestController {
                 } else{
                     styleIdMap.put(idStyle,styleIdMap.get(idStyle)+viewDTO.getQuantity());
                 }
-
             }
-
         }
         List<StyleQuantity> mostViewsStyles = new ArrayList<>();
         //3. Buscar por el estilo más escuchado
