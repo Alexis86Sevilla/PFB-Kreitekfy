@@ -1,75 +1,91 @@
 @import "variables";
 
 .user {
-    width: 90px;
-}
-
-#botonera{
-    display: flex;
-    button{
-        background-color: red;
-        border: none;
-    }
-}
-
-.modal{
-    .modal-content{
-        background-color: black;
-    }
-
-    .modal-body, .modal-header, .modal-footer, #modal-buttons{
-        background-color: $secondaryColor;
-        color: $fontColor;
-        border: 1px solid rgba(0, 0, 0, 0.318);
-    }
-
-    #modal-buttons{
-        display: flex;
-        justify-content: center;
-
-        button{
-            margin: 2%;
-            background-color: white;
-            width: 110px;
-        }
-
-    }
-
-    #close{
-        background-color: red;
-    }
-
-    .modal-body {
-        display: flex;
-        justify-content: center;
-    }
-
-    .modal-body img {
-        margin-right: 6%;
-        padding: 0;
-    }
-}
-
-.navbar-brand {
-    font-size: 35px;
-}
-
-#logo img{
-    width: 50px;
-    margin-right: 10px;
-    border-radius: 50%;
+  width: 90px;
 }
 
 #botonera {
-    margin-right: 40px;
+  display: flex;
+
+  button {
+    background-color: red;
+    border: none;
+  }
+}
+
+.modal {
+  .modal-content {
+    background-color: black;
+  }
+
+  .modal-body,
+  .modal-header,
+  .modal-footer,
+  #modal-buttons {
+    background-color: $secondaryColor;
+    color: $fontColor;
+    border: 1px solid rgba(0, 0, 0, 0.318);
+  }
+
+  #modal-buttons {
+    display: flex;
+    justify-content: center;
+
+  
+  }
+
+  #user1,
+  #user2, 
+  #user3,
+  #user4{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    img{
+        width: 90px;
+        height: 90px;
+    }
+
+    button{
+        margin-top: 10px;
+    }
+  }
+
+
+  #close {
+    background-color: red;
+  }
+
+  .modal-body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-body img {
+    margin-right: 6%;
+    padding: 0;
+  }
+}
+
+.navbar-brand {
+  font-size: 35px;
+}
+
+#logo img {
+  width: 50px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+#botonera {
+  margin-right: 40px;
 }
 
 li a {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 #botonera button {
-    font-size: 20px;
+  font-size: 20px;
 }
-
-
