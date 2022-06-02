@@ -22,7 +22,6 @@ import java.util.*;
 public class SongRestController {
 
     private final SongService songService;
-
     private final ViewsService viewService;
     private final RatingService ratingService;
 
@@ -213,6 +212,4 @@ public class SongRestController {
         }
         return styleIdMap;
     }
-
-
 }
