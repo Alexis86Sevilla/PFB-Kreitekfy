@@ -10,6 +10,7 @@ export class NavbarComponent implements OnInit {
 
 
   isAdmin: boolean = false;
+  isLogged: boolean = false;
 
   constructor() { }
 
@@ -19,10 +20,12 @@ export class NavbarComponent implements OnInit {
 
   public toggleToAdmin(): void {
     this.isAdmin = true;
+    this.isLogged = true;
   }
 
   public toggleToUser(): void {
     this.isAdmin = false;
+    this.isLogged = true;
   }
 
 }
