@@ -52,19 +52,19 @@
             <div class="modal-body">
                 <div id="user1"><img class="user img-fluid" src="../../../assets/img/userF.png" alt="usuario">
                         <button pButton pRipple type="button" label="Admin" class="p-button-raised p-button-danger"
-                        (click)="toggleToAdmin()" data-bs-dismiss="modal"></button>
+                        (click)="toggleToAdmin()" data-bs-dismiss="modal" [routerLink]="['songs']"></button>
                 </div>
                 <div id="user2"> <img class="user img-fluid" src="../../../assets/img/userF.png" alt="usuario">
                     <button pButton pRipple type="button" label="Ana" class="p-button-raised p-button-danger"
-                    (click)="toggleToUser()" data-bs-dismiss="modal"></button>
+                    (click)="toggleToUser()" data-bs-dismiss="modal" [routerLink]="['songsUser']"></button>
                 </div>
                 <div id="user3"> <img class="user img-fluid" src="../../../assets/img/userF.png" alt="usuario">
                     <button pButton pRipple type="button" label="María" class="p-button-raised p-button-danger"
-                    (click)="toggleToUser()" data-bs-dismiss="modal"></button>
+                    (click)="toggleToUser()" data-bs-dismiss="modal" [routerLink]="['songsUser']"></button>
                 </div>
                 <div id="user4"> <img class="user img-fluid" src="../../../assets/img/userM.png" alt="usuario">
                     <button pButton pRipple type="button" label="Paco" class="p-button-raised p-button-danger"
-                        (click)="toggleToUser()" data-bs-dismiss="modal"></button>
+                        (click)="toggleToUser()" data-bs-dismiss="modal" [routerLink]="['songsUser']"></button>
                 </div>
             </div>
             <div class="modal-footer">
